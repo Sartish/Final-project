@@ -1,13 +1,30 @@
 # Project Auth
 
-Replace this readme with your own information about your project.
+Pair-programming project with Nazanin Adampira🙋‍♀️
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+A sign in/up form that uses authenticate the users passwords. Once signedup/signed in the user get access to some well-being questions.
 
-## The problem
+## The build 🛠
+We built an API with authentication to implement a registration flow, and a frontend with forms to register, sign in, and view some content once users logged in. 
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+Our API includes:
+- Registration endpoint, to create a new user.
+- Sign-in endpoint, to authenticate a returning user.
+- An authenticated endpoint which only returns content if the `Authorization` header with the user's token was correct.
 
-## View it live
+Our frontend has
+- A sign-up/sign-in form.
+- A page (in Redux) to show the authenticated content from the API.
+- A 'sign out' button that removes the saved access token and redirects the user to the login form.
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+### Tech👩‍💻
+
+- MongoDB
+- Node.js
+- Express
+- Redux
+- React
+
+#### View it live 👀
+Frontend: https://infallible-engelbart-8dce94.netlify.app/
+API live: https://nazanin-sara-app.herokuapp.com

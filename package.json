@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "npm install --prefix backend"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.5.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "prettier": "2.3.0"
   }
 }
