@@ -3,14 +3,15 @@ import { Provider } from "react-redux";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Main from "./components/Main";
-import Login from "./components/Login";
-
 import user from "./reducers/user";
+import Signin from "./pages/Signin";
+import Concepts from "./pages/Concepts";
+import Description from "./pages/Description";
 
 const reducer = combineReducers({
-  user: user.reducer
+  user: user.reducer,
 });
+
 const store = configureStore({ reducer });
 
 export const App = () => {
@@ -18,8 +19,10 @@ export const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route path="/questions" component={Main} />
+          <Route path="/signin" component={Signin} />
+          <Route exact path="/concepts" component={Concepts} />
+          <Route path="/concepts/descriptions" component={Description} />
+          <div>hej appen</div>
         </Switch>
       </Provider>
     </BrowserRouter>

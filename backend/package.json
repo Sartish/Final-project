@@ -1,7 +1,7 @@
 {
-  "name": "project-auth-backend",
+  "name": "final-project-backend",
   "version": "1.0.0",
-  "description": "Starter project to get up and running with express quickly",
+  "description": "Backend for final project",
   "scripts": {
     "start": "babel-node server.js",
     "dev": "nodemon server.js --exec babel-node",

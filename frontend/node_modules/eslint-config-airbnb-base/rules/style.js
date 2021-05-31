@@ -76,6 +76,10 @@ module.exports = {
     // enforce newline at the end of file, with no multiple empty lines
     'eol-last': ['error', 'always'],
 
+    // https://eslint.org/docs/rules/function-call-argument-newline
+    // TODO: enable, semver-minor, once eslint v6.2 is required (which is a major)
+    'function-call-argument-newline': ['off', 'consistent'],
+
     // enforce spacing between functions and their invocations
     // https://eslint.org/docs/rules/func-call-spacing
     'func-call-spacing': ['error', 'never'],
@@ -103,7 +107,12 @@ module.exports = {
 
     // Blacklist certain identifiers to prevent them being used
     // https://eslint.org/docs/rules/id-blacklist
+    // TODO: semver-major, remove once eslint v7.4+ is required
     'id-blacklist': 'off',
+
+    // disallow specified identifiers
+    // https://eslint.org/docs/rules/id-denylist
+    'id-denylist': 'off',
 
     // this option enforces minimum and maximum identifier lengths
     // (variable names, property names etc.)
@@ -139,7 +148,7 @@ module.exports = {
       ImportDeclaration: 1,
       flatTernaryExpressions: false,
       // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
-      ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+      ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXFragment', 'JSXOpeningFragment', 'JSXClosingFragment', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
       ignoreComments: false
     }],
 
@@ -309,7 +318,7 @@ module.exports = {
 
     // disallow multiple empty lines, only one newline at the end, and no new lines at the beginning
     // https://eslint.org/docs/rules/no-multiple-empty-lines
-    'no-multiple-empty-lines': ['error', { max: 2, maxBOF: 1, maxEOF: 0 }],
+    'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
 
     // disallow negated conditions
     // https://eslint.org/docs/rules/no-negated-condition
@@ -430,6 +439,11 @@ module.exports = {
     // https://eslint.org/docs/rules/padding-line-between-statements
     'padding-line-between-statements': 'off',
 
+    // Disallow the use of Math.pow in favor of the ** operator
+    // https://eslint.org/docs/rules/prefer-exponentiation-operator
+    // TODO: enable, semver-major when eslint 5 is dropped
+    'prefer-exponentiation-operator': 'off',
+
     // Prefer use of an object spread over Object.assign
     // https://eslint.org/docs/rules/prefer-object-spread
     'prefer-object-spread': 'error',
@@ -492,7 +506,7 @@ module.exports = {
     'spaced-comment': ['error', 'always', {
       line: {
         exceptions: ['-', '+'],
-        markers: ['=', '!'], // space here to support sprockets directives
+        markers: ['=', '!', '/'], // space here to support sprockets directives, slash for TS /// comments
       },
       block: {
         exceptions: ['-', '+'],

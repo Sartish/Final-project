@@ -50,6 +50,20 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+const authenticateUser = async (req, res, next) => {
+  const accessToken = req.header("Authorization");
+  try {
+    const user = await User.findOne({ accessToken });
+    if (user) {
+      next();
+    } else {
+      res.status(401).json({ sucess: false, message: "Not authorized" });
+    }
+  } catch (error) {
+    res.status(404).json({ sucess: false, message: "Invalid request", error });
+  }
+};
+
 const Concept = mongoose.model("Concept", conceptSchema);
 const User = mongoose.model("User", userSchema);
 
@@ -110,6 +124,7 @@ app.post("/signin", async (req, res) => {
 });
 
 //POST CONCEPTS
+// Gör så att bara vi har behörighet till denna endpoint
 
 app.post("/concepts", async (req, res) => {
   const { concept, description } = req.body;
@@ -126,14 +141,47 @@ app.post("/concepts", async (req, res) => {
   }
 });
 
-// GET CONCEPT
+//POST for the user to add explanation of the concept
+//Authenticate user, to promot login
+app.post("/concepts/description", authenticateUser);
+app.post("/concepts/description", async (req, res) => {
+  const { concept, description } = req.body;
+
+  // ska vi ha success här?
+  try {
+    const newConcept = await new Concept({
+      concept,
+      description,
+    }).save();
+    res.json(newConcept);
+  } catch (error) {
+    res.status(400).json({ success: false, message: "Invalid request", error });
+  }
+});
+
+// GET CONCEPTS
 app.get("/concepts", async (req, res) => {
   try {
+    let { page, size } = req.query;
     //ska vi ha success här?
-    // sortera a-z, finns som mongoose grej?
     // pagination items per page
-    const concept = await Concept.find().sort({ concept: 1 });
-    res.json(concept);
+
+    if (!page) {
+      page = 1;
+    }
+    if (!size) {
+      size = 10;
+    }
+    const limit = parseInt(size);
+    const skip = (page - 1) * size;
+    // const page = await Concept.find().limit(limit).skip(skip)
+    // res.send({ page, size, data: page })
+    const concept = await Concept.find()
+      .sort({ concept: 1 })
+      .skip(skip)
+      .limit(limit);
+
+    res.json({ page, size, data: concept });
   } catch (error) {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
