@@ -40,6 +40,9 @@ const Navigation = () => {
               <NavLink to="/signin">Sign in</NavLink>
             </Typography>
             <Typography>
+              <NavLink to="/contribute">Contribute</NavLink>
+            </Typography>
+            <Typography>
               <NavLink to="/about">About</NavLink>
             </Typography>
           </Toolbar>

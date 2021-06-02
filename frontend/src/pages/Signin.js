@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import user from "../reducers/user";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
+import CustomButton from "../components/CustomButton";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -64,9 +66,16 @@ const Signin = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" onClick={() => setMode("signup")}>
+        <button
+          variant="contained"
+          color="primary"
+          type="submit"
+          text="Sign in"
+          onClick={() => setMode("signin")}
+        >
           Sign in
         </button>
+
         <button type="submit" onClick={() => setMode("signup")}>
           Sign up
         </button>
