@@ -73,7 +73,7 @@ app.use(express.json());
 
 // Start defining your routes here
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("Our backend");
 });
 
 //POST USER "/singup" and "/signin"
@@ -143,8 +143,8 @@ app.post("/concepts", async (req, res) => {
 
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
-app.post("/concepts/description", authenticateUser);
-app.post("/concepts/description", async (req, res) => {
+app.post("/concepts/descriptions", authenticateUser);
+app.post("/concepts/descriptions", async (req, res) => {
   const { concept, description } = req.body;
 
   // ska vi ha success här?
@@ -186,6 +186,40 @@ app.get("/concepts", async (req, res) => {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
+
+// One concept with all the desciptions through concept id
+
+app.get("/concepts/:conceptId"),
+  async (req, res) => {
+    const { conceptId } = req.params;
+    try {
+      const oneConcept = await Concept.findOne({ _id: conceptId });
+      if (oneConcept) {
+        res.json(oneConcept);
+      } else {
+        // Error when the id format is valid but no concept is found
+        res.status(400).json({ error: "no concept found" });
+      }
+    } catch (err) {
+      res.status(404).json({ error: "invalid request" });
+    }
+  };
+
+//TEST
+app.get("/concepts/concept/:_id"),
+  async (req, res) => {
+    try {
+      const oneConcept = await Concept.findOne({ _id: req.params._id });
+      if (oneConcept) {
+        res.json(oneConcept);
+      } else {
+        // Error when the id format is valid but no concept is found
+        res.status(400).json({ error: "no concept found" });
+      }
+    } catch (err) {
+      res.status(404).json({ error: "invalid request" });
+    }
+  };
 // Start the server
 app.listen(port, () => {
   // eslint-disable-next-line
