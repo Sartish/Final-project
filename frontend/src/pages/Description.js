@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 
 // Concept should render all concepts from A-Z
 // when clicked render new component with allexplanation
 const Description = () => {
-  // const [descriptionList, setDescriptionList] = useState({});
-  //   const descriptionItems = useSelector((store) => store.concepts.items);
-  // const { conceptId } = useParams;
+  const [description, setDescription] = useState("");
   // do fetch on concepts/conceptid? To get one Id and then do map over all the descriptions.
 
+  //location find what URL the request has, pathName reveals this
+  // let slug takes away first string in pathName URL
+  const location = useLocation();
+
+  console.log(location);
+  let slug = location.pathname.substring(1);
   useEffect(() => {
-    fetch(API_URL(`concepts/60b399098069021797eb4530`))
+    fetch(API_URL(slug))
       .then((res) => res.json())
       // .then((data) => setDescriptionList(data));
-      .then((data) => console.log(data));
+      .then((data) => setDescription(data.description));
   });
 
   return (
@@ -23,6 +27,7 @@ const Description = () => {
       <Navigation />
       <h1>This is a single concept</h1>
       <p>id for item </p>
+      <p>Desc: {description}</p>
       {/* {descriptionList.data?.map((item) => {
         return (
           <div className="concept-card" key={item._id}>
