@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  Card,
-  makeStyles,
-  CardHeader,
-  CardContent,
-  Typography,
-} from "@material-ui/core";
+import { Card, makeStyles, CardContent, Typography } from "@material-ui/core";
+import { FavoriteIcon } from "@material-ui/icons/Favorite";
 import CustomButton from "./CustomButton";
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxWidth: 345,
+    width: 300,
   },
 }));
 
@@ -19,7 +14,9 @@ const CustomCard = ({ header, paragraph }) => {
   return (
     <>
       <Card className={classes.root}>
-        <CardHeader>{header}</CardHeader>
+        <Typography variant="body2" component="p">
+          {header}
+        </Typography>
         <CardContent>
           <Typography variant="body2" component="p">
             {paragraph}
