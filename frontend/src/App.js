@@ -7,6 +7,8 @@ import user from "./reducers/user";
 import Signin from "./pages/Signin";
 import Concepts from "./pages/Concepts";
 import Description from "./pages/Description";
+import Home from "./pages/Home";
+import About from "./pages/About";
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -19,9 +21,12 @@ export const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
-          <Route path="/signin" component={Signin} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signin" component={Signin} />
           <Route exact path="/concepts" component={Concepts} />
-          <Route path="/concepts/descriptions" component={Description} />
+          <Route exact path="/concepts/:conceptId" component={Description} />
+          {/* <Route exact path="/concepts/descriptions" component={Description} /> */}
+          <Route exact path="/about" component={About} />
           <div>hej appen</div>
         </Switch>
       </Provider>

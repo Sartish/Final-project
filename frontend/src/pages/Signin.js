@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import user from "../reducers/user";
 
 import { API_URL } from "../reusables/urls";
+import Navigation from "../components/Navigation";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -48,6 +49,7 @@ const Signin = () => {
   };
   return (
     <div>
+      <Navigation />
       <h1>Sign in or Sign up</h1>
       <form onSubmit={onFormSubmit}>
         <input

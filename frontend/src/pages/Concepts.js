@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // import { concepts } from "../reducers/concepts";
 
 import { API_URL } from "../reusables/urls";
+import Navigation from "../components/Navigation";
 
 // Concept should render all concepts from A-Z
 // when clicked render new component with allexplanation
@@ -21,13 +22,14 @@ const Concepts = () => {
 
   return (
     <div>
+      <Navigation />
       <h1>Here we list all of the concepts</h1>
       {conceptList.data?.map((item) => {
         return (
           <div className="concept-card" key={item._id}>
             <h2>{item.concept}</h2>
             {/* <h2>{item.description}</h2> */}
-            <Link to={`/concepts/descriptions`} exact>
+            <Link to={`/concepts/${item._id}`} exact>
               <button>button to concept-card</button>
             </Link>
           </div>

@@ -189,37 +189,23 @@ app.get("/concepts", async (req, res) => {
 
 // One concept with all the desciptions through concept id
 
-app.get("/concepts/:conceptId"),
-  async (req, res) => {
-    const { conceptId } = req.params;
-    try {
-      const oneConcept = await Concept.findOne({ _id: conceptId });
-      if (oneConcept) {
-        res.json(oneConcept);
-      } else {
-        // Error when the id format is valid but no concept is found
-        res.status(400).json({ error: "no concept found" });
-      }
-    } catch (err) {
-      res.status(404).json({ error: "invalid request" });
-    }
-  };
+app.get("/concepts/:conceptId", async (req, res) => {
+  const { conceptId } = req.params;
 
-//TEST
-app.get("/concepts/concept/:_id"),
-  async (req, res) => {
-    try {
-      const oneConcept = await Concept.findOne({ _id: req.params._id });
-      if (oneConcept) {
-        res.json(oneConcept);
-      } else {
-        // Error when the id format is valid but no concept is found
-        res.status(400).json({ error: "no concept found" });
-      }
-    } catch (err) {
-      res.status(404).json({ error: "invalid request" });
+  try {
+    const oneConcept = await Concept.findOne({ _id: conceptId });
+    if (oneConcept) {
+      res.json(oneConcept);
+    } else {
+      // Error when the id format is valid, but no concept is found with that id
+      res.status(400).json({ error: "no concept found with that id" });
     }
-  };
+    // Error when format id os wrong and invalid dong id entered
+  } catch (err) {
+    res.status(404).json({ error: "Invalid request" });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   // eslint-disable-next-line
