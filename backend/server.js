@@ -146,8 +146,6 @@ app.post("/concepts", async (req, res) => {
 app.post("/concepts/descriptions", authenticateUser);
 app.post("/concepts/descriptions", async (req, res) => {
   const { concept, description } = req.body;
-
-  // ska vi ha success här?
   try {
     const newConcept = await new Concept({
       concept,
@@ -156,6 +154,31 @@ app.post("/concepts/descriptions", async (req, res) => {
     res.json(newConcept);
   } catch (error) {
     res.status(400).json({ success: false, message: "Invalid request", error });
+  }
+});
+
+//POST
+app.post("/concepts/:conceptId/description", async (req, res) => {
+  const { conceptId } = req.params;
+
+  try {
+    const addDescription = await Concept.findOneAndUpdate(
+      {
+        _id: conceptId,
+      },
+      {
+        $set: {
+          description: "",
+        },
+      }
+    );
+    if (addDescription) {
+      res.status(200).json(addDescription);
+    } else {
+      res.status(404).json({ message: "not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: "invalid request", error });
   }
 });
 
