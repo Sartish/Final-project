@@ -18,11 +18,13 @@ const conceptSchema = new mongoose.Schema({
   concept: {
     type: String,
   },
-  description: {
-    type: String,
-    required: true,
-    maxlength: 140,
-  },
+  description: [
+    {
+      type: String,
+      required: true,
+      maxlength: 140,
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -133,7 +135,7 @@ app.post("/concepts", async (req, res) => {
   try {
     const newConcept = await new Concept({
       concept,
-      description,
+      description: [description],
     }).save();
     res.json(newConcept);
   } catch (error) {
@@ -143,37 +145,44 @@ app.post("/concepts", async (req, res) => {
 
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
-app.post("/concepts/descriptions", authenticateUser);
-app.post("/concepts/descriptions", async (req, res) => {
-  const { concept, description } = req.body;
+// app.patch("/concepts", authenticateUser);
+
+app.patch("/concepts", async (req, res) => {
+  const { idOfAConcept, description } = req.body;
+
   try {
-    const newConcept = await new Concept({
-      concept,
-      description,
-    }).save();
-    res.json(newConcept);
+    const updatedConcept = await Concept.findOneByIdAndUpdate(
+      idOfAConcept,
+      {
+        $push: {
+          description: description,
+        },
+      },
+      { new: true }
+    );
+    res.json(updatedConcept);
   } catch (error) {
-    res.status(400).json({ success: false, message: "Invalid request", error });
+    res.status(400).json({ sucess: false, message: "Invalid request", error });
   }
 });
 
 //POST
-app.post("/concepts/:conceptId/description", async (req, res) => {
+//Relevant for update likes?
+//Same user can only like once. "toggle"
+app.post("/concepts/:conceptId/likes", async (req, res) => {
   const { conceptId } = req.params;
 
   try {
-    const addDescription = await Concept.findOneAndUpdate(
+    const likes = await Concept.findOneAndUpdate(
       {
         _id: conceptId,
       },
       {
-        $set: {
-          description: "",
-        },
+        $inc: { likes: 1 },
       }
     );
-    if (addDescription) {
-      res.status(200).json(addDescription);
+    if (likes) {
+      res.status(200).json(likes);
     } else {
       res.status(404).json({ message: "not found" });
     }
