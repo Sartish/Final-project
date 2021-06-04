@@ -182,7 +182,7 @@ app.patch("/concepts", async (req, res) => {
         },
       },
       { new: true }
-    );
+    ).populate("description");
     res.json(updatedConcept);
   } catch (error) {
     res.status(400).json({ sucess: false, message: "Invalid request", error });
