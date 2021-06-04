@@ -20,14 +20,26 @@ const conceptSchema = new mongoose.Schema({
   },
   description: [
     {
-      type: String,
-      required: true,
-      maxlength: 140,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Description",
     },
   ],
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  likes: {
+    type: Number,
+    default: 0,
+  },
+});
+
+//De
+const descriptionSchema = new mongoose.Schema({
+  text: {
+    type: String,
+    required: true,
+    maxlength: 140,
   },
   likes: {
     type: Number,
@@ -68,6 +80,7 @@ const authenticateUser = async (req, res, next) => {
 
 const Concept = mongoose.model("Concept", conceptSchema);
 const User = mongoose.model("User", userSchema);
+const Description = mongoose.model("Description", descriptionSchema);
 
 // Add middlewares to enable cors and json body parsing
 app.use(cors());
@@ -133,15 +146,21 @@ app.post("/concepts", async (req, res) => {
 
   // ska vi ha success här?
   try {
+    const newDescription = await new Description({
+      text: description,
+    }).save();
+
     const newConcept = await new Concept({
       concept,
-      description: [description],
+      description: [newDescription],
     }).save();
     res.json(newConcept);
   } catch (error) {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
+
+//ADD Delete concepts also
 
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
@@ -151,11 +170,15 @@ app.patch("/concepts", async (req, res) => {
   const { idOfAConcept, description } = req.body;
 
   try {
-    const updatedConcept = await Concept.findOneByIdAndUpdate(
+    const newDescription = await new Description({
+      text: description,
+    }).save();
+
+    const updatedConcept = await Concept.findByIdAndUpdate(
       idOfAConcept,
       {
         $push: {
-          description: description,
+          description: [newDescription],
         },
       },
       { new: true }
@@ -169,6 +192,8 @@ app.patch("/concepts", async (req, res) => {
 //POST
 //Relevant for update likes?
 //Same user can only like once. "toggle"
+// this one should like a specific description, not the concept
+// need to create an id for description
 app.post("/concepts/:conceptId/likes", async (req, res) => {
   const { conceptId } = req.params;
 
@@ -206,8 +231,7 @@ app.get("/concepts", async (req, res) => {
     }
     const limit = parseInt(size);
     const skip = (page - 1) * size;
-    // const page = await Concept.find().limit(limit).skip(skip)
-    // res.send({ page, size, data: page })
+
     const concept = await Concept.find()
       .sort({ concept: 1 })
       .skip(skip)
