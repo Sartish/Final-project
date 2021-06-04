@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
+import styled from "styled-components/macro";
 
 import user from "../reducers/user";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
-import CustomButton from "../components/CustomButton";
+// import CustomButton from "../components/CustomButton";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -52,40 +53,110 @@ const Signin = () => {
   return (
     <div>
       <Navigation />
-      <h1>Sign in or Sign up</h1>
-      <form onSubmit={onFormSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="•••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          variant="contained"
-          color="primary"
-          type="submit"
-          text="Sign in"
-          onClick={() => setMode("signin")}
-        >
-          Sign in
-        </button>
+      <Wrapper>
+        <Header>Sign in or Sign up</Header>
+        <Form onSubmit={onFormSubmit}>
+          <Input
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="•••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            text="Sign in"
+            onClick={() => setMode("signin")}
+          >
+            Sign in
+          </Button>
 
-        <button type="submit" onClick={() => setMode("signup")}>
-          Sign up
-        </button>
-        <div>
-          When you sign up you will be able to contribute with your wasy peasy
-          explanation for the concept and like those you understand the most
-        </div>
-      </form>
+          <Button type="submit" onClick={() => setMode("signup")}>
+            Sign up
+          </Button>
+          <div>
+            When you sign up you will be able to contribute with your wasy peasy
+            explanation for the concept and like those you understand the most
+          </div>
+        </Form>
+      </Wrapper>
     </div>
   );
 };
 
 export default Signin;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+
+  @media (min-width: 767px) {
+    width: 50%;
+    margin-top: 35px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 500px;
+  }
+`;
+const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
+const Header = styled.h1`
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+
+  @media (min-width: 1024px) {
+    font-size: 50px;
+  }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  border-radius: 50px;
+  outline: none;
+  // border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+
+  @media (min-width: 767px) {
+    font-size: 17px;
+  }
+`;
+
+const Button = styled.button`
+  border-radius: 8px;
+  background-color: #006cde;
+  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
+  padding: 10px 20px;
+  border: solid #fff 1.5px;
+  border-radius: 50px;
+  outline: none;
+  width: 100%;
+  color: #fff;
+  font-size: 17px;
+
+  :hover {
+    background-color: #fc00ff;
+    background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
+  }
+
+  @media (min-width: 767px) {
+    font-size: 19px;
+  }
+`;

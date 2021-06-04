@@ -34,7 +34,7 @@ const conceptSchema = new mongoose.Schema({
   },
 });
 
-//De
+//Description Schema
 const descriptionSchema = new mongoose.Schema({
   text: {
     type: String,
@@ -64,6 +64,10 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+const Concept = mongoose.model("Concept", conceptSchema);
+const User = mongoose.model("User", userSchema);
+const Description = mongoose.model("Description", descriptionSchema);
+
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header("Authorization");
   try {
@@ -77,10 +81,6 @@ const authenticateUser = async (req, res, next) => {
     res.status(404).json({ sucess: false, message: "Invalid request", error });
   }
 };
-
-const Concept = mongoose.model("Concept", conceptSchema);
-const User = mongoose.model("User", userSchema);
-const Description = mongoose.model("Description", descriptionSchema);
 
 // Add middlewares to enable cors and json body parsing
 app.use(cors());
@@ -178,7 +178,7 @@ app.patch("/concepts", async (req, res) => {
       idOfAConcept,
       {
         $push: {
-          description: [newDescription],
+          description: newDescription,
         },
       },
       { new: true }
@@ -194,13 +194,13 @@ app.patch("/concepts", async (req, res) => {
 //Same user can only like once. "toggle"
 // this one should like a specific description, not the concept
 // need to create an id for description
-app.post("/concepts/:conceptId/likes", async (req, res) => {
-  const { conceptId } = req.params;
+app.post("/concepts/:descriptionId/likes", async (req, res) => {
+  const { descriptionId } = req.params;
 
   try {
-    const likes = await Concept.findOneAndUpdate(
+    const likes = await Description.findOneAndUpdate(
       {
-        _id: conceptId,
+        _id: descriptionId,
       },
       {
         $inc: { likes: 1 },
