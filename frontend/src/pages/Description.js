@@ -29,22 +29,16 @@ const Description = () => {
     <div>
       <Navigation />
       <h1>This is a single concept</h1>
-      <p>Concept: {concept}</p>
-      <p>Desc: {description}</p>
-      <p>Number of likes: {likes}</p>
+      <h2>Concept: {concept}</h2>
 
-      {/* {descriptionList.data?.map((item) => {
-        return (
-          <div className="concept-card" key={item._id}>
-            <h2>{item.concept}</h2>
-            <h2>{item.description}</h2>
-            <h2>{item.likes}</h2>
-            <h2>{item.createdAt}</h2>
-            <button>contribute</button>
-          </div>
-        );
-      })} */}
-
+      {description?.map((item)=> {
+          return (
+            <div key={item._id}>
+            <p>Desc: {item.text}</p>
+            <p>Number of likes: {item.likes}</p>
+            </div>
+          )
+        })}
       <button>Contribute</button>
     </div>
   );

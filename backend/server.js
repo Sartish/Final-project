@@ -250,8 +250,10 @@ app.get("/concepts/:conceptId", async (req, res) => {
   const { conceptId } = req.params;
 
   try {
-    const oneConcept = await Concept.findOne({ _id: conceptId });
+    const oneConcept = await Concept.findOne({ _id: conceptId }).populate("description");
     if (oneConcept) {
+
+      console.log(oneConcept);
       res.json(oneConcept);
     } else {
       // Error when the id format is valid, but no concept is found with that id
