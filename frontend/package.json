@@ -15,7 +15,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "install": "^0.13.0",
-    "npm": "^7.15.1",
+    "npm": "^7.16.0",
     "react": "^16.14.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.4",
