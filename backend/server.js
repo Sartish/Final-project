@@ -207,6 +207,9 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
       },
       {
         $inc: { likes: 1 },
+      },
+      {
+        new: true
       }
     );
     if (likes) {

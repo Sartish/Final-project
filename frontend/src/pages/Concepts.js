@@ -7,11 +7,13 @@ import {
   makeStyles,
   CardContent,
   Typography,
-  Button,
+  // Button,
   Container,
 } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
+
+import CustomButton from '../components/CustomButton';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -54,14 +56,14 @@ const Concepts = () => {
                       5 Contributions
                     </Typography>
                     <Link to={`/concepts/${item._id}`}>
-                      <Button
+                      <CustomButton
                         type="submit"
                         text="read more"
                         color="Primary"
                         variant="contained"
                       >
                         Read more
-                      </Button>
+                      </CustomButton>
                     </Link>
                   </CardContent>
                 </Card>

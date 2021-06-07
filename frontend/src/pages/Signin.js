@@ -150,6 +150,7 @@ const Button = styled.button`
   width: 100%;
   color: #fff;
   font-size: 17px;
+  margin-bottom: 10px;
 
   :hover {
     background-color: #fc00ff;

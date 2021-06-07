@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const concepts = createSlice({
   name: "concepts",
   initialState: {
-    items: [],
+    description: "test",
     errors: null,
   },
   reducers: {
@@ -13,7 +13,11 @@ const concepts = createSlice({
     setErrors: (store, action) => {
       store.errors = action.payload;
     },
+    addDescription: (store, action) => {
+      return [...store, action.payload];
+    }
   },
 });
+
 
 export default concepts;

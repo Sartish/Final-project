@@ -4,14 +4,17 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import user from "./reducers/user";
+import concepts from "./reducers/concepts";
 import Signin from "./pages/Signin";
 import Concepts from "./pages/Concepts";
 import Description from "./pages/Description";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import AddedDescription from "./components/AddedDescription";
 
 const reducer = combineReducers({
   user: user.reducer,
+  concepts: concepts.reducer
 });
 
 const store = configureStore({ reducer });
@@ -27,7 +30,7 @@ export const App = () => {
           <Route path="/concepts/:conceptId" component={Description} />
           {/* <Route exact path="/concepts/descriptions" component={Description} /> */}
           <Route exact path="/about" component={About} />
-          {/* <Route exact path="/contribute" component={Contribute} /> */}
+          <Route exact path="/contribute" component={AddedDescription} />
           <div>hej appen</div>
         </Switch>
       </Provider>

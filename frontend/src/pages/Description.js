@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
-import AddDescription from '../components/AddDescription';
+// import AddDescription from '../components/AddDescription';
 
 // Concept should render all concepts from A-Z
 // when clicked render new component with allexplanation
 const Description = () => {
   const [data, setData] = useState({});
-  const [hearts, setHearts] = useState({});
+
 
   // do fetch on concepts/conceptid? To get one Id and then do map over all the descriptions.
   const { description, concept, likes } = data;
@@ -22,13 +22,15 @@ const Description = () => {
   const location = useLocation();
 
   useEffect(() => {
-    let slug = location.pathname.substring(1)
+    getDescriptions()
+  }, [location.pathname,]);
+
+const getDescriptions = () => {
+  let slug = location.pathname.substring(1)
     fetch(API_URL(slug))
       .then((res) => res.json())
       .then((data) => setData(data));
-  }, [location.pathname]);
-
-
+}
 // render POST like on click?
 // How do we add toggle, so user can only like once and not spam, FE or BE?
 // Also sort, more likes on top of the page, BE, right?
@@ -41,8 +43,7 @@ const Description = () => {
   }
   fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
     .then(res => res.json())
-    .then((hearts) => setHearts(hearts))
-
+    .then((data) => getDescriptions());
 }
 
 
@@ -52,7 +53,7 @@ const Description = () => {
       <h1>This is a single concept</h1>
       <h2>Concept: {concept}</h2>
 
-      <button><AddDescription /> </button>
+      <button>contribute </button>
 
       {description?.map((item)=> {
           return (
