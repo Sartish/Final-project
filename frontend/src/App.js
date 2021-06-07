@@ -9,7 +9,6 @@ import Concepts from "./pages/Concepts";
 import Description from "./pages/Description";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Contribute from "./pages/Contribute";
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -28,7 +27,7 @@ export const App = () => {
           <Route path="/concepts/:conceptId" component={Description} />
           {/* <Route exact path="/concepts/descriptions" component={Description} /> */}
           <Route exact path="/about" component={About} />
-          <Route exact path="/contribute" component={Contribute} />
+          {/* <Route exact path="/contribute" component={Contribute} /> */}
           <div>hej appen</div>
         </Switch>
       </Provider>

@@ -13,6 +13,7 @@ mongoose.Promise = Promise;
 
 const port = process.env.PORT || 8080;
 const app = express();
+app.use(cors())
 
 // CONCEPT SCHEMA
 const conceptSchema = new mongoose.Schema({
@@ -40,6 +41,7 @@ const descriptionSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
+    minlength: 5,
     maxlength: 140,
   },
   likes: {
