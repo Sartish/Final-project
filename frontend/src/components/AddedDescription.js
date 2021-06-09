@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -21,7 +21,7 @@ const AddedDescription = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      // idofaconcept should be after the description
+
       body: JSON.stringify({ description, idOfAConcept }),
     };
 
@@ -29,18 +29,30 @@ const AddedDescription = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
-
+// vill få att knappen gör submit, inte vid enter..
+//vill få med så det syns på sidan vilket concept som man gör add på
+//vad ska hända när man trycker på done? Konfettiregn? link tillbaka till concepts?
   return (
     <>
     <Navigation />
+    <Wrapper>
+    <Header>You want to contribute, awesome! <span role="img" aria-label="heart">{"✨"}</span></Header>
+    <HowToContribute>Write your description here, but keep it short and sweet, max 140 characters.</HowToContribute>
       <form onSubmit={onFormSubmit}>
-        <input
+        <TextArea
           type="text"
+          rows="4"
+          cols="50"
+          maxLength="140"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Button>Done!</Button>
+        <ButtonSection>
+          <Link to='/concepts'><Button>Back to concepts</Button></Link>
+          <Button type='submit'>Done!</Button>
+        </ButtonSection>
       </form>
+      </Wrapper>
     </>
   );
 };
@@ -67,4 +79,28 @@ const Button = styled.button`
   @media (min-width: 767px) {
     font-size: 19px;
   }
+`;
+
+const ButtonSection = styled.div`
+
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Wrapper = styled.div`
+  width: 80%;
+`;
+
+const Header = styled.h2`
+  text-align: center;
+  margin-top: 15px;
+`;
+
+const HowToContribute = styled.h3`
+  text-align: center;
+  margin-top: 15px;
+`;
+
+const TextArea = styled.textarea`
+  margin-bottom: 15px;
 `;

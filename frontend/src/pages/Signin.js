@@ -59,7 +59,7 @@ const Signin = () => {
     <div>
       <Navigation />
       <Wrapper>
-        <Header>Sign in or Sign up</Header>
+        <Header>Sign in | Sign up</Header>
         <Form onSubmit={onFormSubmit}>
           <Input
             type="text"
