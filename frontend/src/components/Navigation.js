@@ -18,34 +18,29 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     fontFamily: font,
   },
-  // hamburger icon make it only for mobile
-  // menuButton: {
-  //   marginRight: theme.spacing(2),
-  // },
-
-  // add same styling to two classes
+  toolbar: {
+    backgroundColor: "#ffdcdc",
+  },
   home: {
     flexGrow: 1,
-    textDecoration: "none",
-    color: "white",
-    fontFamily: font,
   },
-  concepts: {
+  front: {
+    textDecoration: "none",
+    color: "#223A59",
+    fontFamily: font,
+    "&:hover": {
+      color: "#ec4646",
+    },
+  },
+
+  navObject: {
     textDecoration: "none",
     marginRight: "10px",
-    color: "white",
+    color: "#223A59",
     fontFamily: font,
-  },
-  signin: {
-    textDecoration: "none",
-    marginRight: "10px",
-    color: "white",
-    fontFamily: font,
-  },
-  about: {
-    textDecoration: "none",
-    color: "white",
-    fontFamily: font,
+    "&:hover": {
+      color: "#ec4646",
+    },
   },
 }));
 
@@ -54,18 +49,20 @@ const Navigation = () => {
   return (
     <>
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" className={classes.toolbar}>
           <Toolbar>
             <Typography variant="h6" className={classes.home}>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/" className={classes.front}>
+                Home
+              </NavLink>
             </Typography>
             <Typography>
-              <NavLink to="/concepts" className={classes.concepts}>
+              <NavLink to="/concepts" className={classes.navObject}>
                 Concepts
               </NavLink>
             </Typography>
             <Typography>
-              <NavLink to="/signin" className={`${classes.signin}`}>
+              <NavLink to="/signin" className={`${classes.navObject}`}>
                 Sign in
               </NavLink>
             </Typography>
@@ -73,7 +70,7 @@ const Navigation = () => {
               <NavLink to="/contribute">Contribute</NavLink>
             </Typography> */}
             <Typography>
-              <NavLink to="/about" className={classes.about}>
+              <NavLink to="/about" className={classes.navObject}>
                 About
               </NavLink>
             </Typography>
