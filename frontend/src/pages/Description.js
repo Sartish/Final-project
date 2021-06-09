@@ -144,4 +144,12 @@ padding-left: 10px;
 padding-right: 10px;
 background-color: azure;
 margin:10px;
+
+@media (min-width: 767px){
+  width: 50%;
+}
+
+@media (min-width: 1025px){
+ width: 20%;
+}
 `;

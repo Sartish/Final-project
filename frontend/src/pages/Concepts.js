@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
 
 import SignOut from '../components/SignOut';
 
@@ -30,7 +31,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   link: {
     textDecoration: "none",
@@ -90,8 +91,10 @@ const Concepts = () => {
           })}
 
         </Grid>
-        <button onClick={movePreviousPage} disabled={pageNumber === 1} >Previous page</button>
-        <button onClick={moveNextPage} disabled={pageNumber === 10} >Next page</button>
+        <div>
+          <Button onClick={movePreviousPage} disabled={pageNumber === 1} >Previous page</Button>
+          <Button onClick={moveNextPage} disabled={pageNumber === 10} >Next page</Button>
+        </div>
       </Container>
     </div>
   );
@@ -100,3 +103,12 @@ const Concepts = () => {
 export default Concepts;
 
 //flow: Concept -> explanation
+
+const Button = styled.button`
+  border-radius: 15px;
+  margin: 10px;
+`;
+
+// const ButtonDiv = styled.div`
+
+// `;

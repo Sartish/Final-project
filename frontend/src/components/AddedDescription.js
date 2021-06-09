@@ -7,6 +7,7 @@ import Navigation from "../components/Navigation";
 
 const AddedDescription = () => {
   const [description, setDescription] = useState("");
+  const [charCount, setCharCount] = useState(0);
 
   const { conceptId } = useParams();
 
@@ -47,9 +48,13 @@ const AddedDescription = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <p>{description.length}/140</p>
         <ButtonSection>
           <Link to='/concepts'><Button>Back to concepts</Button></Link>
-          <Button type='submit'>Done!</Button>
+          <Button
+          type='submit'
+          disabled={!!(description.length < 5 || description.length > 140)}>
+          Done!</Button>
         </ButtonSection>
       </form>
       </Wrapper>
