@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 
 import CustomButton from '../components/CustomButton';
+import SignOut from '../components/SignOut';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -43,6 +44,7 @@ const Concepts = () => {
   return (
     <div>
       <Navigation />
+      <SignOut />
       <Container>
         <h1>Here we list all of the concepts</h1>
         <Grid container direction="row" justify="center" alignItems="start">
