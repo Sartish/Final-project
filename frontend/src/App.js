@@ -29,6 +29,8 @@ export const App = () => {
           <Route exact path="/concepts" component={Concepts} />
           <Route path="/concepts/:conceptId" component={Description} />
           {/* <Route exact path="/concepts/descriptions" component={Description} /> */}
+
+          <Route exact path="/contribute/concepts/:conceptId"component={AddedDescription}/>
           <Route path="/about" component={About} />
           <Route path="/contribute" component={AddedDescription} />
           <div>hej appen</div>

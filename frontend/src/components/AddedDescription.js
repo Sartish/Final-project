@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
+import { useParams } from "react-router-dom";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 
 const AddedDescription = () => {
   const [description, setDescription] = useState("");
+
+  const { conceptId } = useParams();
+
+  let idOfAConcept = conceptId;
+
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +22,7 @@ const AddedDescription = () => {
         "Content-Type": "application/json",
       },
       // idofaconcept should be after the description
-      body: JSON.stringify({ description }),
+      body: JSON.stringify({ description, idOfAConcept }),
     };
 
     fetch(API_URL("concepts"), options)

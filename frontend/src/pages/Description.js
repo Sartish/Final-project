@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -53,8 +54,9 @@ const getDescriptions = () => {
       <Navigation />
       <h1>This is a single concept</h1>
       <h2>Concept: {concept}</h2>
-
-      <Button>contribute </Button>
+      <Link to={`/contribute/${location.pathname.substring(1)}`}>
+        <Button>contribute </Button>
+      </Link>
 
       {description?.map((item)=> {
           return (
@@ -64,6 +66,7 @@ const getDescriptions = () => {
             {/* Id: {item._id} */}
               </p>
               <p>Contributor</p>
+
             <button onClick={() => postLikeToBackend(item._id)}>
               <span role="img" aria-label="heart">
                 {"❤️"}</span></button>

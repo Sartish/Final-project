@@ -167,8 +167,8 @@ app.post("/concepts", async (req, res) => {
 
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
-// app.patch("/concepts", authenticateUser);
 
+// app.patch("/concepts", authenticateUser);
 app.patch("/concepts", async (req, res) => {
   const { idOfAConcept, description } = req.body;
 
