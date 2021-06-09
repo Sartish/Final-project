@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { useParams, Link } from "react-router-dom";
+import { useSelector} from 'react-redux'
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -12,7 +13,8 @@ const AddedDescription = () => {
 
   let idOfAConcept = conceptId;
 
-//
+  const accessToken = useSelector(store => store.user.accessToken)
+
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -20,6 +22,7 @@ const AddedDescription = () => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": accessToken
       },
 
       body: JSON.stringify({ description, idOfAConcept }),

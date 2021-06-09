@@ -73,6 +73,7 @@ const Description = mongoose.model("Description", descriptionSchema);
 
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header("Authorization");
+
   try {
     const user = await User.findOne({ accessToken });
     if (user) {
@@ -168,9 +169,9 @@ app.post("/concepts", async (req, res) => {
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
 
-// app.patch("/concepts", authenticateUser);
+app.patch("/concepts", authenticateUser)
 app.patch("/concepts", async (req, res) => {
-  const { idOfAConcept, description } = req.body;
+  const { idOfAConcept, description, accessToken } = req.body;
 
   try {
     const newDescription = await new Description({

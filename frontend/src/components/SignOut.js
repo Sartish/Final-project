@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, batch  } from 'react-redux';
+import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
 import user from '../reducers/user';
@@ -19,12 +20,14 @@ const SignOut = () => {
   }
 
   return (
-    <Button
-      type='submit'
-      onClick={handleClick}
-      >
-      Sign out
-    </Button>
+    <Link to="/">
+        <Button
+        type='submit'
+        onClick={handleClick}
+        >
+        Sign out
+      </Button>
+    </Link>
   )
 };
 
