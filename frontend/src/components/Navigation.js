@@ -13,6 +13,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    textDecoration: "none",
   },
   // hamburger icon make it only for mobile
   // menuButton: {
@@ -20,6 +21,18 @@ const useStyles = makeStyles((theme) => ({
   // },
   title: {
     flexGrow: 1,
+    textDecoration: "none",
+  },
+  concepts: {
+    textDecoration: "none",
+    marginRight: "10px",
+  },
+  signin: {
+    textDecoration: "none",
+    marginRight: "10px",
+  },
+  about: {
+    textDecoration: "none",
   },
 }));
 
@@ -34,16 +47,22 @@ const Navigation = () => {
               <NavLink to="/">Home</NavLink>
             </Typography>
             <Typography>
-              <NavLink to="/concepts">Concepts</NavLink>
+              <NavLink to="/concepts" className={classes.concepts}>
+                Concepts
+              </NavLink>
             </Typography>
             <Typography>
-              <NavLink to="/signin">Sign in</NavLink>
+              <NavLink to="/signin" className={classes.signin}>
+                Sign in
+              </NavLink>
             </Typography>
-            <Typography>
+            {/* <Typography>
               <NavLink to="/contribute">Contribute</NavLink>
-            </Typography>
+            </Typography> */}
             <Typography>
-              <NavLink to="/about">About</NavLink>
+              <NavLink to="/about" className={classes.about}>
+                About
+              </NavLink>
             </Typography>
           </Toolbar>
         </AppBar>
