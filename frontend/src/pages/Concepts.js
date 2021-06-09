@@ -65,7 +65,7 @@ const Concepts = () => {
     setPageNumber(pageNumber -1)
     console.log("previous")
   }
-
+// lagt till key på id, men hjälper inte för att få bort varning om key i consolen
   return (
     <div>
       <Navigation />
@@ -76,7 +76,7 @@ const Concepts = () => {
           {conceptList.data?.map((item) => {
             return (
               <>
-              <Link className={classes.link} to={`/concepts/${item._id}`}>
+              <Link key={item._id} className={classes.link} to={`/concepts/${item._id}`}>
                 <Card className={classes.root} key={item._id}>
                   <CardContent className={classes.card}>
                     <h2 className={classes.concept}>{item.concept}</h2>

@@ -7,13 +7,12 @@ import Navigation from "../components/Navigation";
 
 const AddedDescription = () => {
   const [description, setDescription] = useState("");
-  const [charCount, setCharCount] = useState(0);
 
   const { conceptId } = useParams();
 
   let idOfAConcept = conceptId;
 
-
+//
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -37,26 +36,28 @@ const AddedDescription = () => {
     <>
     <Navigation />
     <Wrapper>
-    <Header>You want to contribute, awesome! <span role="img" aria-label="heart">{"✨"}</span></Header>
-    <HowToContribute>Write your description here, but keep it short and sweet, max 140 characters.</HowToContribute>
-      <form onSubmit={onFormSubmit}>
-        <TextArea
-          type="text"
-          rows="4"
-          cols="50"
-          maxLength="140"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <p>{description.length}/140</p>
-        <ButtonSection>
-          <Link to='/concepts'><Button>Back to concepts</Button></Link>
-          <Button
-          type='submit'
-          disabled={!!(description.length < 5 || description.length > 140)}>
-          Done!</Button>
-        </ButtonSection>
-      </form>
+      <Header>You want to contribute, awesome! <span role="img" aria-label="heart">{"✨"}</span></Header>
+      <HowToContribute>Write your description here, but keep it short and sweet, max 140 characters.</HowToContribute>
+        <form onSubmit={onFormSubmit}>
+          <TextArea
+            type="text"
+            rows="4"
+            cols="50"
+            maxLength="140"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <TextCounter>{description.length}/140</TextCounter>
+          <ButtonSection>
+            <Link to='/concepts'><Button>Back to concepts</Button></Link>
+            <Button
+              type='submit'
+              onClick={onFormSubmit}
+              disabled={!!(description.length < 5 || description.length > 140)}>
+              Done!
+            </Button>
+          </ButtonSection>
+          </form>
       </Wrapper>
     </>
   );
@@ -87,13 +88,21 @@ const Button = styled.button`
 `;
 
 const ButtonSection = styled.div`
-
   display: flex;
   justify-content: space-between;
 `;
 
 const Wrapper = styled.div`
-  width: 80%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 767px){
+    width: 50%;
+  }
+
+  @media (min-width: 1025px){
+    width: 20%;
+   }
 `;
 
 const Header = styled.h2`
@@ -108,4 +117,8 @@ const HowToContribute = styled.h3`
 
 const TextArea = styled.textarea`
   margin-bottom: 15px;
+`;
+
+const TextCounter = styled.p `
+  text-align: right;
 `;

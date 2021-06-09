@@ -51,8 +51,9 @@ const getDescriptions = () => {
 
   return (
     <>
-    <div>
+
       <Navigation />
+      <Wrapper>
       {/* <h1>This is a single concept</h1> */}
       {/* <Concept>Concept: {concept}</Concept> */}
       <Concept>{concept}</Concept>
@@ -67,29 +68,39 @@ const getDescriptions = () => {
 
       {description?.map((item)=> {
           return (
+
             <DescriptionCard key={item._id}>
-            <h3>{item.text}</h3>
-            <p>
-            {/* Id: {item._id} */}
-              </p>
+              <h3>{item.text}</h3>
               <p>Contributor</p>
               <LikeSection>
                 <HeartButton
-                  style={{ background: item.likes > 0 ? "#ffadad" : "#ffe9e9"}}
+                  style={{ background: item.likes > 0 ? "#006cde" : "#ffadad"  }}
                   onClick={() => postLikeToBackend(item._id)}>
-                  <span role="img" aria-label="star">{"⭐"}</span>
+                  <Star role="img" aria-label="star">{"⭐"}</Star>
                 </HeartButton>
-                <p>x {item.likes}</p>
+                  <p>x {item.likes}</p>
               </LikeSection>
             </DescriptionCard>
+
           )
         })}
-    </div>
+    </Wrapper>
     </>
   );
 };
 
+
 export default Description;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ `;
+
+const Star = styled.span`
+  font-size: 18px;
+`;
 
 const Button = styled.button`
   border-radius: 8px;
@@ -116,6 +127,7 @@ const Button = styled.button`
 const LikeSection = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 `
 const HeartButton = styled.button`
   border-radius: 50%;
@@ -127,7 +139,6 @@ const HeartButton = styled.button`
 `;
 
 const ContributeInvite = styled.div`
-  max-width: 350px;
   text-align: center;
 `;
 
@@ -144,6 +155,7 @@ padding-left: 10px;
 padding-right: 10px;
 background-color: azure;
 margin:10px;
+text-align: center;
 
 @media (min-width: 767px){
   width: 50%;
