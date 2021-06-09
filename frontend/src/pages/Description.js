@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components/macro";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -53,14 +54,14 @@ const getDescriptions = () => {
       <h1>This is a single concept</h1>
       <h2>Concept: {concept}</h2>
 
-      <button>contribute </button>
+      <Button>contribute </Button>
 
       {description?.map((item)=> {
           return (
             <div key={item._id}>
             <p>Desc: {item.text}</p>
             <p>
-            Id: {item._id}
+            {/* Id: {item._id} */}
               </p>
               <p>Contributor</p>
             <button onClick={() => postLikeToBackend(item._id)}>
@@ -77,3 +78,25 @@ const getDescriptions = () => {
 };
 
 export default Description;
+
+const Button = styled.button`
+  border-radius: 8px;
+  background-color: #006cde;
+  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
+  padding: 10px 20px;
+  border: solid #fff 1.5px;
+  border-radius: 50px;
+  outline: none;
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 10px;
+
+  :hover {
+    background-color: #fc00ff;
+    background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
+  }
+
+  @media (min-width: 767px) {
+    font-size: 19px;
+  }
+`;

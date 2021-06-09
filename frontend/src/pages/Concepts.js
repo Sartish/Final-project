@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { API_URL } from "../reusables/urls";
+import { PAGE_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 import {
   Grid,
@@ -32,14 +32,25 @@ const useStyles = makeStyles(() => ({
 const Concepts = () => {
   const classes = useStyles();
   const [conceptList, setConceptList] = useState({});
+  const [pageNumber, setPageNumber] = useState(1)
   //   const descriptionItems = useSelector((store) => store.concepts.items);
 
   // add useEffect
   useEffect(() => {
-    fetch(API_URL("concepts"))
+    fetch(`http://localhost:8080/concepts?page=${pageNumber}`)
       .then((res) => res.json())
       .then((data) => setConceptList(data));
-  });
+  }, [pageNumber]);
+
+  const moveNextPage = () => {
+    setPageNumber(pageNumber + 1)
+    console.log("next")
+  }
+
+  const movePreviousPage = () => {
+    setPageNumber(pageNumber -1)
+    console.log("previous")
+  }
 
   return (
     <div>
@@ -72,6 +83,8 @@ const Concepts = () => {
               </>
             );
           })}
+          <button onClick={movePreviousPage} disabled={pageNumber === 1} >Previous page</button>
+          <button onClick={moveNextPage} disabled={pageNumber === 10} >Next page</button>
         </Grid>
       </Container>
     </div>

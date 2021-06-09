@@ -25,12 +25,12 @@ export const App = () => {
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/signin" component={Signin} />
+          <Route path="/signin" component={Signin} />
           <Route exact path="/concepts" component={Concepts} />
           <Route path="/concepts/:conceptId" component={Description} />
           {/* <Route exact path="/concepts/descriptions" component={Description} /> */}
-          <Route exact path="/about" component={About} />
-          <Route exact path="/contribute" component={AddedDescription} />
+          <Route path="/about" component={About} />
+          <Route path="/contribute" component={AddedDescription} />
           <div>hej appen</div>
         </Switch>
       </Provider>
