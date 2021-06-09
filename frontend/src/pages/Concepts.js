@@ -12,19 +12,33 @@ import {
 } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
 
-import CustomButton from '../components/CustomButton';
 import SignOut from '../components/SignOut';
 
 const useStyles = makeStyles(() => ({
   root: {
+    textDecoration: "none",
     width: 200,
     height: 200,
     margin: "10px",
+    '&:hover': {
+      backgroundColor: "#f05945",
+    }
   },
   card: {
     padding: "20px",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
+  link: {
+    textDecoration: "none",
+  },
+  concept: {
+    display: "flex"
+  }
 }));
 
 // Concept should render all concepts from A-Z
@@ -51,7 +65,7 @@ const Concepts = () => {
     setPageNumber(pageNumber -1)
     console.log("previous")
   }
-
+// lagt till key på id, men hjälper inte för att få bort varning om key i consolen
   return (
     <div>
       <Navigation />
@@ -62,30 +76,25 @@ const Concepts = () => {
           {conceptList.data?.map((item) => {
             return (
               <>
+              <Link key={item._id} className={classes.link} to={`/concepts/${item._id}`}>
                 <Card className={classes.root} key={item._id}>
                   <CardContent className={classes.card}>
-                    <h2>{item.concept}</h2>
-                    <Typography variant="body2" component="p">
+                    <h2 className={classes.concept}>{item.concept}</h2>
+                    {/* <Typography variant="body2" component="p">
                       5 Contributions
-                    </Typography>
-                    <Link to={`/concepts/${item._id}`}>
-                      <CustomButton
-                        type="submit"
-                        text="read more"
-                        color="Primary"
-                        variant="contained"
-                      >
-                        Read more
-                      </CustomButton>
-                    </Link>
-                  </CardContent>
-                </Card>
+                    </Typography> */}
+                    </CardContent>
+                  </Card>
+                </Link>
               </>
             );
           })}
-          <button onClick={movePreviousPage} disabled={pageNumber === 1} >Previous page</button>
-          <button onClick={moveNextPage} disabled={pageNumber === 10} >Next page</button>
+
         </Grid>
+        <div>
+          <Button onClick={movePreviousPage} disabled={pageNumber === 1} >Previous page</Button>
+          <Button onClick={moveNextPage} disabled={pageNumber === 10} >Next page</Button>
+        </div>
       </Container>
     </div>
   );
@@ -94,3 +103,12 @@ const Concepts = () => {
 export default Concepts;
 
 //flow: Concept -> explanation
+
+const Button = styled.button`
+  border-radius: 15px;
+  margin: 10px;
+`;
+
+// const ButtonDiv = styled.div`
+
+// `;

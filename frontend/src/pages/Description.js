@@ -50,37 +50,57 @@ const getDescriptions = () => {
 
 
   return (
-    <div>
+    <>
+
       <Navigation />
-      <h1>This is a single concept</h1>
-      <h2>Concept: {concept}</h2>
-      <Link to={`/contribute/${location.pathname.substring(1)}`}>
-        <Button>contribute </Button>
-      </Link>
+      <Wrapper>
+      {/* <h1>This is a single concept</h1> */}
+      {/* <Concept>Concept: {concept}</Concept> */}
+      <Concept>{concept}</Concept>
+      <ContributeInvite>
+        <h3>Do you have a good explanation for this concept? Contribute!<span role="img" aria-label="point">{"👇"}</span></h3>
+          <Link to={`/contribute/${location.pathname.substring(1)}`}>
+          <Button>contribute </Button>
+        </Link>
+        <h4>Is there an explanation you like? Give it a <span role="img" aria-label="star">{"⭐"}</span> </h4>
+      </ContributeInvite>
+
 
       {description?.map((item)=> {
           return (
-            <div key={item._id}>
-            <p>Desc: {item.text}</p>
-            <p>
-            {/* Id: {item._id} */}
-              </p>
-              <p>Contributor</p>
 
-            <button onClick={() => postLikeToBackend(item._id)}>
-              <span role="img" aria-label="heart">
-                {"❤️"}</span></button>
-            <p>Number of likes: {item.likes}</p>
-            </div>
+            <DescriptionCard key={item._id}>
+              <h3>{item.text}</h3>
+              <p>Contributor</p>
+              <LikeSection>
+                <HeartButton
+                  style={{ background: item.likes > 0 ? "#006cde" : "#ffadad"  }}
+                  onClick={() => postLikeToBackend(item._id)}>
+                  <Star role="img" aria-label="star">{"⭐"}</Star>
+                </HeartButton>
+                  <p>x {item.likes}</p>
+              </LikeSection>
+            </DescriptionCard>
+
           )
         })}
-
-
-    </div>
+    </Wrapper>
+    </>
   );
 };
 
+
 export default Description;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ `;
+
+const Star = styled.span`
+  font-size: 18px;
+`;
 
 const Button = styled.button`
   border-radius: 8px;
@@ -102,4 +122,46 @@ const Button = styled.button`
   @media (min-width: 767px) {
     font-size: 19px;
   }
+`;
+
+const LikeSection = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`
+const HeartButton = styled.button`
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background-color: ffe9e9;
+  cursor: pointer;
+  border: none;
+`;
+
+const ContributeInvite = styled.div`
+  text-align: center;
+`;
+
+const Concept = styled.h2`
+text-align: center;
+font-size: 40px;
+`;
+
+const DescriptionCard = styled.div`
+border: 1px solid #000;
+box-shadow: 10px 12px 0 -6px #000;
+width:80%;
+padding-left: 10px;
+padding-right: 10px;
+background-color: azure;
+margin:10px;
+text-align: center;
+
+@media (min-width: 767px){
+  width: 50%;
+}
+
+@media (min-width: 1025px){
+ width: 20%;
+}
 `;

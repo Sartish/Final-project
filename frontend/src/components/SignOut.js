@@ -13,6 +13,8 @@ const SignOut = () => {
     batch(() => {
       dispatch(user.actions.setAccessToken(null))
       dispatch(user.actions.setUsername(null))
+
+      localStorage.removeItem('user');
     })
   }
 
