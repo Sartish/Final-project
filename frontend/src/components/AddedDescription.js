@@ -23,16 +23,13 @@ const AddedDescription = () => {
 
   return (
     <>
-      <div>
-        Add your desciption here
-        <form onSubmit={onFormSubmit}>
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </form>
-      </div>
+      <form onSubmit={onFormSubmit}>
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </form>
     </>
   );
 };
