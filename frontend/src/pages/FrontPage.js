@@ -21,12 +21,12 @@ const FrontPage = () => {
         <DesktopLogin>
           <Title>TECHTIONARY</Title>
           <Paragraph>
-            Techionary aimes to explains difficult tech-concept as easy as
-            possible. Have a look!
+            Here you find difficult tech-concept explained as easy as possible!
+            Have a look!
           </Paragraph>
           <StartButtonContainer>
             <Link to="/concepts">
-              <Button>Techionary</Button>
+              <Button>Show me!</Button>
             </Link>
           </StartButtonContainer>
         </DesktopLogin>

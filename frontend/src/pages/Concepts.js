@@ -1,52 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { PAGE_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
+import { Grid, makeStyles, Container } from "@material-ui/core";
+import ConceptCard from "../components/ConceptCard";
 import {
-  Grid,
-  Card,
-  makeStyles,
-  CardContent,
-  Typography,
-  // Button,
-  Container,
-} from "@material-ui/core";
+  Button,
+  HeaderWrapper,
+  FirstHeader,
+  SecondHeader,
+  ConceptButtonWrapper,
+} from "components/StyledComponents";
 
-import { Link } from "react-router-dom";
-import styled from "styled-components/macro";
-
-import SignOut from '../components/SignOut';
+import SignOut from "../components/SignOut";
 
 const useStyles = makeStyles(() => ({
-  root: {
-    textDecoration: "none",
-    width: 200,
-    height: 200,
-    margin: "10px",
-    '&:hover': {
-      backgroundColor: "#f05945",
-    }
+  background: {
+    backgroundColor: "#223A59",
+    width: "100%",
+    height: "100vh",
   },
-  card: {
-    padding: "20px",
-    textDecoration: "none",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+  container: {
+    backgroundColor: "#223A59",
+    width: "100%",
+    height: "100vh",
   },
-  link: {
-    textDecoration: "none",
-  },
-  concept: {
-    display: "flex"
-  }
 }));
-
 // Concept should render all concepts from A-Z
 // when clicked render new component with allexplanation
 const Concepts = () => {
   const classes = useStyles();
   const [conceptList, setConceptList] = useState({});
-  const [pageNumber, setPageNumber] = useState(1)
+  const [pageNumber, setPageNumber] = useState(1);
   //   const descriptionItems = useSelector((store) => store.concepts.items);
 
   // add useEffect
@@ -57,58 +41,56 @@ const Concepts = () => {
   }, [pageNumber]);
 
   const moveNextPage = () => {
-    setPageNumber(pageNumber + 1)
-    console.log("next")
-  }
+    setPageNumber(pageNumber + 1);
+    console.log("next");
+  };
 
   const movePreviousPage = () => {
-    setPageNumber(pageNumber -1)
-    console.log("previous")
-  }
-// lagt till key på id, men hjälper inte för att få bort varning om key i consolen
+    setPageNumber(pageNumber - 1);
+    console.log("previous");
+  };
+  // lagt till key på id, men hjälper inte för att få bort varning om key i consolen
   return (
-    <div>
+    <>
       <Navigation />
-      <SignOut />
-      <Container>
-        <h1>Here we list all of the concepts</h1>
-        <Grid container direction="row" justify="center" alignItems="start">
-          {conceptList.data?.map((item) => {
-            return (
-              <>
-              <Link key={item._id} className={classes.link} to={`/concepts/${item._id}`}>
-                <Card className={classes.root} key={item._id}>
-                  <CardContent className={classes.card}>
-                    <h2 className={classes.concept}>{item.concept}</h2>
-                    {/* <Typography variant="body2" component="p">
-                      5 Contributions
-                    </Typography> */}
-                    </CardContent>
-                  </Card>
-                </Link>
-              </>
-            );
-          })}
-
-        </Grid>
-        <div>
-          <Button onClick={movePreviousPage} disabled={pageNumber === 1} >Previous page</Button>
-          <Button onClick={moveNextPage} disabled={pageNumber === 10} >Next page</Button>
-        </div>
-      </Container>
-    </div>
+      <div className={classes.background}>
+        <Container className={classes.container}>
+          <HeaderWrapper>
+            <SignOut />
+            <FirstHeader>All concepts</FirstHeader>
+            <SecondHeader>Listed from A-Z</SecondHeader>
+          </HeaderWrapper>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="start"
+            color="blue"
+          >
+            {conceptList.data?.map((item) => {
+              return (
+                <>
+                  <ConceptCard
+                    link={`/concepts/${item._id}`}
+                    itemId={item._id}
+                    concept={item.concept}
+                  />
+                </>
+              );
+            })}
+          </Grid>
+          <ConceptButtonWrapper>
+            <Button onClick={movePreviousPage} disabled={pageNumber === 1}>
+              Back
+            </Button>
+            <Button onClick={moveNextPage} disabled={pageNumber === 10}>
+              Next
+            </Button>
+          </ConceptButtonWrapper>
+        </Container>
+      </div>
+    </>
   );
 };
 
 export default Concepts;
-
-//flow: Concept -> explanation
-
-const Button = styled.button`
-  border-radius: 15px;
-  margin: 10px;
-`;
-
-// const ButtonDiv = styled.div`
-
-// `;

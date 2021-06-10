@@ -45,6 +45,8 @@
     ]
   },
   "devDependencies": {
+    "@iconify-icons/mdi": "^1.1.15",
+    "@iconify/react": "^1.1.4",
     "prettier": "2.3.0"
   }
 }
