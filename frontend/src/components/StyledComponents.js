@@ -12,6 +12,22 @@ const pink = "#ffdcdc";
 const lightblue = "#a3ddcb";
 const orange = "#f2a154";
 
+export const Button = styled.button`
+  width: 150px;
+  height: 50px;
+  border-radius: 50px;
+  margin: 10px;
+  border: 0;
+  color: ${pink};
+  font-family: "Nunito", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: ${red};
+  box-shadow: 3px 5px;
+  :hover {
+    background-color: ${orange};
+`;
+
 // Frontpage
 export const Container = styled.section`
   display: flex;
@@ -67,7 +83,7 @@ export const Paragraph = styled.p`
   font-weight: bold;
 `;
 
-export const Button = styled.button`
+export const FrontPageButton = styled.button`
   width: 200px;
   height: 70px;
   border-radius: 50px;
@@ -153,4 +169,34 @@ export const ConceptButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+`;
+
+//Desciption
+
+export const CardContainerDescription = styled.div`
+  background: ${pink};
+  border-radius: 2px;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  padding: 20px;
+  text-decoration: none;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 3px 5px;
+  :hover {
+    background-color: #f2a154;
+`;
+
+export const HeartButton = styled.button`
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background-color: ffe9e9;
+  cursor: pointer;
+  border: none;
 `;

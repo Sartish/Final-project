@@ -5,7 +5,7 @@ import "@lottiefiles/lottie-player";
 
 import {
   Container,
-  Button,
+  FrontPageButton,
   Title,
   Paragraph,
   DesktopLogin,
@@ -26,7 +26,7 @@ const FrontPage = () => {
           </Paragraph>
           <StartButtonContainer>
             <Link to="/concepts">
-              <Button>Show me!</Button>
+              <FrontPageButton>Show me!</FrontPageButton>
             </Link>
           </StartButtonContainer>
         </DesktopLogin>

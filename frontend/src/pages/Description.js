@@ -1,17 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Grid, makeStyles, Container } from "@material-ui/core";
+import GradeIcon from "@material-ui/icons/Grade";
+
+import {
+  Button,
+  HeaderWrapper,
+  FirstHeader,
+  SecondHeader,
+  ConceptButtonWrapper,
+} from "components/StyledComponents";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
+
+import SignOut from "../components/SignOut";
+
+const useStyles = makeStyles(() => ({
+  background: {
+    backgroundColor: "#223A59",
+    width: "100%",
+    height: "100%",
+  },
+  container: {
+    backgroundColor: "#223A59",
+    width: "100%",
+    height: "100%",
+  },
+}));
+
 // import AddDescription from '../components/AddDescription';
 
 // Concept should render all concepts from A-Z
 // when clicked render new component with allexplanation
 const Description = () => {
+  const classes = useStyles();
   const [data, setData] = useState({});
-
 
   // do fetch on concepts/conceptid? To get one Id and then do map over all the descriptions.
   const { description, concept, likes } = data;
@@ -24,111 +49,124 @@ const Description = () => {
   const location = useLocation();
 
   useEffect(() => {
-    getDescriptions()
-  }, [location.pathname,]);
+    getDescriptions();
+  }, [location.pathname]);
 
-const getDescriptions = () => {
-  let slug = location.pathname.substring(1)
+  const getDescriptions = () => {
+    let slug = location.pathname.substring(1);
     fetch(API_URL(slug))
       .then((res) => res.json())
       .then((data) => setData(data));
-}
-// render POST like on click?
-// How do we add toggle, so user can only like once and not spam, FE or BE?
-// Also sort, more likes on top of the page, BE, right?
-// Pagination FE and BE
+  };
+  // render POST like on click?
+  // How do we add toggle, so user can only like once and not spam, FE or BE?
+  // Also sort, more likes on top of the page, BE, right?
+  // Pagination FE and BE
 
   const postLikeToBackend = (descriptionId) => {
     const options = {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-  }
-  fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
-    .then(res => res.json())
-    .then((data) => getDescriptions());
-}
-
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
+      .then((res) => res.json())
+      .then((data) => getDescriptions());
+  };
 
   return (
     <>
-
       <Navigation />
-      <Wrapper>
-      {/* <h1>This is a single concept</h1> */}
-      {/* <Concept>Concept: {concept}</Concept> */}
-      <Concept>{concept}</Concept>
-      <ContributeInvite>
-        <h3>Do you have a good explanation for this concept? Contribute!<span role="img" aria-label="point">{"👇"}</span></h3>
-          <Link to={`/contribute/${location.pathname.substring(1)}`}>
-          <Button>contribute </Button>
-        </Link>
-        <h4>Is there an explanation you like? Give it a <span role="img" aria-label="star">{"⭐"}</span> </h4>
-      </ContributeInvite>
-
-
-      {description?.map((item)=> {
-          return (
-
-            <DescriptionCard key={item._id}>
-              <h3>{item.text}</h3>
-              <p>Contributor</p>
-              <LikeSection>
-                <HeartButton
-                  style={{ background: item.likes > 0 ? "#006cde" : "#ffadad"  }}
-                  onClick={() => postLikeToBackend(item._id)}>
-                  <Star role="img" aria-label="star">{"⭐"}</Star>
-                </HeartButton>
-                  <p>x {item.likes}</p>
-              </LikeSection>
-            </DescriptionCard>
-
-          )
-        })}
-    </Wrapper>
+      <div className={classes.background}>
+        <Container className={classes.container}>
+          <HeaderWrapper>
+            <SignOut />
+            <FirstHeader>API is explained here</FirstHeader>
+            <SecondHeader>
+              Psst! Do you have a good explanation for this concept? Contribute!
+              <span role="img" aria-label="point">
+                {"👇"}
+              </span>
+            </SecondHeader>
+            <Link to={`/contribute/${location.pathname.substring(1)}`}>
+              <Button>contribute </Button>
+            </Link>
+          </HeaderWrapper>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="start"
+            color="blue"
+          >
+            {description?.map((item) => {
+              return (
+                <DescriptionCard key={item._id}>
+                  <ConceptHeader>Maybe header</ConceptHeader>
+                  <DescriptionOfConcept>"{item.text}"</DescriptionOfConcept>
+                  <Tags>#React #frontend #cooltags </Tags>
+                  <LikeSection>
+                    <Contributor>Contributor xxxx </Contributor>
+                    <HeartSection>
+                      <HeartButton
+                        style={{
+                          background: item.likes > 0 ? "#006cde" : "#ffadad",
+                        }}
+                        onClick={() => postLikeToBackend(item._id)}
+                      >
+                        <Star role="img" aria-label="star">
+                          <GradeIcon />
+                        </Star>
+                      </HeartButton>
+                      <Likes>x {item.likes}</Likes>
+                    </HeartSection>
+                  </LikeSection>
+                </DescriptionCard>
+              );
+            })}
+          </Grid>
+          <ConceptButtonWrapper>
+            <Button>Back</Button>
+            <Button>Next</Button>
+          </ConceptButtonWrapper>
+        </Container>
+      </div>
     </>
   );
 };
 
-
 export default Description;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- `;
 
 const Star = styled.span`
   font-size: 18px;
 `;
 
-const Button = styled.button`
-  border-radius: 8px;
-  background-color: #006cde;
-  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
-  padding: 10px 20px;
-  border: solid #fff 1.5px;
-  border-radius: 50px;
-  outline: none;
-  color: #fff;
-  font-size: 17px;
-  margin-bottom: 10px;
-
-  :hover {
-    background-color: #fc00ff;
-    background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
-  }
-
-  @media (min-width: 767px) {
-    font-size: 19px;
-  }
-`;
-
 const LikeSection = styled.div`
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 300px;
+  font-style: italic;
+`;
+const ConceptHeader = styled.h2`
+  font-family: Roboto, sans-serif;
+`;
+const DescriptionOfConcept = styled.h3`
+  font-style: italic;
+`;
+
+const Tags = styled.p`
+  font-family: Roboto, sans-serif;
+`;
+const Contributor = styled.p`
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+`;
+
+const HeartSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-family: Roboto, sans-serif;
+`;
 const HeartButton = styled.button`
   border-radius: 50%;
   width: 45px;
@@ -136,32 +174,29 @@ const HeartButton = styled.button`
   background-color: ffe9e9;
   cursor: pointer;
   border: none;
+  padding: ;
 `;
 
-const ContributeInvite = styled.div`
-  text-align: center;
-`;
-
-const Concept = styled.h2`
-text-align: center;
-font-size: 40px;
+const Likes = styled.p`
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
 `;
 
 const DescriptionCard = styled.div`
-border: 1px solid #000;
-box-shadow: 10px 12px 0 -6px #000;
-width:80%;
-padding-left: 10px;
-padding-right: 10px;
-background-color: azure;
-margin:10px;
-text-align: center;
-
-@media (min-width: 767px){
-  width: 50%;
-}
-
-@media (min-width: 1025px){
- width: 20%;
-}
+background: #a3ddcb;
+border-radius: 2px;
+display: inline-block;
+height: 200px;
+width: 400px;
+padding: 20px;
+text-decoration: none;
+margin: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+box-shadow: 3px 5px;
+:hover {
+  background-color: #f2a154;
 `;
