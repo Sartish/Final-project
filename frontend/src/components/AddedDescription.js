@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 import concepts from "../reducers/concepts";
+// import { Divider } from "@material-ui/core";
 
 const AddedDescription = () => {
   const [description, setDescription] = useState("");
-  const [contributorName, setContributorName] = useState("");
   const { conceptId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   let idOfAConcept = conceptId;
 
@@ -26,7 +27,6 @@ const AddedDescription = () => {
       concepts.actions.addDescription({
         id: Date.now(),
         description: description,
-        contributorName: contributorName,
       })
     );
 
@@ -42,7 +42,10 @@ const AddedDescription = () => {
 
     fetch(API_URL("concepts"), options)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      // .then((data) => console.log(data));
+      .then(() => {
+        history.push("/concepts");
+      });
   };
   // vill få att knappen gör submit, inte vid enter..
   //vill få med så det syns på sidan vilket concept som man gör add på
@@ -54,7 +57,7 @@ const AddedDescription = () => {
       <Wrapper>
         <Header>
           Welcome {username}! You want to contribute, awesome!{" "}
-          <span role="img" aria-label="heart">
+          <span role="img" aria-label="star">
             {"✨"}
           </span>
         </Header>
@@ -62,18 +65,6 @@ const AddedDescription = () => {
           Write your description here, but keep it short and sweet, max 140
           characters.
         </HowToContribute>
-
-        <h3>Your username</h3>
-        <form onSubmit={onFormSubmit}>
-          <TextArea
-            type="text"
-            rows="2"
-            cols="50"
-            maxLength="140"
-            value={contributorName}
-            onChange={(e) => setContributorName(e.target.value)}
-          />
-        </form>
         <h3>explanation here</h3>
         <form onSubmit={onFormSubmit}>
           <TextArea

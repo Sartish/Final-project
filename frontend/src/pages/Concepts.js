@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { PAGE_URL } from "../reusables/urls";
+import { useDispatch } from "react-redux";
 import Navigation from "../components/Navigation";
 import { Grid, makeStyles, Container } from "@material-ui/core";
 import ConceptCard from "../components/ConceptCard";
@@ -12,6 +12,7 @@ import {
 } from "components/StyledComponents";
 
 import SignOut from "../components/SignOut";
+import concepts from "../reducers/concepts";
 
 const useStyles = makeStyles(() => ({
   background: {
@@ -29,14 +30,16 @@ const useStyles = makeStyles(() => ({
 // when clicked render new component with allexplanation
 const Concepts = () => {
   const classes = useStyles();
-  const [conceptId, setConceptId] = useState("");
+  const dispatch = useDispatch();
   const [conceptList, setConceptList] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
-  //   const descriptionItems = useSelector((store) => store.concepts.items);
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    console.log("click");
+  const handleClick = () => {
+    dispatch(
+      concepts.actions.setConcept({
+        id: Date.now(),
+      })
+    );
   };
 
   // add useEffect
@@ -81,8 +84,6 @@ const Concepts = () => {
                     link={`/concepts/${item._id}`}
                     itemId={item._id}
                     concept={item.concept}
-                    value={conceptId}
-                    onChange={(event) => setConceptId(event.target.value)}
                   />
                 </>
               );

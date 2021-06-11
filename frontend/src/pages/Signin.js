@@ -45,17 +45,20 @@ const Signin = () => {
             dispatch(user.actions.setAccessToken(data.accessToken));
             dispatch(user.actions.setErrors(null));
 
-            localStorage.setItem('user', JSON.stringify({
-              username: data.username,
-              accessToken: data.accessToken
-            }));
+            localStorage.setItem(
+              "user",
+              JSON.stringify({
+                username: data.username,
+                accessToken: data.accessToken,
+              })
+            );
           });
         } else {
           dispatch(user.actions.setErrors(data));
         }
       });
   };
-  console.log(mode)
+  console.log(mode);
   return (
     <div>
       <Navigation />
@@ -67,12 +70,14 @@ const Signin = () => {
             placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
           <Input
             type="password"
             placeholder="•••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <Button
             variant="contained"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import { Grid, makeStyles, Container } from "@material-ui/core";
 import GradeIcon from "@material-ui/icons/Grade";
@@ -36,15 +37,22 @@ const useStyles = makeStyles(() => ({
 // when clicked render new component with allexplanation
 const Description = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [data, setData] = useState({});
 
+  const accessToken = useSelector((store) => store.user.accessToken);
   // do fetch on concepts/conceptid? To get one Id and then do map over all the descriptions.
-  const { description, concept, likes } = data;
+  const { description } = data;
 
-  // const description = data.description
-  // const concept = data.concept
-  //location find what URL the request has, pathName reveals this
-  // let slug takes away first string in pathName URL
+  const Loggedin = () => {
+    // redirect user to '/' path
+    console.log("Checking access token", accessToken);
+    if (accessToken) {
+      history.push(`/contribute/${location.pathname.substring(1)}`);
+    } else {
+      history.push("/signin");
+    }
+  };
 
   const location = useLocation();
 
@@ -87,9 +95,9 @@ const Description = () => {
                 {"👇"}
               </span>
             </SecondHeader>
-            <Link to={`/contribute/${location.pathname.substring(1)}`}>
-              <Button>contribute </Button>
-            </Link>
+            {/* <Link to={`/contribute/${location.pathname.substring(1)}`}> */}
+            <Button onClick={Loggedin}>Contribute</Button>
+            {/* </Link> */}
           </HeaderWrapper>
           <Grid
             container
@@ -105,7 +113,7 @@ const Description = () => {
                   <DescriptionOfConcept>"{item.text}"</DescriptionOfConcept>
                   <Tags>#React #frontend #cooltags </Tags>
                   <LikeSection>
-                    <Contributor>Contributor xxxx </Contributor>
+                    <Contributor>Contributor {item.user}</Contributor>
                     <HeartSection>
                       <HeartButton
                         style={{

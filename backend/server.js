@@ -48,7 +48,16 @@ const descriptionSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  }
 });
+
+// add username in description object
+// changes in schema, drop database everytime? 
+// if username not unique, choose another username displayed in frontend 
+// display currenct concept you are contributing to 
 
 //USER SCHEMA
 const userSchema = new mongoose.Schema({
@@ -77,6 +86,7 @@ const authenticateUser = async (req, res, next) => {
   try {
     const user = await User.findOne({ accessToken });
     if (user) {
+      req.user=user
       next();
     } else {
       res.status(401).json({ sucess: false, message: "Not authorized" });
@@ -171,11 +181,14 @@ app.post("/concepts", async (req, res) => {
 
 app.patch("/concepts", authenticateUser)
 app.patch("/concepts", async (req, res) => {
-  const { idOfAConcept, description, accessToken } = req.body;
+  const { idOfAConcept, description } = req.body;
+  const { _id } = req.user
+
 
   try {
     const newDescription = await new Description({
       text: description,
+      user: req.user
     }).save();
 
     const updatedConcept = await Concept.findByIdAndUpdate(
@@ -186,7 +199,12 @@ app.patch("/concepts", async (req, res) => {
         },
       },
       { new: true }
-    ).populate("description");
+    ).populate({
+      path : 'description',
+      populate : {
+        path : 'user'
+      }
+    });
     res.json(updatedConcept);
   } catch (error) {
     res.status(400).json({ sucess: false, message: "Invalid request", error });
@@ -242,7 +260,8 @@ app.get("/concepts", async (req, res) => {
     const concept = await Concept.find()
       .sort({ concept: 1 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .populate("user")
 
     res.json({ page, size, data: concept });
   } catch (error) {
