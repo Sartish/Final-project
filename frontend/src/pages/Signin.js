@@ -55,6 +55,7 @@ const Signin = () => {
         }
       });
   };
+  console.log(mode)
   return (
     <div>
       <Navigation />
