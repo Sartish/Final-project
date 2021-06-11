@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PAGE_URL } from "../reusables/urls";
+// import { PAGE_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 import { Grid, makeStyles, Container } from "@material-ui/core";
 import ConceptCard from "../components/ConceptCard";
@@ -29,9 +29,15 @@ const useStyles = makeStyles(() => ({
 // when clicked render new component with allexplanation
 const Concepts = () => {
   const classes = useStyles();
+  const [conceptId, setConceptId] = useState("");
   const [conceptList, setConceptList] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
   //   const descriptionItems = useSelector((store) => store.concepts.items);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log("click");
+  };
 
   // add useEffect
   useEffect(() => {
@@ -71,9 +77,12 @@ const Concepts = () => {
               return (
                 <>
                   <ConceptCard
+                    onClick={handleClick}
                     link={`/concepts/${item._id}`}
                     itemId={item._id}
                     concept={item.concept}
+                    value={conceptId}
+                    onChange={(event) => setConceptId(event.target.value)}
                   />
                 </>
               );

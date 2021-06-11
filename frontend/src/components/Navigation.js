@@ -6,8 +6,6 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { Icon, InlineIcon } from "@iconify/react";
 import robotIcon from "@iconify-icons/mdi/robot";
 
-import logo from "../assets/logotyp.png";
-
 const font = "'Montserrat', sans-serif";
 
 const useStyles = makeStyles((theme) => ({

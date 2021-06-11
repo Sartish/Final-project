@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import "@lottiefiles/lottie-player";
-import lottiePlayer from "@lottiefiles/lottie-player";
 
 const primaryFont = "Montserrat, sans-serif";
 const SecondaryFont = "Roboto, sans-serif";
