@@ -41,8 +41,9 @@ const Description = () => {
   const [data, setData] = useState({});
 
   const accessToken = useSelector((store) => store.user.accessToken);
+  const username = useSelector((store) => store.user.username);
   // do fetch on concepts/conceptid? To get one Id and then do map over all the descriptions.
-  const { description } = data;
+  const { description, user } = data;
 
   const Loggedin = () => {
     // redirect user to '/' path
