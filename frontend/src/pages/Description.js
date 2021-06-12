@@ -80,6 +80,7 @@ const Description = () => {
     fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
       .then((res) => res.json())
       .then((data) => getDescriptions());
+    console.log();
   };
 
   return (
@@ -108,6 +109,7 @@ const Description = () => {
             color="blue"
           >
             {description?.map((item) => {
+              console.log({ item });
               return (
                 <DescriptionCard key={item._id}>
                   <ConceptHeader>Maybe header</ConceptHeader>

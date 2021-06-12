@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation";
 import "@lottiefiles/lottie-player";
 
 import {
-  Container,
+  ContainerHeader,
   FrontPageButton,
   Title,
   Paragraph,
@@ -17,7 +17,7 @@ const FrontPage = () => {
   return (
     <>
       <Navigation />
-      <Container role="main">
+      <ContainerHeader role="main">
         <DesktopLogin>
           <Title>TECHTIONARY</Title>
           <Paragraph>
@@ -43,7 +43,7 @@ const FrontPage = () => {
             }}
           ></lottie-player>
         </LottieContainer>
-      </Container>
+      </ContainerHeader>
     </>
   );
 };

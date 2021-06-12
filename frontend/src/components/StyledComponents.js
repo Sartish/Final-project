@@ -27,18 +27,19 @@ export const Button = styled.button`
 `;
 
 // Frontpage
-export const Container = styled.section`
+export const ContainerHeader = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: ${blue};
-  min-height: 100vh;
+  height: 400px
   color: ${pink};
   box-sizing: border-box;
   padding: 20px;
   @media (min-width: 768px) {
     flex-direction: row;
+    justify-content: space-between;
   }
 `;
 

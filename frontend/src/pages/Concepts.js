@@ -16,12 +16,12 @@ import concepts from "../reducers/concepts";
 
 const useStyles = makeStyles(() => ({
   background: {
-    backgroundColor: "#223A59",
+    backgroundColor: "#e1e8eb",
     width: "100%",
     height: "100vh",
   },
   container: {
-    backgroundColor: "#223A59",
+    backgroundColor: "#e1e8eb",
     width: "100%",
     height: "100vh",
   },

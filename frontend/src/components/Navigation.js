@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: font,
   },
   toolbar: {
-    backgroundColor: "#03506f",
+    backgroundColor: "#BDC9CF",
   },
   home: {
     flexGrow: 1,
