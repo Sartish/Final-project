@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import { Grid, makeStyles, Container } from "@material-ui/core";
 import GradeIcon from "@material-ui/icons/Grade";
-
+//en ändring för att kunna göra en git pull
 import {
   Button,
   HeaderWrapper,
@@ -80,6 +80,7 @@ const Description = () => {
     fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
       .then((res) => res.json())
       .then((data) => getDescriptions());
+    console.log();
   };
 
   return (
@@ -108,6 +109,7 @@ const Description = () => {
             color="blue"
           >
             {description?.map((item) => {
+              console.log({ item });
               return (
                 <DescriptionCard key={item._id}>
                   <ConceptHeader>Maybe header</ConceptHeader>

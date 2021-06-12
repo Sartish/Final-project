@@ -42,7 +42,6 @@ const descriptionSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 5,
-    maxlength: 140,
   },
   likes: {
     type: Number,
@@ -55,9 +54,9 @@ const descriptionSchema = new mongoose.Schema({
 });
 
 // add username in description object
-// changes in schema, drop database everytime? 
-// if username not unique, choose another username displayed in frontend 
-// display currenct concept you are contributing to 
+// changes in schema, drop database everytime?
+// if username not unique, choose another username displayed in frontend
+// display currenct concept you are contributing to
 
 //USER SCHEMA
 const userSchema = new mongoose.Schema({
@@ -261,7 +260,6 @@ app.get("/concepts", async (req, res) => {
       .sort({ concept: 1 })
       .skip(skip)
       .limit(limit)
-      .populate("user")
 
     res.json({ page, size, data: concept });
   } catch (error) {
