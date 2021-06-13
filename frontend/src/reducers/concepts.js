@@ -4,46 +4,46 @@ const concepts = createSlice({
   name: "concepts",
   initialState: {
     conceptList: [
-      // {
-      //   id: "concept1",
-      //   concept: "API",
-      //   descriptions: [],
-      // },
-      // {
-      //   id: "concept2",
-      //   concept: "CSS",
-      //   descriptions: ["description3", "description4"],
-      // },
-      // {
-      //   id: "concept3",
-      //   concept: "Database",
-      //   descriptions: ["description1", "description2"],
-      // },
-      // {
-      //   id: "concept4",
-      //   concept: "CSS",
-      //   descriptions: ["description3", "description4"],
-      // },
-      // {
-      //   id: "concept5",
-      //   concept: "API",
-      //   descriptions: ["description1", "description2"],
-      // },
-      // {
-      //   id: "concept6",
-      //   concept: "Github",
-      //   descriptions: ["description3", "description4"],
-      // },
-      // {
-      //   id: "concept7",
-      //   concept: "Responsive",
-      //   descriptions: ["description1", "description2"],
-      // },
-      // {
-      //   id: "concept8",
-      //   concept: "HTML",
-      //   descriptions: ["description3", "description4"],
-      // },
+      {
+        id: "concept1",
+        concept: "API",
+        descriptions: [],
+      },
+      {
+        id: "concept2",
+        concept: "CSS",
+        descriptions: ["description3", "description4"],
+      },
+      {
+        id: "concept3",
+        concept: "Database",
+        descriptions: ["description1", "description2"],
+      },
+      {
+        id: "concept4",
+        concept: "CSS",
+        descriptions: ["description3", "description4"],
+      },
+      {
+        id: "concept5",
+        concept: "API",
+        descriptions: ["description1", "description2"],
+      },
+      {
+        id: "concept6",
+        concept: "Github",
+        descriptions: ["description3", "description4"],
+      },
+      {
+        id: "concept7",
+        concept: "Responsive",
+        descriptions: ["description1", "description2"],
+      },
+      {
+        id: "concept8",
+        concept: "HTML",
+        descriptions: ["description3", "description4"],
+      },
     ],
     descriptions: [
       {
