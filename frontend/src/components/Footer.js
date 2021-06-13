@@ -6,11 +6,13 @@ import {
   Link,
 } from "./StyledComponents";
 
+import logo from "../assets/logo.svg";
+
 const Footer = () => {
   return (
     <>
       <FooterWrapper>
-        <Logo src="./assets/logo.svg" alt="technigo logo" />
+        <Logo src={logo} alt="technigo logo" />
         <FooterParagraphs>
           &copy; developed 2021 by Sara Carlstein and Ann-Sofi Jönsson{" "}
         </FooterParagraphs>
@@ -18,7 +20,7 @@ const Footer = () => {
           Final Project: Techtionary ❤️ | Technigo bootcamp
         </FooterParagraphs>
         <FooterParagraphs>
-          <Link
+          {/* <Link
             href="https://www.linkedin.com/in/sara-carlstein-532b2737/"
             target="_blank"
             rel="noopener noreferrer"
@@ -32,7 +34,7 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             GitHub
-          </a>
+          </a> */}
         </FooterParagraphs>
       </FooterWrapper>
     </>

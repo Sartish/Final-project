@@ -174,6 +174,8 @@ export const ConceptButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  margin-top: 30px;
+  padding: 20px;
 `;
 
 //Desciption
@@ -216,7 +218,7 @@ export const FooterWrapper = styled.div`
   margin-top: 40px;
   margin-bottom: 10px;
   padding: 0;
-  font-size: 14px;
+  font-size: 20px;
   background-color: #ffdcdc;
   color: #8ca2ab;
   height: 150px;

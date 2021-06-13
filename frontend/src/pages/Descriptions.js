@@ -15,7 +15,6 @@ import {
   Typography,
   Collapse,
 } from "@material-ui/core";
-
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import TextField from "@material-ui/core/TextField";
@@ -26,6 +25,7 @@ import { Icon } from "@iconify/react";
 import { API_URL } from "../reusables/urls";
 import DescriptionHeader from "../components/DescriptionHeader";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 export default function Descriptions() {
   const classes = useStyles();
@@ -151,6 +151,7 @@ export default function Descriptions() {
           })}
         </Grid>
       </Container>
+      <Footer />
     </>
   );
 }
@@ -159,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: "#e1e8eb",
     width: "100%",
-    height: "100%",
+    height: "700px",
   },
   root: {
     width: "300px",
