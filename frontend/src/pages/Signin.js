@@ -4,10 +4,12 @@ import { useHistory } from "react-router-dom";
 // import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
 
+
 import user from "../reducers/user";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
+import SignInHeader from '../components/SignInHeader';
 // import CustomButton from "../components/CustomButton";
 
 const Signin = () => {
@@ -62,6 +64,7 @@ const Signin = () => {
   return (
     <div>
       <Navigation />
+      <SignInHeader />
       <Wrapper>
         <Header>Sign in | Sign up</Header>
         <Form onSubmit={onFormSubmit}>
@@ -172,3 +175,5 @@ const Button = styled.button`
     font-size: 19px;
   }
 `;
+
+
