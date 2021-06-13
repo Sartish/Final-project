@@ -42,6 +42,8 @@ const Concepts = () => {
     );
   };
 
+  console.log(conceptList, "conceptList");
+
   // add useEffect
   useEffect(() => {
     fetch(`http://localhost:8080/concepts?page=${pageNumber}`)

@@ -19,6 +19,8 @@ app.use(cors())
 const conceptSchema = new mongoose.Schema({
   concept: {
     type: String,
+    required: true,
+    unique: true
   },
   description: [
     {
@@ -151,11 +153,29 @@ app.post("/signin", async (req, res) => {
   }
 });
 
+
+// function hasProperty(property) {
+//   return function(req, res, next) {
+//     if (!req.body[property]) {
+//       res.status(400).json({ success: false, message: `${property} not allowed to add`, error });
+//     }
+
+//     next();
+//   }
+// }
+
 //POST CONCEPTS
 // Gör så att bara vi har behörighet till denna endpoint
 
 app.post("/concepts", async (req, res) => {
   const { concept, description } = req.body;
+
+  // hasProperty(concept, req.body)
+  // hasProperty(description, req.body)
+
+  // if (!concept) {
+  //   res.status(400).json({ success: false, message: "concept required", error });
+  // }
 
   // ska vi ha success här?
   try {
@@ -260,6 +280,8 @@ app.get("/concepts", async (req, res) => {
       .sort({ concept: 1 })
       .skip(skip)
       .limit(limit)
+
+      console.log(concept, 'concept')
 
     res.json({ page, size, data: concept });
   } catch (error) {

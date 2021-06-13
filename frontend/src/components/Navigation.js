@@ -2,9 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
-// npm install --save-dev @iconify/react @iconify-icons/mdi
-import { Icon, InlineIcon } from "@iconify/react";
-import robotIcon from "@iconify-icons/mdi/robot";
 
 const font = "'Montserrat', sans-serif";
 
@@ -15,29 +12,28 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: font,
   },
   toolbar: {
-    backgroundColor: "#BDC9CF",
+    backgroundColor: "#ffdcdc",
   },
   home: {
     flexGrow: 1,
   },
   front: {
     display: "flex",
-    color: "#a3ddcb",
+    textDecoration: "none",
+    color: "#8CA2AB",
+    fontFamily: font,
     "&:hover": {
-      color: "#ec4646",
+      opacity: "0.5",
     },
-  },
-  icon: {
-    fontSize: "40px",
   },
 
   navObject: {
     textDecoration: "none",
     marginRight: "10px",
-    color: "#ffdcdc",
+    color: "#8CA2AB",
     fontFamily: font,
     "&:hover": {
-      color: "#ec4646",
+      opacity: "0.5",
     },
   },
 }));
@@ -51,7 +47,7 @@ const Navigation = () => {
           <Toolbar>
             <Typography variant="h6" className={classes.home}>
               <NavLink to="/" className={classes.front}>
-                <Icon className={classes.icon} icon={robotIcon} />
+                Home
               </NavLink>
             </Typography>
             <Typography>
