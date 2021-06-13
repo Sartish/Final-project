@@ -50,27 +50,27 @@ const AddedDescription = () => {
       <Navigation />
       <ContributeHeader />
       <Wrapper>
-        <Header>
+        {/* <Header>
           Welcome {username}! You want to contribute, awesome!{" "}
           <span role="img" aria-label="star">
             {"✨"}
           </span>
         </Header>
         <HowToContribute>
-          Write your description here, but keep it short and sweet, max 140
-          characters.
-        </HowToContribute>
-        <h3>explanation here</h3>
-        <form onSubmit={onFormSubmit}>
+          Write your description here, but keep it short and sweet!
+        </HowToContribute> */}
+        <WriteHere>Write here:</WriteHere>
+        <Form onSubmit={onFormSubmit}>
           <TextArea
             type="text"
             rows="4"
-            cols="50"
+            cols="48"
             maxLength="140"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
           <TextCounter>{description.length}/140</TextCounter>
+          <TextCounter>Number of characters:{description.length}</TextCounter>
           <ButtonSection>
             <Link to="/concepts">
               <Button>Back to concepts</Button>
@@ -84,7 +84,7 @@ const AddedDescription = () => {
               Done!
             </Button>
           </ButtonSection>
-        </form>
+        </Form>
       </Wrapper>
     </>
   );
@@ -94,8 +94,7 @@ export default AddedDescription;
 
 const Button = styled.button`
   border-radius: 8px;
-  background-color: #006cde;
-  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
+  background-color: #8CA2AB;
   padding: 10px 20px;
   border: solid #fff 1.5px;
   border-radius: 50px;
@@ -104,10 +103,10 @@ const Button = styled.button`
   font-size: 17px;
   margin-bottom: 10px;
 
-  :hover {
-    background-color: #fc00ff;
-    background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
-  }
+  // :hover {
+  //   background-color: #fc00ff;
+  //   background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
+  // }
 
   @media (min-width: 767px) {
     font-size: 19px;
@@ -117,11 +116,14 @@ const Button = styled.button`
 const ButtonSection = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-left:8px;
+  margin-right: 8px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 370px;
 
   @media (min-width: 767px) {
     width: 50%;
@@ -140,12 +142,24 @@ const Header = styled.h2`
 const HowToContribute = styled.h3`
   text-align: center;
   margin-top: 15px;
+  margin-left: 5px;
 `;
 
 const TextArea = styled.textarea`
   margin-bottom: 15px;
+  margin-left: 5px;
+  margin-right:5px;
 `;
 
 const TextCounter = styled.p`
   text-align: right;
+  margin-right: 5px;
+`;
+
+const Form = styled.form`
+  text-align: center;
+`;
+
+const WriteHere = styled.h3`
+margin-left: 8px;
 `;

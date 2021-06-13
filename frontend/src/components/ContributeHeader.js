@@ -34,19 +34,22 @@ const ContributeHeader = () => {
         <StartButtonContainer>
           <div className={classes.filter}>
             <div className={classes.contribute}>
-              {/* <p className={classes.contributeText}>
+              <p className={classes.contributeHeader}>
                 Welcome {username}! You want to contribute, awesome!{" "}
                 <span role="img" aria-label="star">
                   {"✨"}
                 </span>
-              </p> */}
-              <Button
+              </p>
+              <p className={classes.contributeText}>
+              Write your description here, but keep it short and sweet!
+              </p>
+              {/* <Button
                 className={classes.button}
                 variant="contained"
                 onClick={Loggedin}
               >
                 Contribute
-              </Button>
+              </Button> */}
             </div>
           </div>
         </StartButtonContainer>
@@ -104,8 +107,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   contributeText: {
-    fontSize: "24px",
+    fontSize: "18px",
     textAlign: "center",
+  },
+  contributeHeader: {
+    fontSize: "22px",
+    textAlign: "center",
+    fontWeight: "bold"
   },
   button: {
     backgroundColor: "pink",

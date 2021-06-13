@@ -12,8 +12,7 @@ const orange = "#f2a154";
 
 export const Button = styled.button`
   border-radius: 8px;
-  background-color: #006cde;
-  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
+  background-color: #8CA2AB;
   padding: 10px 20px;
   border: solid #fff 1.5px;
   border-radius: 50px;
@@ -21,11 +20,12 @@ export const Button = styled.button`
   color: #fff;
   font-size: 17px;
   margin-bottom: 10px;
+  cursor: pointer;
 
-  :hover {
-    background-color: #fc00ff;
-    background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
-  }
+  // :hover {
+  //   background-color: #fc00ff;
+  //   background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
+  // }
 
   @media (min-width: 767px) {
     font-size: 19px;
@@ -218,14 +218,19 @@ export const FooterWrapper = styled.div`
   margin-top: 40px;
   margin-bottom: 10px;
   padding: 0;
-  font-size: 20px;
+  font-size: 14px;
   background-color: #ffdcdc;
   color: #8ca2ab;
   height: 150px;
+
+  @media (min-width: 767px) {
+    font-size: 20px;
+  }
 `;
 
 export const FooterParagraphs = styled.div`
   margin: 0;
+  text-align: center;
 `;
 
 export const Logo = styled.div`

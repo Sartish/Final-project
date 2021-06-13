@@ -94,10 +94,10 @@ const Signin = () => {
           <Button type="submit" onClick={() => setMode("signup")}>
             Sign up
           </Button>
-          <div>
+          {/* <div>
             When you sign up you will be able to contribute with your wasy peasy
             explanation for the concept and like those you understand the most
-          </div>
+          </div> */}
         </Form>
       </Wrapper>
     </div>
@@ -154,13 +154,13 @@ const Input = styled.input`
 
 const Button = styled.button`
   border-radius: 8px;
-  background-color: #006cde;
-  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
+  background-color: #8CA2AB;
+  // background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
   padding: 10px 20px;
   border: solid #fff 1.5px;
   border-radius: 50px;
   outline: none;
-  width: 30%;
+  // width: 30%;
   color: #fff;
   font-size: 17px;
   margin-bottom: 10px;

@@ -35,8 +35,7 @@ export default SignOut;
 
 const Button = styled.button`
   border-radius: 8px;
-  background-color: #006cde;
-  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
+  background-color: #8CA2AB;
   padding: 10px 20px;
   border: solid #fff 1.5px;
   border-radius: 50px;
@@ -44,11 +43,12 @@ const Button = styled.button`
   color: #fff;
   font-size: 17px;
   margin-bottom: 10px;
+  cursor: pointer;
 
-  :hover {
-    background-color: #fc00ff;
-    background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
-  }
+  // :hover {
+  //   background-color: #fc00ff;
+  //   background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
+  // }
 
   @media (min-width: 767px) {
     font-size: 19px;

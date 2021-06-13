@@ -98,8 +98,9 @@ const Concepts = () => {
             Next
           </Button>
         </ConceptButtonWrapper>
+        <Footer />
       </Container>
-      <Footer />
+
     </>
   );
 };

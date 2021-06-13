@@ -150,8 +150,9 @@ export default function Descriptions() {
             );
           })}
         </Grid>
+        <Footer />
       </Container>
-      <Footer />
+
     </>
   );
 }
