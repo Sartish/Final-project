@@ -61,7 +61,7 @@ export const fetchConcepts = createAsyncThunk(
   }
 );
 
-export const fetchConceptDescriptions = createAsyncThunk(
+export const fetchConcept = createAsyncThunk(
   "concepts/fetchConceptDescriptions",
   async (id) => {
     if (store.concept.descriptions[id]) {
@@ -73,26 +73,3 @@ export const fetchConceptDescriptions = createAsyncThunk(
     return response;
   }
 );
-
-const reduxTest = {
-  conceptList: [
-    {
-      id: "concept1",
-      concept: "API",
-      descriptions: ["description1", "description2"],
-    },
-    {
-      id: "concept2",
-      concept: "Styling",
-      descriptions: ["description3", "description4"],
-    },
-  ],
-  descriptions: [
-    {
-      text: "",
-      likes: 5,
-      id: "desc1",
-      conceptId: "concept1",
-    },
-  ],
-};
