@@ -11,19 +11,25 @@ const lightblue = "#a3ddcb";
 const orange = "#f2a154";
 
 export const Button = styled.button`
-  width: 150px;
-  height: 50px;
+  border-radius: 8px;
+  background-color: #006cde;
+  background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
+  padding: 10px 20px;
+  border: solid #fff 1.5px;
   border-radius: 50px;
-  margin: 10px;
-  border: 0;
-  color: ${pink};
-  font-family: "Nunito", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  background-color: ${red};
-  box-shadow: 3px 5px;
+  outline: none;
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 10px;
+
   :hover {
-    background-color: ${orange};
+    background-color: #fc00ff;
+    background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
+  }
+
+  @media (min-width: 767px) {
+    font-size: 19px;
+  }
 `;
 
 // Frontpage
@@ -198,4 +204,31 @@ export const HeartButton = styled.button`
   background-color: ffe9e9;
   cursor: pointer;
   border: none;
+`;
+
+//Footer
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  padding: 0;
+  font-size: 14px;
+`;
+
+export const FooterParagraphs = styled.div`
+  margin: 0;
+`;
+
+export const Logo = styled.div`
+  width: 50px;
+  height: 50px;
+  margin: 0;
+`;
+
+export const Link = styled.a`
+  color: #aa0000;
 `;

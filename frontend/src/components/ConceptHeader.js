@@ -1,31 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useHistory } from "react-router-dom";
 import { Container, makeStyles } from "@material-ui/core";
 
 import {
   StartButtonContainer,
   LottieContainer,
-  Button,
+  Title,
+  Paragraph,
 } from "components/StyledComponents";
 
 import "@lottiefiles/lottie-player";
 
-const DescriptionHeader = () => {
+const ConceptHeader = () => {
   const classes = useStyles();
-  const location = useLocation();
-  const accessToken = useSelector((store) => store.user.accessToken);
-  const history = useHistory();
-
-  const Loggedin = () => {
-    // redirect user to '/' path
-    console.log("Checking access token", accessToken);
-    if (accessToken) {
-      history.push(`/contribute/${location.pathname.substring(1)}`);
-    } else {
-      history.push("/signin");
-    }
-  };
 
   return (
     <div className={classes.background}>
@@ -33,17 +19,11 @@ const DescriptionHeader = () => {
         <StartButtonContainer>
           <div className={classes.filter}>
             <div className={classes.contribute}>
-              <p className={classes.contributeText}>
-                Psst! Do you have a good explanation for this concept?
-                Contribute!
-              </p>
-              <Button
-                className={classes.button}
-                variant="contained"
-                onClick={Loggedin}
-              >
-                Contribute
-              </Button>
+              <Title>TECHTIONARY</Title>
+              <Paragraph>
+                Here you find difficult tech-concept explained as easy as
+                possible! Have a look!
+              </Paragraph>
             </div>
           </div>
         </StartButtonContainer>
@@ -56,7 +36,7 @@ const DescriptionHeader = () => {
             style={{
               display: "flex",
               justifyContent: "center",
-              width: "100%",
+              width: "85%",
             }}
           ></lottie-player>
         </LottieContainer>
@@ -65,13 +45,13 @@ const DescriptionHeader = () => {
   );
 };
 
-export default DescriptionHeader;
+export default ConceptHeader;
 
 const useStyles = makeStyles((theme) => ({
-  // background: {
-  //   backgroundColor: "#8CA2AB",
-  //   width: "100%",
-  // },
+  //   background: {
+  //     backgroundColor: "#8CA2AB",
+  //     width: "100%",
+  //   },
   container: {
     display: "flex",
     justifyContent: "space-between",
@@ -90,8 +70,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    margin: "10px",
-    padding: "20px",
+    margin: "5px",
   },
   contribute: {
     display: "flex",
@@ -100,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   contributeText: {
-    fontSize: "24px",
+    fontSize: "16x",
     textAlign: "center",
   },
   button: {

@@ -1,31 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Navigation from "../components/Navigation";
-import { Grid, makeStyles, Container } from "@material-ui/core";
+import { Grid, makeStyles, Container, TextField } from "@material-ui/core";
 import ConceptCard from "../components/ConceptCard";
-import {
-  Button,
-  HeaderWrapper,
-  FirstHeader,
-  SecondHeader,
-  ConceptButtonWrapper,
-} from "components/StyledComponents";
+import { Button, ConceptButtonWrapper } from "components/StyledComponents";
 
+import DescriptionHeader from "../components/DescriptionHeader";
+import ConceptHeader from "../components/ConceptHeader";
 import SignOut from "../components/SignOut";
 import concepts from "../reducers/concepts";
 
-const useStyles = makeStyles(() => ({
-  background: {
-    backgroundColor: "#e1e8eb",
-    width: "100%",
-    height: "100vh",
-  },
-  container: {
-    backgroundColor: "#e1e8eb",
-    width: "100%",
-    height: "100vh",
-  },
-}));
 // Concept should render all concepts from A-Z
 // when clicked render new component with allexplanation
 const Concepts = () => {
@@ -64,45 +48,67 @@ const Concepts = () => {
   return (
     <>
       <Navigation />
-      <div className={classes.background}>
-        <Container className={classes.container}>
-          <HeaderWrapper>
-            <SignOut />
-            <FirstHeader>All concepts</FirstHeader>
-            <SecondHeader>Listed from A-Z</SecondHeader>
-          </HeaderWrapper>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="start"
-            color="blue"
-          >
-            {conceptList.data?.map((item) => {
-              return (
-                <>
-                  <ConceptCard
-                    onClick={handleClick}
-                    link={`/concepts/${item._id}`}
-                    itemId={item._id}
-                    concept={item.concept}
-                  />
-                </>
-              );
-            })}
-          </Grid>
-          <ConceptButtonWrapper>
-            <Button onClick={movePreviousPage} disabled={pageNumber === 1}>
-              Back
-            </Button>
-            <Button onClick={moveNextPage} disabled={pageNumber === 10}>
-              Next
-            </Button>
-          </ConceptButtonWrapper>
-        </Container>
-      </div>
+      <ConceptHeader />
+      <Container className={classes.container}>
+        <h3 className={classes.header}>All Concepts here</h3>
+        <form className={classes.search}>
+          <TextField
+            id="outlined-basic"
+            label="search concept"
+            variant="outlined"
+          />
+          <SignOut />
+        </form>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="start"
+          color="blue"
+        >
+          {conceptList.data?.map((item) => {
+            return (
+              <>
+                <ConceptCard
+                  onClick={handleClick}
+                  link={`/concepts/${item._id}`}
+                  itemId={item._id}
+                  concept={item.concept}
+                />
+              </>
+            );
+          })}
+        </Grid>
+        <ConceptButtonWrapper>
+          <Button onClick={movePreviousPage} disabled={pageNumber === 1}>
+            Back
+          </Button>
+          <Button onClick={moveNextPage} disabled={pageNumber === 10}>
+            Next
+          </Button>
+        </ConceptButtonWrapper>
+      </Container>
     </>
   );
 };
 
 export default Concepts;
+
+const useStyles = makeStyles(() => ({
+  container: {
+    backgroundColor: "#e1e8eb",
+    width: "100%",
+    height: "100vh",
+    marginTop: "50px",
+  },
+  header: {
+    textAlign: "center",
+    padding: "20px",
+  },
+  search: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
+}));

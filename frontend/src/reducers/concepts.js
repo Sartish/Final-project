@@ -37,39 +37,39 @@ const concepts = createSlice({
       store.descriptionItem.push(addItem);
     },
   },
-  extraReducers: {
-    [fetchConcepts.fulfilled]: (state, action) => {
-      return action.payload;
-    },
-  },
+  // extraReducers: {
+  //   [fetchConcepts.fulfilled]: (state, action) => {
+  //     return action.payload;
+  //   },
+  // },
 });
 
 export default concepts;
 
-export const fetchConcepts = createAsyncThunk(
-  "concepts/fetchConcepts",
-  async (pageNumber) => {
-    if (store.concepts) {
-      return store.concepts;
-    }
+// export const fetchConcepts = createAsyncThunk(
+//   "concepts/fetchConcepts",
+//   async (pageNumber) => {
+//     if (store.concepts) {
+//       return store.concepts;
+//     }
 
-    const response = await fetch(
-      `http://localhost:8080/concepts?page=${pageNumber}`
-    );
+//     const response = await fetch(
+//       `http://localhost:8080/concepts?page=${pageNumber}`
+//     );
 
-    return response;
-  }
-);
+//     return response;
+//   }
+// );
 
-export const fetchConcept = createAsyncThunk(
-  "concepts/fetchConceptDescriptions",
-  async (id) => {
-    if (store.concept.descriptions[id]) {
-      return store.concept.descriptions[id];
-    }
+// export const fetchConcept = createAsyncThunk(
+//   "concepts/fetchConceptDescriptions",
+//   async (id) => {
+//     if (store.concept.descriptions[id]) {
+//       return store.concept.descriptions[id];
+//     }
 
-    const response = await fetch(`http://localhost:8080/concepts/id`);
+//     const response = await fetch(`http://localhost:8080/concepts/id`);
 
-    return response;
-  }
-);
+//     return response;
+//   }
+// );

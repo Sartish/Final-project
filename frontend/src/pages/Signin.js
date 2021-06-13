@@ -4,12 +4,11 @@ import { useHistory } from "react-router-dom";
 // import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
 
-
 import user from "../reducers/user";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
-import SignInHeader from '../components/SignInHeader';
+import SignInHeader from "../components/SignInHeader";
 // import CustomButton from "../components/CustomButton";
 
 const Signin = () => {
@@ -141,10 +140,10 @@ const Header = styled.h1`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 70%;
   border-radius: 50px;
   outline: none;
-  // border: none;
+  //border: none;
   padding: 10px 20px;
   margin-bottom: 10px;
 
@@ -161,7 +160,7 @@ const Button = styled.button`
   border: solid #fff 1.5px;
   border-radius: 50px;
   outline: none;
-  width: 100%;
+  width: 30%;
   color: #fff;
   font-size: 17px;
   margin-bottom: 10px;
@@ -175,5 +174,3 @@ const Button = styled.button`
     font-size: 19px;
   }
 `;
-
-

@@ -51,9 +51,9 @@ const Navigation = () => {
               </NavLink>
             </Typography>
             <Typography>
-              <NavLink to="/concepts" className={classes.navObject}>
+              {/* <NavLink to="/concepts" className={classes.navObject}>
                 Concepts
-              </NavLink>
+              </NavLink> */}
             </Typography>
             <Typography>
               <NavLink to="/signin" className={`${classes.navObject}`}>

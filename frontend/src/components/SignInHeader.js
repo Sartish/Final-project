@@ -11,51 +11,48 @@ import "@lottiefiles/lottie-player";
 const SignInHeader = () => {
   const classes = useStyles();
 
-
   return (
-    <Container className={classes.container}>
-      <StartButtonContainer>
-        <div className={classes.filter}>
-          {/* <form>
-            <TextField
-              id="outlined-basic"
-              label="search concept"
-              variant="outlined"
-            />
-          </form> */}
-          <div className={classes.contribute}>
-            <p className={classes.contributeText}>
-              Step 1: Create an account with a username that is unique, just like you!
-            </p>
-            <p className={classes.contributeText}>
-              Step 2: Find a concept and contribute with your own description.
-            </p>
-            <p className={classes.contributeText}>
-              Step 3: Done!
-            </p>
+    <div className={classes.background}>
+      <Container className={classes.container}>
+        <StartButtonContainer>
+          <div className={classes.filter}>
+            <div className={classes.contribute}>
+              <p className={classes.contributeText}>
+                Step 1: Create an account with a username that is unique, just
+                like you!
+              </p>
+              <p className={classes.contributeText}>
+                Step 2: Find a concept and contribute with your own description.
+              </p>
+              <p className={classes.contributeText}>Step 3: Done!</p>
+            </div>
           </div>
-        </div>
-      </StartButtonContainer>
-      <LottieContainer>
-        <lottie-player
-          autoplay
-          loop
-          mode="normal"
-          src="https://assets6.lottiefiles.com/packages/lf20_d42Jtf.json"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: "85%",
-          }}
-        ></lottie-player>
-      </LottieContainer>
-    </Container>
+        </StartButtonContainer>
+        <LottieContainer>
+          <lottie-player
+            autoplay
+            loop
+            mode="normal"
+            src="https://assets6.lottiefiles.com/packages/lf20_d42Jtf.json"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "85%",
+            }}
+          ></lottie-player>
+        </LottieContainer>
+      </Container>
+    </div>
   );
 };
 
 export default SignInHeader;
 
 const useStyles = makeStyles((theme) => ({
+  // background: {
+  //   backgroundColor: "#8CA2AB",
+  //   width: "100%",
+  // },
   container: {
     display: "flex",
     justifyContent: "space-between",
@@ -64,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#8CA2AB",
     width: "100%",
     height: "500px",
+    marginTop: "35px",
     ["@media (min-width:780px)"]: {
       flexDirection: "row",
     },

@@ -16,12 +16,10 @@ import {
   Collapse,
 } from "@material-ui/core";
 
-import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import TextField from "@material-ui/core/TextField";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import MoreVertIcon from "@material-ui/icons/MoreVert";
 import robotIcon from "@iconify-icons/mdi/robot";
 import { Icon } from "@iconify/react";
 
@@ -73,16 +71,14 @@ export default function Descriptions() {
       <Navigation />
       <DescriptionHeader />
       <Container className={classes.container}>
-        <div className={classes.input}>
-          <h3>All explanations here</h3>
-          <form>
-            <TextField
-              id="outlined-basic"
-              label="search concept"
-              variant="outlined"
-            />
-          </form>
-        </div>
+        <h3 className={classes.header}>All Explanation here</h3>
+        <form className={classes.search}>
+          <TextField
+            id="outlined-basic"
+            label="some kind of filter"
+            variant="outlined"
+          />
+        </form>
         <Grid
           container
           direction="row"
@@ -176,7 +172,6 @@ const useStyles = makeStyles((theme) => ({
     height: "50px",
     textAlign: "center",
     fontSize: "30px",
-    // paddingTop: "56.25%", // 16:9
   },
   expand: {
     transform: "rotate(0deg)",
@@ -193,17 +188,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "30px",
   },
 
-  sort: {
-    width: 500,
+  header: {
+    textAlign: "center",
+    padding: "20px",
   },
-
-  filter: {
+  search: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
-  },
-
-  input: {
-    paddingLeft: "200px",
+    width: "100%",
   },
 }));

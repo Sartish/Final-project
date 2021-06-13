@@ -7,13 +7,11 @@ import user from "./reducers/user";
 import concepts from "./reducers/concepts";
 import Signin from "./pages/Signin";
 import Concepts from "./pages/Concepts";
-import Description from "./pages/Description";
 import FrontPage from "./pages/FrontPage";
 import About from "./pages/About";
 import AddedDescription from "./components/AddedDescription";
 
 import Descriptions from "./pages/Descriptions";
-import AllConcepts from "./pages/AllConcepts";
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -27,9 +25,8 @@ export const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
-          <Route exact path="/" component={FrontPage} />
+          <Route exact path="/" component={Concepts} />
           <Route path="/signin" component={Signin} />
-          <Route exact path="/concepts" component={Concepts} />
           <Route path="/concepts/:conceptId" component={Descriptions} />
           {/* <Route exact path="/concepts/descriptions" component={Description} /> */}
 
@@ -42,7 +39,6 @@ export const App = () => {
           <Route path="/contribute" component={AddedDescription} />
 
           <Route path="/descriptions" component={Descriptions} />
-          <Route path="/allconcepts" component={AllConcepts} />
           <div>hej appen</div>
         </Switch>
       </Provider>
