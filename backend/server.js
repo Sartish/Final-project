@@ -295,7 +295,12 @@ app.get("/concepts/:conceptId", async (req, res) => {
   const { conceptId } = req.params;
 
   try {
-    const oneConcept = await Concept.findOne({ _id: conceptId }).populate("description");
+    const oneConcept = await Concept.findOne({ _id: conceptId }).populate({
+      path : 'description',
+      populate : {
+        path : 'user'
+      }
+    });;
     if (oneConcept) {
 
       console.log(oneConcept);

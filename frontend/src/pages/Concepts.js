@@ -110,7 +110,6 @@ const useStyles = makeStyles(() => ({
   container: {
     backgroundColor: "#e1e8eb",
     width: "100%",
-    height: "600px",
     marginTop: "50px",
   },
   header: {
