@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Navigation from "../components/Navigation";
 import { Grid, makeStyles, Container, TextField } from "@material-ui/core";
 import ConceptCard from "../components/ConceptCard";
 import { Button, ConceptButtonWrapper } from "components/StyledComponents";
 
-import DescriptionHeader from "../components/DescriptionHeader";
 import ConceptHeader from "../components/ConceptHeader";
+import Footer from "../components/Footer";
 import SignOut from "../components/SignOut";
 import concepts from "../reducers/concepts";
 
@@ -17,6 +17,8 @@ const Concepts = () => {
   const dispatch = useDispatch();
   const [conceptList, setConceptList] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
+
+  // const allConcepts = useSelector((store) => store.concepts.conceptList);
 
   const handleClick = () => {
     dispatch(
@@ -66,6 +68,15 @@ const Concepts = () => {
           alignItems="start"
           color="blue"
         >
+          {/* {allConcepts.map((item) => {
+            return (
+              <ConceptCard
+                id={item.id}
+                concept={item.concept}
+                link={`/concepts/${item._id}`}
+              />
+            );
+          })} */}
           {conceptList.data?.map((item) => {
             return (
               <>
@@ -88,6 +99,7 @@ const Concepts = () => {
           </Button>
         </ConceptButtonWrapper>
       </Container>
+      <Footer />
     </>
   );
 };

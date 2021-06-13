@@ -4,16 +4,46 @@ const concepts = createSlice({
   name: "concepts",
   initialState: {
     conceptList: [
-      {
-        id: "concept1",
-        concept: "API",
-        descriptions: ["description1", "description2"],
-      },
-      {
-        id: "concept2",
-        concept: "Styling",
-        descriptions: ["description3", "description4"],
-      },
+      // {
+      //   id: "concept1",
+      //   concept: "API",
+      //   descriptions: [],
+      // },
+      // {
+      //   id: "concept2",
+      //   concept: "CSS",
+      //   descriptions: ["description3", "description4"],
+      // },
+      // {
+      //   id: "concept3",
+      //   concept: "Database",
+      //   descriptions: ["description1", "description2"],
+      // },
+      // {
+      //   id: "concept4",
+      //   concept: "CSS",
+      //   descriptions: ["description3", "description4"],
+      // },
+      // {
+      //   id: "concept5",
+      //   concept: "API",
+      //   descriptions: ["description1", "description2"],
+      // },
+      // {
+      //   id: "concept6",
+      //   concept: "Github",
+      //   descriptions: ["description3", "description4"],
+      // },
+      // {
+      //   id: "concept7",
+      //   concept: "Responsive",
+      //   descriptions: ["description1", "description2"],
+      // },
+      // {
+      //   id: "concept8",
+      //   concept: "HTML",
+      //   descriptions: ["description3", "description4"],
+      // },
     ],
     descriptions: [
       {
@@ -29,12 +59,12 @@ const concepts = createSlice({
       store.errors = action.payload;
     },
     setConcept: (store, action) => {
-      const addItem = action.payload;
-      store.conceptItem.push(addItem);
+      const addConcept = action.payload;
+      store.concepts.push(addConcept);
     },
     addDescription: (store, action) => {
       const addItem = action.payload;
-      store.descriptionItem.push(addItem);
+      store.descriptions.push(addItem);
     },
   },
   // extraReducers: {

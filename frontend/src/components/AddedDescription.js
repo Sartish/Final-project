@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 import concepts from "../reducers/concepts";
+import ContributeHeader from "../components/ContributeHeader";
 // import { Divider } from "@material-ui/core";
 
 const AddedDescription = () => {
@@ -22,14 +23,6 @@ const AddedDescription = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    // dispatch our description to the store on click.
-    dispatch(
-      concepts.actions.addDescription({
-        id: Date.now(),
-        description: description,
-      })
-    );
-
     const options = {
       method: "PATCH",
       headers: {
@@ -44,9 +37,10 @@ const AddedDescription = () => {
       .then((res) => res.json())
       // .then((data) => console.log(data));
       .then(() => {
-        history.push("/concepts");
+        history.push("/");
       });
   };
+
   // vill få att knappen gör submit, inte vid enter..
   //vill få med så det syns på sidan vilket concept som man gör add på
   //vad ska hända när man trycker på done? Konfettiregn? link tillbaka till concepts?
@@ -54,6 +48,7 @@ const AddedDescription = () => {
   return (
     <>
       <Navigation />
+      <ContributeHeader />
       <Wrapper>
         <Header>
           Welcome {username}! You want to contribute, awesome!{" "}

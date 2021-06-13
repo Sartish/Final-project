@@ -217,6 +217,9 @@ export const FooterWrapper = styled.div`
   margin-bottom: 10px;
   padding: 0;
   font-size: 14px;
+  background-color: #ffdcdc;
+  color: #8ca2ab;
+  height: 150px;
 `;
 
 export const FooterParagraphs = styled.div`

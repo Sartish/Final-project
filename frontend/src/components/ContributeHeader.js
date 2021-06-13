@@ -11,10 +11,11 @@ import {
 
 import "@lottiefiles/lottie-player";
 
-const DescriptionHeader = () => {
+const ContributeHeader = () => {
   const classes = useStyles();
   const location = useLocation();
   const accessToken = useSelector((store) => store.user.accessToken);
+  const username = useSelector((store) => store.user.username);
   const history = useHistory();
 
   const Loggedin = () => {
@@ -33,10 +34,12 @@ const DescriptionHeader = () => {
         <StartButtonContainer>
           <div className={classes.filter}>
             <div className={classes.contribute}>
-              <p className={classes.contributeText}>
-                Psst! Do you have a good explanation for this concept?
-                Contribute!
-              </p>
+              {/* <p className={classes.contributeText}>
+                Welcome {username}! You want to contribute, awesome!{" "}
+                <span role="img" aria-label="star">
+                  {"✨"}
+                </span>
+              </p> */}
               <Button
                 className={classes.button}
                 variant="contained"
@@ -65,7 +68,7 @@ const DescriptionHeader = () => {
   );
 };
 
-export default DescriptionHeader;
+export default ContributeHeader;
 
 const useStyles = makeStyles((theme) => ({
   // background: {
@@ -97,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+
     flexDirection: "column",
   },
   contributeText: {

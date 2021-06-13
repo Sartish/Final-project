@@ -7,7 +7,6 @@ import user from "./reducers/user";
 import concepts from "./reducers/concepts";
 import Signin from "./pages/Signin";
 import Concepts from "./pages/Concepts";
-import FrontPage from "./pages/FrontPage";
 import About from "./pages/About";
 import AddedDescription from "./components/AddedDescription";
 

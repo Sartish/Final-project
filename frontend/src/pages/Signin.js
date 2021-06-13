@@ -22,7 +22,7 @@ const Signin = () => {
 
   useEffect(() => {
     if (accessToken) {
-      history.push("/concepts");
+      history.push("/");
     }
   }, [accessToken, history]);
 

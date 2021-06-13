@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ConceptCard({ itemId, concept, link }) {
+export default function ConceptCard({ id, itemId, concept, link }) {
   const classes = useStyles();
 
   return (
@@ -64,6 +64,7 @@ export default function ConceptCard({ itemId, concept, link }) {
           <Typography className={classes.concept} variant="h5" component="h2">
             {concept}
           </Typography>
+          <div>{id}</div>
           <Typography className={classes.date} variant="body2" component="p">
             latest contribution: date
           </Typography>
