@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 // import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
 
@@ -81,16 +81,17 @@ const Signin = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            text="Sign in"
-            onClick={() => setMode("signin")}
-          >
-            Sign in
-          </Button>
-
+          <Link to="/">
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              text="Sign in"
+              onClick={() => setMode("signin")}
+            >
+              Sign in
+            </Button>
+          </Link>
           <Button type="submit" onClick={() => setMode("signup")}>
             Sign up
           </Button>

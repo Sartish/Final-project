@@ -31,6 +31,7 @@ export default function Descriptions() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [data, setData] = useState({});
+  const [clickedHeart, setClickedHeart] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -38,7 +39,6 @@ export default function Descriptions() {
 
   // do fetch on concepts/conceptid? To get one Id and then do map over all the descriptions.
   const { description, user } = data;
-
   const location = useLocation();
 
   useEffect(() => {
@@ -64,6 +64,7 @@ export default function Descriptions() {
     fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
       .then((res) => res.json())
       .then((data) => getDescriptions());
+    setClickedHeart(true);
   };
 
   return (
@@ -109,6 +110,7 @@ export default function Descriptions() {
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon
                       className={classes.heart}
+                      disabled={clickedHeart}
                       onClick={() => postLikeToBackend(item._id)}
                     />
                     <Typography
@@ -153,7 +155,6 @@ export default function Descriptions() {
             );
           })}
         </Grid>
-
       </Container>
       <Footer />
     </>

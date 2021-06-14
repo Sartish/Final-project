@@ -260,74 +260,63 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
   }
 });
 
-// GET CONCEPTS V1 WORKING
-// app.get("/concepts", async (req, res) => {
-//   try {
-//     let { page, size } = req.query;
-//     //ska vi ha success här?
-//     // pagination items per page
-
-//     if (!page) {
-//       page = 1;
-//     }
-//     if (!size) {
-//       size = 10;
-//     }
-//     const limit = parseInt(size);
-//     const skip = (page - 1) * size;
-
-//     const concept = await Concept.find()
-//       .sort({ concept: 1 })
-//       .skip(skip)
-//       .limit(limit)
-
-//       console.log(concept, 'concept')
-
-//     res.json({ page, size, data: concept });
-//   } catch (error) {
-//     res.status(400).json({ success: false, message: "Invalid request", error });
-//   }
-// });
-
-// WORKING ON THIS. SHOULD BE ABLE TO SEARCH
-
+//GET CONCEPTS V1 WORKING
 app.get("/concepts", async (req, res) => {
-  const { concept } = req.query;
-  const page = parseInt(req.query.page)
-  const size = parseInt(req.query.size)
-  const conceptRegex = new RegExp(concept, 'i');
-
   try {
-    const filteredConcepts = await Concept.aggregate([ 
-      {
-        $match: {
-          concept: conceptRegex
-        },
-      }, {
-        $skip: (page -1) * size + 1
-      }, {
-        $limit: size
-      }
-    ]);
+    let { page, size } = req.query;
+    //ska vi ha success här?
+    // pagination items per page
 
-    res.json(filteredConcepts);
+    if (!page) {
+      page = 1;
+    }
+    if (!size) {
+      size = 10;
+    }
+    const limit = parseInt(size);
+    const skip = (page - 1) * size;
+
+    const concept = await Concept.find()
+      .sort({ concept: 1 })
+      .skip(skip)
+      .limit(limit)
+
+      console.log(concept, 'concept')
+
+    res.json({ page, size, data: concept });
   } catch (error) {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
 
+// WORKING ON THIS. SHOULD BE ABLE TO SEARCH
 
-app.get('/concepts/concept/:concept', async (req, res) => {
-  const conceptName = req.params.concept
-  // Added regex so that search includes non-case-sensitive strings and
-  // if the name is included in the request
-  const filterConcept = await Concept.find({ concept: { $regex: new RegExp(conceptName, "i") } });
+// app.get("/concepts", async (req, res) => {
+//   const { concept } = req.query;
+//   const page = parseInt(req.query.page)
+//   const size = parseInt(req.query.size)
+//   const conceptRegex = new RegExp(concept, 'i');
 
-  if ( filterConcept.length === 0) {
-    res.status(404).json("Sorry, could not find any concept by that name, check concept name")
-  }
-  res.json( filterConcept)
-})
+//   try {
+//     const filteredConcepts = await Concept.aggregate([ 
+//       {
+//         $match: {
+//           concept: conceptRegex
+//         },
+//       }, 
+//       {
+//         $skip: (page -1) * size + 1
+//       }, 
+//       {
+//         $limit: size
+//       }
+//     ]);
+
+//     res.json(filteredConcepts);
+//   } catch (error) {
+//     res.status(400).json({ success: false, message: "Invalid request", error });
+//   }
+// });
 
 
 // One concept with all the desciptions through concept id
