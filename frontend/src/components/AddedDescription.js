@@ -49,52 +49,53 @@ const AddedDescription = () => {
     <>
       <Navigation />
       <ContributeHeader />
-      <Wrapper>
-        {/* <Header>
-          Welcome {username}! You want to contribute, awesome!{" "}
-          <span role="img" aria-label="star">
-            {"✨"}
-          </span>
-        </Header>
-        <HowToContribute>
-          Write your description here, but keep it short and sweet!
-        </HowToContribute> */}
-        <WriteHere>Write here:</WriteHere>
-        <Form onSubmit={onFormSubmit}>
-          <TextArea
-            type="text"
-            rows="4"
-            cols="48"
-            maxLength="140"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <TextCounter>{description.length}/140</TextCounter>
-          <TextCounter>Number of characters:{description.length}</TextCounter>
-          <ButtonSection>
-            <Link to="/concepts">
-              <Button>Back to concepts</Button>
-            </Link>
-            <Button
-              type="submit"
-              value="description"
-              onClick={onFormSubmit}
-              disabled={!!(description.length < 5 || description.length > 140)}
-            >
-              Done!
-            </Button>
-          </ButtonSection>
-        </Form>
-      </Wrapper>
+      <Container>
+        <Wrapper>
+          <WriteHere>Write here:</WriteHere>
+          <Form onSubmit={onFormSubmit}>
+            <TextArea
+              type="text"
+              rows="4"
+              cols="48"
+              maxLength="140"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <TextCounter>{description.length}/200</TextCounter>
+            {/* <TextCounter>Number of characters:{description.length}</TextCounter> */}
+            <ButtonSection>
+              <Link to="/">
+                <Button>Back to concepts</Button>
+              </Link>
+              <Button
+                type="submit"
+                value="description"
+                onClick={onFormSubmit}
+                disabled={
+                  !!(description.length < 5 || description.length > 140)
+                }
+              >
+                Done!
+              </Button>
+            </ButtonSection>
+          </Form>
+        </Wrapper>
+      </Container>
     </>
   );
 };
 
 export default AddedDescription;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+`;
 
 const Button = styled.button`
   border-radius: 8px;
-  background-color: #8CA2AB;
+  background-color: #8ca2ab;
   padding: 10px 20px;
   border: solid #fff 1.5px;
   border-radius: 50px;
@@ -116,13 +117,16 @@ const Button = styled.button`
 const ButtonSection = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-left:8px;
+  margin-left: 8px;
   margin-right: 8px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  width: 500px;
   max-width: 370px;
 
   @media (min-width: 767px) {
@@ -134,21 +138,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const Header = styled.h2`
-  text-align: center;
-  margin-top: 15px;
-`;
-
-const HowToContribute = styled.h3`
-  text-align: center;
-  margin-top: 15px;
-  margin-left: 5px;
-`;
-
 const TextArea = styled.textarea`
   margin-bottom: 15px;
   margin-left: 5px;
-  margin-right:5px;
+  margin-right: 5px;
 `;
 
 const TextCounter = styled.p`
@@ -161,5 +154,6 @@ const Form = styled.form`
 `;
 
 const WriteHere = styled.h3`
-margin-left: 8px;
+  display: flex;
+  margin-left: 8px;
 `;

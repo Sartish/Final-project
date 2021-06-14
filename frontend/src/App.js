@@ -11,6 +11,7 @@ import About from "./pages/About";
 import AddedDescription from "./components/AddedDescription";
 
 import Descriptions from "./pages/Descriptions";
+import SearchConcept from "./components/SearchConcept";
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -38,6 +39,8 @@ export const App = () => {
           <Route path="/contribute" component={AddedDescription} />
 
           <Route path="/descriptions" component={Descriptions} />
+
+          <Route path="/search" component={SearchConcept} />
           <div>hej appen</div>
         </Switch>
       </Provider>
