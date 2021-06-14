@@ -1,14 +1,8 @@
 import React from "react";
-import { Container, makeStyles } from "@material-ui/core";
+import { Container, makeStyles, TextField } from "@material-ui/core";
+import styled from "styled-components";
 
-import {
-  StartButtonContainer,
-  LottieContainer,
-  Title,
-  Paragraph,
-} from "components/StyledComponents";
-
-import "@lottiefiles/lottie-player";
+import { StartButtonContainer, Paragraph } from "components/StyledComponents";
 
 const ConceptHeader = () => {
   const classes = useStyles();
@@ -16,30 +10,24 @@ const ConceptHeader = () => {
   return (
     <div className={classes.background}>
       <Container className={classes.container}>
-        <StartButtonContainer>
-          <div className={classes.filter}>
-            <div className={classes.contribute}>
-              <Title>TECHTIONARY</Title>
-              <Paragraph>
-                Here you find difficult tech-concept explained as easy as
-                possible! Have a look!
-              </Paragraph>
-            </div>
-          </div>
-        </StartButtonContainer>
-        <LottieContainer>
-          <lottie-player
-            autoplay
-            loop
-            mode="normal"
-            src="https://assets6.lottiefiles.com/packages/lf20_d42Jtf.json"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "85%",
-            }}
-          ></lottie-player>
-        </LottieContainer>
+        <Wrapper>
+          <Title>Find your techy word here</Title>
+          <ContainerHeader role="main">
+            <StartButtonContainer>
+              <div className={classes.filter}>
+                <Paragraph>
+                  <form className={classes.root} noValidate autoComplete="off">
+                    <TextField
+                      id="outlined-basic"
+                      label="Outlined"
+                      variant="outlined"
+                    />
+                  </form>
+                </Paragraph>
+              </div>
+            </StartButtonContainer>
+          </ContainerHeader>
+        </Wrapper>
       </Container>
     </div>
   );
@@ -57,14 +45,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "column",
-    backgroundColor: "#8CA2AB",
     width: "100%",
     height: "500px",
     marginTop: "35px",
-    ["@media (min-width:780px)"]: {
-      flexDirection: "row",
-    },
   },
+
   filter: {
     display: "flex",
     justifyContent: "center",
@@ -86,3 +71,40 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "pink",
   },
 }));
+
+export const ContainerHeader = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  border: 2px black;
+  padding: 20px;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+    flex-direction: row;
+    width: 1200px;
+    border: black solid 2px;
+    box-sizing: border-box;
+    padding: 0;
+  }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  border: solid 2px #ffcff1;
+  padding: 10px;
+  height: 400px;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px #ffcff1;
+  padding: 10px;
+`;

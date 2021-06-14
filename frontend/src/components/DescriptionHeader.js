@@ -3,11 +3,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import { Container, makeStyles } from "@material-ui/core";
 
-import {
-  StartButtonContainer,
-  LottieContainer,
-  Button,
-} from "components/StyledComponents";
+import { StartButtonContainer, Button } from "components/StyledComponents";
 
 import "@lottiefiles/lottie-player";
 
@@ -47,19 +43,6 @@ const DescriptionHeader = () => {
             </div>
           </div>
         </StartButtonContainer>
-        <LottieContainer>
-          <lottie-player
-            autoplay
-            loop
-            mode="normal"
-            src="https://assets6.lottiefiles.com/packages/lf20_d42Jtf.json"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "85%",
-            }}
-          ></lottie-player>
-        </LottieContainer>
       </Container>
     </div>
   );

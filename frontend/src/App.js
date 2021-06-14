@@ -9,6 +9,7 @@ import Signin from "./pages/Signin";
 import Concepts from "./pages/Concepts";
 import About from "./pages/About";
 import AddedDescription from "./components/AddedDescription";
+import FrontPage from "./pages/FrontPage";
 
 import Descriptions from "./pages/Descriptions";
 import SearchConcept from "./components/SearchConcept";
@@ -25,7 +26,8 @@ export const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
-          <Route exact path="/" component={Concepts} />
+          <Route exact path="/" component={FrontPage} />
+          <Route exact path="/concepts" component={Concepts} />
           <Route path="/signin" component={Signin} />
           <Route path="/concepts/:conceptId" component={Descriptions} />
           {/* <Route exact path="/concepts/descriptions" component={Description} /> */}

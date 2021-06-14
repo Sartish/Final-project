@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navigation from "../components/Navigation";
-import { Grid, makeStyles, Container, TextField } from "@material-ui/core";
+import { Grid, makeStyles, Container, Button } from "@material-ui/core";
 import ConceptCard from "../components/ConceptCard";
-import { Button, ConceptButtonWrapper } from "components/StyledComponents";
+import { ConceptButtonWrapper } from "components/StyledComponents";
 
 import ConceptHeader from "../components/ConceptHeader";
 import Footer from "../components/Footer";
@@ -52,15 +52,7 @@ const Concepts = () => {
       <Navigation />
       <ConceptHeader />
       <Container className={classes.container}>
-        <h3 className={classes.header}>All Concepts here</h3>
-        <form className={classes.search}>
-          <TextField
-            id="outlined-basic"
-            label="search concept"
-            variant="outlined"
-          />
-          <SignOut />
-        </form>
+        <SignOut />
         <Grid
           container
           direction="row"
@@ -91,14 +83,25 @@ const Concepts = () => {
           })}
         </Grid>
         <ConceptButtonWrapper>
-          <Button onClick={movePreviousPage} disabled={pageNumber === 1}>
+          <Button
+            variant="contained"
+            color="primary"
+            href="#contained-buttons"
+            onClick={movePreviousPage}
+            disabled={pageNumber === 1}
+          >
             Back
           </Button>
-          <Button onClick={moveNextPage} disabled={pageNumber === 10}>
+          <Button
+            variant="contained"
+            color="primary"
+            href="#contained-buttons"
+            onClick={moveNextPage}
+            disabled={pageNumber === 10}
+          >
             Next
           </Button>
         </ConceptButtonWrapper>
-
       </Container>
       <Footer />
     </>
@@ -109,7 +112,6 @@ export default Concepts;
 
 const useStyles = makeStyles(() => ({
   container: {
-    backgroundColor: "#e1e8eb",
     width: "100%",
     marginTop: "50px",
   },

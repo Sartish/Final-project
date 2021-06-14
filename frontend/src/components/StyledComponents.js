@@ -12,7 +12,7 @@ const orange = "#f2a154";
 
 export const Button = styled.button`
   border-radius: 8px;
-  background-color: #8CA2AB;
+  background-color: #8ca2ab;
   padding: 10px 20px;
   border: solid #fff 1.5px;
   border-radius: 50px;
@@ -21,12 +21,10 @@ export const Button = styled.button`
   font-size: 17px;
   margin-bottom: 10px;
   cursor: pointer;
-
   // :hover {
   //   background-color: #fc00ff;
   //   background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
   // }
-
   @media (min-width: 767px) {
     font-size: 19px;
   }
@@ -171,10 +169,10 @@ export const SecondHeader = styled.div`
 
 export const ConceptButtonWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  margin-top: 30px;
+  margin: 30px 80px;
   padding: 20px;
 `;
 
@@ -222,7 +220,6 @@ export const FooterWrapper = styled.div`
   background-color: #ffdcdc;
   color: #8ca2ab;
   height: 150px;
-
   @media (min-width: 767px) {
     font-size: 20px;
   }

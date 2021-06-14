@@ -271,7 +271,7 @@ app.get("/concepts", async (req, res) => {
       page = 1;
     }
     if (!size) {
-      size = 10;
+      size = 20;
     }
     const limit = parseInt(size);
     const skip = (page - 1) * size;
@@ -292,12 +292,16 @@ app.get("/concepts", async (req, res) => {
 // WORKING ON THIS. SHOULD BE ABLE TO SEARCH
 
 // app.get("/concepts", async (req, res) => {
-//   const { concept } = req.query;
-//   const page = parseInt(req.query.page)
-//   const size = parseInt(req.query.size)
-//   const conceptRegex = new RegExp(concept, 'i');
-
 //   try {
+
+//     const { concept } = req.query;
+//     const page = parseInt(req.query.page)
+//     const size = parseInt(req.query.size)
+//     const conceptRegex = new RegExp(concept, 'i');
+   
+//     console.log(size)
+//     console.log(concept)
+
 //     const filteredConcepts = await Concept.aggregate([ 
 //       {
 //         $match: {
@@ -311,8 +315,8 @@ app.get("/concepts", async (req, res) => {
 //         $limit: size
 //       }
 //     ]);
-
 //     res.json(filteredConcepts);
+//     console.log(error)
 //   } catch (error) {
 //     res.status(400).json({ success: false, message: "Invalid request", error });
 //   }
