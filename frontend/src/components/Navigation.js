@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 const font = "'Montserrat', sans-serif";
 
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = () => {
   const classes = useStyles();
+  const accessToken = useSelector((store) => store.user.accessToken);
   return (
     <>
       <div className={classes.root}>
@@ -55,11 +57,20 @@ const Navigation = () => {
                 Concepts
               </NavLink> */}
             </Typography>
+            { accessToken ?
+          //    <Typography>
+          //    <NavLink to="/" className={`${classes.navObject}`}>
+          //      Sign Out
+          //    </NavLink>
+          //  </Typography>
+          "":
+
             <Typography>
               <NavLink to="/signin" className={`${classes.navObject}`}>
                 Sign in
               </NavLink>
             </Typography>
+            }
             {/* <Typography>
               <NavLink to="/contribute">Contribute</NavLink>
             </Typography> */}

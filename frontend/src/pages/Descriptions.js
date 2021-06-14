@@ -31,7 +31,7 @@ export default function Descriptions() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [data, setData] = useState({});
-  const [clickedHeart, setClickedHeart] = useState(false);
+  const [myClickedHeartIDs, updateMyClickedHeartIDs] = useState([]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -51,12 +51,20 @@ export default function Descriptions() {
       .then((res) => res.json())
       .then((data) => setData(data));
   };
-  // render POST like on click?
+
   // How do we add toggle, so user can only like once and not spam, FE or BE?
   // Also sort, more likes on top of the page, BE, right?
-  // Pagination FE and BE
+
 
   const postLikeToBackend = (descriptionId) => {
+
+    // Check if id has already been liked. If so return (do nothing)
+    if (myClickedHeartIDs.includes(descriptionId))
+      return;
+
+    // id has not been liked before, add it to array to prevent it from being liked again
+    updateMyClickedHeartIDs ( arr => [...arr, descriptionId]);
+
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -64,7 +72,6 @@ export default function Descriptions() {
     fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
       .then((res) => res.json())
       .then((data) => getDescriptions());
-    setClickedHeart(true);
   };
 
   return (
@@ -88,7 +95,7 @@ export default function Descriptions() {
           color="blue"
         >
           {description?.map((item) => {
-            console.log(item);
+            //console.log(item);
             return (
               <Card className={classes.root} key={item._id}>
                 <div className={classes.heading}>
@@ -110,7 +117,6 @@ export default function Descriptions() {
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon
                       className={classes.heart}
-                      disabled={clickedHeart}
                       onClick={() => postLikeToBackend(item._id)}
                     />
                     <Typography
