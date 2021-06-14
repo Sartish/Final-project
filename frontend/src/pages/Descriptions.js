@@ -87,40 +87,43 @@ export default function Descriptions() {
           color="blue"
         >
           {description?.map((item) => {
-            console.log({ item });
+            console.log(item);
             return (
               <Card className={classes.root} key={item._id}>
-                <CardHeader
-                  action={<Icon className={classes.avatar} icon={robotIcon} />}
-                  subheader="Sara added explanation"
-                />
-                <div className={classes.header}>API</div>
+                <div className={classes.heading}>
+                  <p className={classes.user}>
+                    {item.user ? item.user.username : "no user"}
+                    <span className={classes.span}> added a explanation</span>
+                  </p>
+                  <Icon className={classes.avatar} icon={robotIcon} />
+                </div>
+
                 <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
+                  <Typography className={classes.concept}>
                     {item.text}
                   </Typography>
-                  <Chip size="#JavaScript" label="#programming" />
+                  <Chip className={classes.tags} label="#frontend" />
+                  <Chip className={classes.tags} label="#backend" />
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
-                    <FavoriteIcon onClick={() => postLikeToBackend(item._id)} />
+                    <FavoriteIcon
+                      className={classes.heart}
+                      onClick={() => postLikeToBackend(item._id)}
+                    />
                     <Typography
-                      variant="body2"
-                      color="textSecondary"
+                      variant="body1"
+                      color="textPrimary"
                       component="p"
                     >
                       x {item.likes}
                     </Typography>
                   </IconButton>
                   <IconButton aria-label="share">
-                    <ShareIcon />
+                    <ShareIcon className={classes.share} />
                     <Typography
-                      variant="body2"
-                      color="textSecondary"
+                      variant="body1"
+                      color="textPrimary"
                       component="p"
                     >
                       share
@@ -161,19 +164,47 @@ const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: "#e1e8eb",
     width: "100%",
-    height: "700px",
+    height: "1000px",
   },
   root: {
-    width: "300px",
+    width: "500px",
     marginTop: "20px",
     marginRight: "5px",
     marginLeft: "5px",
   },
-
-  header: {
-    height: "50px",
-    textAlign: "center",
-    fontSize: "30px",
+  heading: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "10px",
+    marginLeft: "10px",
+    marginRight: "8px",
+  },
+  user: {
+    fontSize: "17px",
+  },
+  span: {
+    fontSize: "17px",
+  },
+  concept: {
+    height: "80px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "20px",
+  },
+  tags: {
+    backgroundColor: "pink",
+    margin: "5px",
+    fontSize: "15px",
+  },
+  heart: {
+    fontSize: "40px",
+    color: "#dc143c",
+  },
+  share: {
+    color: "#00008b",
+    fontSize: "40px",
   },
   expand: {
     transform: "rotate(0deg)",
@@ -186,7 +217,6 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)",
   },
   avatar: {
-    borderRadius: "50%",
     fontSize: "30px",
   },
 
