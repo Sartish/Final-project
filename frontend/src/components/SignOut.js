@@ -17,7 +17,6 @@ const SignOut = () => {
     });
   };
 
-
   return (
     <Link to="/">
       <SigninButton type="submit" onClick={handleClick}>
@@ -25,7 +24,6 @@ const SignOut = () => {
       </SigninButton>
     </Link>
   );
-
 };
 
 export default SignOut;

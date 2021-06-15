@@ -31,10 +31,10 @@ const Signin = () => {
   }, [accessToken, history]);
 
   const onFormSubmit = (e) => {
-    console.log("onFormSubmit1")
+    console.log("onFormSubmit1");
 
     e.preventDefault();
-    console.log("onFormSubmit2")
+    console.log("onFormSubmit2");
 
     const options = {
       method: "POST",
@@ -48,7 +48,7 @@ const Signin = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          console.log("Success")
+          console.log("Success");
           batch(() => {
             dispatch(user.actions.setUsername(data.username));
             dispatch(user.actions.setAccessToken(data.accessToken));
@@ -63,7 +63,7 @@ const Signin = () => {
             );
           });
         } else {
-          console.log("Failed")
+          console.log("Failed");
           dispatch(user.actions.setErrors(data));
         }
       });
