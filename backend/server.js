@@ -38,6 +38,8 @@ const conceptSchema = new mongoose.Schema({
   },
 });
 
+conceptSchema.index({concept: 'text'});
+
 //Description Schema
 const descriptionSchema = new mongoose.Schema({
   text: {
@@ -76,6 +78,8 @@ const userSchema = new mongoose.Schema({
     default: () => crypto.randomBytes(128).toString("hex"),
   },
 });
+
+
 
 const Concept = mongoose.model("Concept", conceptSchema);
 const User = mongoose.model("User", userSchema);
@@ -170,14 +174,6 @@ app.post("/signin", async (req, res) => {
 app.post("/concepts", async (req, res) => {
   const { concept, description } = req.body;
 
-  // hasProperty(concept, req.body)
-  // hasProperty(description, req.body)
-
-  // if (!concept) {
-  //   res.status(400).json({ success: false, message: "concept required", error });
-  // }
-
-  // ska vi ha success här?
   try {
     const newDescription = await new Description({
       text: description,
@@ -260,10 +256,12 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
   }
 });
 
+
+
 //GET CONCEPTS V1 WORKING
 app.get("/concepts", async (req, res) => {
   try {
-    let { page, size } = req.query;
+    let { page, size, searchText } = req.query;
     //ska vi ha success här?
     // pagination items per page
 
@@ -271,16 +269,15 @@ app.get("/concepts", async (req, res) => {
       page = 1;
     }
     if (!size) {
-      size = 10;
+      size = 20;
     }
     const limit = parseInt(size);
     const skip = (page - 1) * size;
 
-    const concept = await Concept.find()
+    const concept = await Concept.find({ concept: new RegExp(searchText, 'i') })
       .sort({ concept: 1 })
       .skip(skip)
       .limit(limit)
-
       console.log(concept, 'concept')
 
     res.json({ page, size, data: concept });
@@ -289,15 +286,25 @@ app.get("/concepts", async (req, res) => {
   }
 });
 
+//sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
+//men vi hade inte tid att sätta upp elasticsearch
+//elasticsearch == verktyg för att söka optimalt med text
+
+
+
 // WORKING ON THIS. SHOULD BE ABLE TO SEARCH
 
 // app.get("/concepts", async (req, res) => {
-//   const { concept } = req.query;
-//   const page = parseInt(req.query.page)
-//   const size = parseInt(req.query.size)
-//   const conceptRegex = new RegExp(concept, 'i');
-
 //   try {
+
+//     const { concept } = req.query;
+//     const page = parseInt(req.query.page)
+//     const size = parseInt(req.query.size)
+//     const conceptRegex = new RegExp(concept, 'i');
+   
+//     console.log(size)
+//     console.log(concept)
+
 //     const filteredConcepts = await Concept.aggregate([ 
 //       {
 //         $match: {
@@ -311,8 +318,8 @@ app.get("/concepts", async (req, res) => {
 //         $limit: size
 //       }
 //     ]);
-
 //     res.json(filteredConcepts);
+//     console.log(error)
 //   } catch (error) {
 //     res.status(400).json({ success: false, message: "Invalid request", error });
 //   }

@@ -1,10 +1,7 @@
 import React from "react";
 import { Container, makeStyles } from "@material-ui/core";
 
-import {
-  StartButtonContainer,
-  LottieContainer,
-} from "components/StyledComponents";
+import { StartButtonContainer } from "components/StyledComponents";
 
 import "@lottiefiles/lottie-player";
 
@@ -28,19 +25,6 @@ const SignInHeader = () => {
             </div>
           </div>
         </StartButtonContainer>
-        <LottieContainer>
-          <lottie-player
-            autoplay
-            loop
-            mode="normal"
-            src="https://assets6.lottiefiles.com/packages/lf20_d42Jtf.json"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "85%",
-            }}
-          ></lottie-player>
-        </LottieContainer>
       </Container>
     </div>
   );

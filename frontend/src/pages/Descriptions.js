@@ -31,7 +31,7 @@ export default function Descriptions() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [data, setData] = useState({});
-  const [myClickedHeartIDs, updateMyClickedHeartIDs] = useState([]);
+  const [myClickedHeartId, setClickedHeartId] = useState([]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -57,14 +57,8 @@ export default function Descriptions() {
 
 
   const postLikeToBackend = (descriptionId) => {
-
-    // Check if id has already been liked. If so return (do nothing)
-    if (myClickedHeartIDs.includes(descriptionId))
-      return;
-
-    // id has not been liked before, add it to array to prevent it from being liked again
-    updateMyClickedHeartIDs ( arr => [...arr, descriptionId]);
-
+    if (myClickedHeartId.includes(descriptionId)) return;
+    setClickedHeartId((arr) => [...arr, descriptionId]);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -207,10 +201,8 @@ const useStyles = makeStyles((theme) => ({
   },
   heart: {
     fontSize: "40px",
-    color: "#dc143c",
   },
   share: {
-    color: "#00008b",
     fontSize: "40px",
   },
   expand: {

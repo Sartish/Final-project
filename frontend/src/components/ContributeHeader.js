@@ -3,13 +3,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import { Container, makeStyles } from "@material-ui/core";
 
-import {
-  StartButtonContainer,
-  LottieContainer,
-  Button,
-} from "components/StyledComponents";
-
-import "@lottiefiles/lottie-player";
+import { StartButtonContainer } from "components/StyledComponents";
 
 const ContributeHeader = () => {
   const classes = useStyles();
@@ -41,31 +35,11 @@ const ContributeHeader = () => {
                 </span>
               </p>
               <p className={classes.contributeText}>
-              Write your description here, but keep it short and sweet!
+                Write your description here, but keep it short and sweet!
               </p>
-              {/* <Button
-                className={classes.button}
-                variant="contained"
-                onClick={Loggedin}
-              >
-                Contribute
-              </Button> */}
             </div>
           </div>
         </StartButtonContainer>
-        <LottieContainer>
-          <lottie-player
-            autoplay
-            loop
-            mode="normal"
-            src="https://assets6.lottiefiles.com/packages/lf20_d42Jtf.json"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "85%",
-            }}
-          ></lottie-player>
-        </LottieContainer>
       </Container>
     </div>
   );
@@ -113,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   contributeHeader: {
     fontSize: "22px",
     textAlign: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   button: {
     backgroundColor: "pink",

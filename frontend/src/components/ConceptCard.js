@@ -1,17 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { Card, CardActions, CardContent, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: {
-    backgroundColor: "#e1e8eb",
     width: "100%",
     height: "100vh",
   },
@@ -21,7 +14,7 @@ const useStyles = makeStyles({
     marginRight: "5px",
     marginLeft: "5px",
     "&:hover": {
-      backgroundColor: "orange",
+      backgroundColor: "#FFF5D1",
     },
   },
   title: {

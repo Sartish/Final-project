@@ -1,65 +1,35 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useHistory } from "react-router-dom";
-import { Container, makeStyles } from "@material-ui/core";
+import { Container, makeStyles, TextField } from "@material-ui/core";
+import styled from "styled-components";
 
-import {
-  StartButtonContainer,
-  LottieContainer,
-  Button,
-} from "components/StyledComponents";
+import { StartButtonContainer, Paragraph } from "components/StyledComponents";
 
-import "@lottiefiles/lottie-player";
-
-const DescriptionHeader = () => {
+const DescriptionHeader = ({ searchText, handleChange }) => {
   const classes = useStyles();
-  const location = useLocation();
-  const accessToken = useSelector((store) => store.user.accessToken);
-  const history = useHistory();
-
-  const Loggedin = () => {
-    // redirect user to '/' path
-    console.log("Checking access token", accessToken);
-    if (accessToken) {
-      history.push(`/contribute/${location.pathname.substring(1)}`);
-    } else {
-      history.push("/signin");
-    }
-  };
 
   return (
     <div className={classes.background}>
       <Container className={classes.container}>
-        <StartButtonContainer>
-          <div className={classes.filter}>
-            <div className={classes.contribute}>
-              <p className={classes.contributeText}>
-                Psst! Do you have a good explanation for this concept?
-                Contribute!
-              </p>
-              <Button
-                className={classes.button}
-                variant="contained"
-                onClick={Loggedin}
-              >
-                Contribute
-              </Button>
-            </div>
-          </div>
-        </StartButtonContainer>
-        <LottieContainer>
-          <lottie-player
-            autoplay
-            loop
-            mode="normal"
-            src="https://assets6.lottiefiles.com/packages/lf20_d42Jtf.json"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "85%",
-            }}
-          ></lottie-player>
-        </LottieContainer>
+        <Wrapper>
+          <Title>Find your techy word here</Title>
+          <ContainerHeader role="main">
+            <StartButtonContainer>
+              <div className={classes.filter}>
+                <Paragraph>
+                  <form className={classes.root} noValidate autoComplete="off">
+                    <TextField
+                      id="outlined-basic"
+                      label="Outlined"
+                      variant="outlined"
+                      value={searchText}
+                      onChange={handleChange}
+                    />
+                  </form>
+                </Paragraph>
+              </div>
+            </StartButtonContainer>
+          </ContainerHeader>
+        </Wrapper>
       </Container>
     </div>
   );
@@ -68,30 +38,26 @@ const DescriptionHeader = () => {
 export default DescriptionHeader;
 
 const useStyles = makeStyles((theme) => ({
-  // background: {
-  //   backgroundColor: "#8CA2AB",
-  //   width: "100%",
-  // },
+  //   background: {
+  //     backgroundColor: "#8CA2AB",
+  //     width: "100%",
+  //   },
   container: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "column",
-    backgroundColor: "#8CA2AB",
     width: "100%",
-    height: "500px",
+    height: "300px",
     marginTop: "35px",
-    ["@media (min-width:780px)"]: {
-      flexDirection: "row",
-    },
   },
+
   filter: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    margin: "10px",
-    padding: "20px",
+    margin: "5px",
   },
   contribute: {
     display: "flex",
@@ -100,10 +66,47 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   contributeText: {
-    fontSize: "24px",
+    fontSize: "16x",
     textAlign: "center",
   },
   button: {
     backgroundColor: "pink",
   },
 }));
+
+export const ContainerHeader = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  border: 2px black;
+  padding: 20px;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+    flex-direction: row;
+    width: 1200px;
+    border: black solid 2px;
+    box-sizing: border-box;
+    padding: 0;
+  }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  border: solid 2px #ffcff1;
+  padding: 10px;
+  height: 400px;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px #ffcff1;
+  padding: 10px;
+`;
