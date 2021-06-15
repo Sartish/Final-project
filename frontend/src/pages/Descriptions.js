@@ -31,7 +31,7 @@ export default function Descriptions() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [data, setData] = useState({});
-  const [clickedHeart, setClickedHeart] = useState(false);
+  const [myClickedHeartId, setClickedHeartId] = useState([]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -57,6 +57,8 @@ export default function Descriptions() {
   // Pagination FE and BE
 
   const postLikeToBackend = (descriptionId) => {
+    if (myClickedHeartId.includes(descriptionId)) return;
+    setClickedHeartId((arr) => [...arr, descriptionId]);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -64,7 +66,6 @@ export default function Descriptions() {
     fetch(API_URL("concepts/" + descriptionId + "/likes"), options)
       .then((res) => res.json())
       .then((data) => getDescriptions());
-    setClickedHeart(true);
   };
 
   return (
@@ -110,7 +111,6 @@ export default function Descriptions() {
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon
                       className={classes.heart}
-                      disabled={clickedHeart}
                       onClick={() => postLikeToBackend(item._id)}
                     />
                     <Typography
@@ -201,10 +201,8 @@ const useStyles = makeStyles((theme) => ({
   },
   heart: {
     fontSize: "40px",
-    color: "#dc143c",
   },
   share: {
-    color: "#00008b",
     fontSize: "40px",
   },
   expand: {
