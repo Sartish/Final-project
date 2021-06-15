@@ -51,10 +51,10 @@ export default function Descriptions() {
       .then((res) => res.json())
       .then((data) => setData(data));
   };
-  // render POST like on click?
+
   // How do we add toggle, so user can only like once and not spam, FE or BE?
   // Also sort, more likes on top of the page, BE, right?
-  // Pagination FE and BE
+
 
   const postLikeToBackend = (descriptionId) => {
     if (myClickedHeartId.includes(descriptionId)) return;
@@ -94,7 +94,7 @@ export default function Descriptions() {
             </Button>
           </Link>
           {description?.map((item) => {
-            console.log(item);
+            //console.log(item);
             return (
               <Card className={classes.root} key={item._id}>
                 <div className={classes.heading}>
