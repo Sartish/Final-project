@@ -55,7 +55,6 @@ export default function Descriptions() {
   // How do we add toggle, so user can only like once and not spam, FE or BE?
   // Also sort, more likes on top of the page, BE, right?
 
-
   const postLikeToBackend = (descriptionId) => {
     if (myClickedHeartId.includes(descriptionId)) return;
     setClickedHeartId((arr) => [...arr, descriptionId]);
@@ -71,6 +70,9 @@ export default function Descriptions() {
   return (
     <>
       <Navigation />
+      <Link to={`/contribute/${location.pathname.substring(1)}`}>
+        <Button>contribute </Button>
+      </Link>
       <DescriptionHeader />
       <Container className={classes.container}>
         <h3 className={classes.header}>All Explanation here</h3>
