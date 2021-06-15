@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
@@ -8,12 +8,12 @@ import {
   Grid,
   Container,
   Chip,
-  CardHeader,
   CardContent,
   CardActions,
   IconButton,
   Typography,
   Collapse,
+  Button,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
@@ -88,6 +88,11 @@ export default function Descriptions() {
           alignItems="start"
           color="blue"
         >
+          <Link to={`/contribute/${location.pathname.substring(1)}`}>
+            <Button variant="contained" color="secondary">
+              contribute
+            </Button>
+          </Link>
           {description?.map((item) => {
             console.log(item);
             return (
