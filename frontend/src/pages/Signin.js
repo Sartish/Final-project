@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
-// import { Button } from "@material-ui/core";
-import styled from "styled-components/macro";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import { FormButton } from "components/StyledComponents";
+import Container from "@material-ui/core/Container";
 
 import user from "../reducers/user";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
-import SignInHeader from "../components/SignInHeader";
-// import CustomButton from "../components/CustomButton";
 
 const Signin = () => {
+  const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState(null);
@@ -61,108 +65,129 @@ const Signin = () => {
   };
   console.log(mode);
   return (
-    <div>
+    <>
       <Navigation />
-      <SignInHeader />
-      <Wrapper>
-        <Header>Sign in | Sign up</Header>
-        <Form onSubmit={onFormSubmit}>
-          <Input
-            type="text"
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <Input
-            type="password"
-            placeholder="•••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <Link to="/">
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              text="Sign in"
-              onClick={() => setMode("signin")}
-            >
+      <div className={classes.background}>
+        <div className={classes.wrapper}>
+          <Typography className={classes.header}>
+            Want to be able to contribute?
+          </Typography>
+          <Typography className={classes.paragraph}>
+            Sign in or create your account
+          </Typography>
+        </div>
+        <Container component="main" maxWidth="xs">
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              {/* <LockOutlinedIcon /> */}
+            </Avatar>
+            <Typography component="h1" variant="h5">
               Sign in
-            </Button>
-          </Link>
-          <Button type="submit" onClick={() => setMode("signup")}>
-            Sign up
-          </Button>
-        </Form>
-      </Wrapper>
-    </div>
+            </Typography>
+            <form onSubmit={onFormSubmit}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="email"
+                autoFocus
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <FormButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                type="submit"
+                onClick={() => setMode("signin")}
+              >
+                Sign in
+              </FormButton>
+              <FormButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                type="submit"
+                onClick={() => setMode("signup")}
+              >
+                Sign up
+              </FormButton>
+            </form>
+          </div>
+        </Container>
+      </div>
+    </>
   );
 };
 
 export default Signin;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  margin: auto;
+const font = "'PT Sans', sans-serif";
 
-  @media (min-width: 767px) {
-    width: 50%;
-    margin-top: 35px;
-  }
-
-  @media (min-width: 1024px) {
-    width: 500px;
-  }
-`;
-const Form = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-`;
-const Header = styled.h1`
-  text-align: center;
-  font-weight: 400;
-  font-size: 40px;
-
-  @media (min-width: 1024px) {
-    font-size: 50px;
-  }
-`;
-
-const Input = styled.input`
-  width: 70%;
-  border-radius: 50px;
-  outline: none;
-  //border: none;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-
-  @media (min-width: 767px) {
-    font-size: 17px;
-  }
-`;
-
-const Button = styled.button`
-  border-radius: 8px;
-  background-color: #8ca2ab;
-  // background-image: linear-gradient(90deg, #006cde 0%, #fc00ff 100%);
-  padding: 10px 20px;
-  border: solid #fff 1.5px;
-  border-radius: 50px;
-  outline: none;
-  // width: 30%;
-  color: #fff;
-  font-size: 17px;
-  margin-bottom: 10px;
-
-  @media (min-width: 767px) {
-    font-size: 19px;
-  }
-`;
+const useStyles = makeStyles((theme) => ({
+  background: {
+    width: "100vw",
+    height: "100vh",
+    // backgroundImage: "linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)",
+  },
+  wrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  header: {
+    fontFamily: font,
+    fontWeight: "bold",
+    fontSize: "38px",
+    color: "#4B0082",
+    marginTop: "100px",
+  },
+  paragraph: {
+    fontFamily: font,
+    fontWeight: "bold",
+    fontSize: "24px",
+    color: "black",
+    marginBottom: "40px",
+  },
+  paper: {
+    //   marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));

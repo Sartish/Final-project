@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { useParams, Link, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
-import concepts from "../reducers/concepts";
-import ContributeHeader from "../components/ContributeHeader";
-// import { Divider } from "@material-ui/core";
+import { TextField, makeStyles } from "@material-ui/core";
+import { CustomButton } from "./StyledComponents";
 
 const AddedDescription = () => {
+  const classes = useStyles();
   const [description, setDescription] = useState("");
   const { conceptId } = useParams();
-  const dispatch = useDispatch();
   const history = useHistory();
 
   let idOfAConcept = conceptId;
 
   const accessToken = useSelector((store) => store.user.accessToken);
-  const username = useSelector((store) => store.user.username);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -48,16 +46,19 @@ const AddedDescription = () => {
   return (
     <>
       <Navigation />
-      <ContributeHeader />
       <Container>
         <Wrapper>
-          <WriteHere>Write here:</WriteHere>
+          <WriteHere>Contribute with your explanation</WriteHere>
           <Form onSubmit={onFormSubmit}>
-            <TextArea
-              type="text"
-              rows="4"
-              cols="48"
-              maxLength="140"
+            <TextField
+              className={classes.input}
+              id="outlined-multiline-static"
+              label="Multiline"
+              multiline
+              rows={4}
+              columns={8}
+              defaultValue="Default Value"
+              variant="outlined"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -65,9 +66,9 @@ const AddedDescription = () => {
             {/* <TextCounter>Number of characters:{description.length}</TextCounter> */}
             <ButtonSection>
               <Link to="/">
-                <Button>Back to concepts</Button>
+                <CustomButton>Back</CustomButton>
               </Link>
-              <Button
+              <CustomButton
                 type="submit"
                 value="description"
                 onClick={onFormSubmit}
@@ -76,7 +77,7 @@ const AddedDescription = () => {
                 }
               >
                 Done!
-              </Button>
+              </CustomButton>
             </ButtonSection>
           </Form>
         </Wrapper>
@@ -86,11 +87,22 @@ const AddedDescription = () => {
 };
 
 export default AddedDescription;
+
+const useStyles = makeStyles(() => ({
+  input: {
+    marginTop: "50px",
+    width: "250px",
+    ["@media (min-width:780px)"]: {
+      width: "600px",
+    },
+  },
+}));
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin-right: 30px;
 `;
 
 const Button = styled.button`
@@ -138,12 +150,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const TextArea = styled.textarea`
-  margin-bottom: 15px;
-  margin-left: 5px;
-  margin-right: 5px;
-`;
-
 const TextCounter = styled.p`
   text-align: right;
   margin-right: 5px;
@@ -155,5 +161,14 @@ const Form = styled.form`
 
 const WriteHere = styled.h3`
   display: flex;
-  margin-left: 8px;
+  justify-content: center;
+  align-text: center;
+  width: 200px;
+  margin-top: 70px;
+  font-size: 24px;
+  border: 2px black solid;
+  @media (min-width: 767px) {
+    font-size: 30px;
+    width: 500px;
+  }
 `;

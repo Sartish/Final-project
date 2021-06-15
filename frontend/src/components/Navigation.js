@@ -2,38 +2,57 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
+import { useSelector } from "react-redux";
+import SignOut from "./SignOut";
+import HamburgerMenu from "./HamburgerMenu";
+
+import { SigninButton } from "./StyledComponents";
 
 const Navigation = () => {
+  const accessToken = useSelector((store) => store.user.accessToken);
+
   return (
     <>
       <NavigationBar>
         <Hamburger>
-          <Bar></Bar>
-          <Bar></Bar>
-          <Bar></Bar>
+          <HamburgerMenu />
         </Hamburger>
-
-        <Logo src={logo} alt="technigo logo" />
-
+        <NavLink style={{ textDecoration: "none" }} to="/">
+          <Logo src={logo} alt="technigo logo" />
+        </NavLink>
         <RightNav>
           <NavLink
-            style={{ paddingLeft: 13, textDecoration: "none" }}
+            style={{ paddingLeft: 10, textDecoration: "none" }}
             to="/concepts"
           >
             <Link>Concepts</Link>
           </NavLink>
           <NavLink
-            style={{ paddingLeft: 13, textDecoration: "none" }}
+            style={{ paddingLeft: 10, textDecoration: "none" }}
             to="/Contribute"
           >
             <Link>Contribute</Link>
           </NavLink>
           <NavLink
-            style={{ paddingLeft: 13, textDecoration: "none" }}
-            to="/signin"
+            style={{ paddingLeft: 10, textDecoration: "none" }}
+            to="/about"
           >
-            <Button>Signin</Button>
+            <Link>about</Link>
           </NavLink>
+          {accessToken ? (
+            <SignOut />
+          ) : (
+            <NavLink
+              style={{
+                paddingLeft: 10,
+                marginBottom: 10,
+                textDecoration: "none",
+              }}
+              to="/signin"
+            >
+              <SigninButton>Signin</SigninButton>
+            </NavLink>
+          )}
         </RightNav>
       </NavigationBar>
     </>
@@ -63,8 +82,6 @@ export const NavigationBar = styled.div`
 export const Hamburger = styled.div`
   width: 35px;
   height: 5px;
-  background-color: #333;
-  margin: 6px 0;
   @media (min-width: 1025px) {
     display: none;
   }

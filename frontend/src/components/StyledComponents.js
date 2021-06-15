@@ -196,16 +196,6 @@ export const CardContainerDescription = styled.div`
   :hover {
     background-color: #f2a154;
 `;
-
-export const HeartButton = styled.button`
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  background-color: ffe9e9;
-  cursor: pointer;
-  border: none;
-`;
-
 //Footer
 
 export const FooterWrapper = styled.div`
@@ -213,12 +203,13 @@ export const FooterWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 40px;
+  margin: 2px 3%;
   margin-bottom: 10px;
   padding: 0;
   font-size: 14px;
-  background-color: #ffdcdc;
-  color: #8ca2ab;
+  background-color: white;
+  border-top: 2px solid black;
+  color: black;
   height: 150px;
   @media (min-width: 767px) {
     font-size: 20px;
@@ -238,4 +229,78 @@ export const Logo = styled.div`
 
 export const Link = styled.a`
   color: #aa0000;
+`;
+
+///Buttons
+
+export const SigninButton = styled.div`
+  display: inline-block;
+  color: black;
+  background-color: #FFCFF1;
+  width: 100px;
+  border: 4px solid #FFCFF1;
+  text-align: center;
+  font-weight: bold;
+  padding: 13px;
+  margin-top: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 1s ease-in, color 1s ease-in;
+  :hover {
+    color: white;
+    background-color: black;
+    border:4px solid white;
+    transition: background-color 0.5s ease-out, color 0.5s ease-out;
+
+    
+`;
+
+export const CustomButton = styled.button`
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 22px;
+  padding: 15px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+`;
+
+export const FormButton = styled.button`
+  border-radius: 4px;
+  background-color: #ffcff1;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 22px;
+  padding: 15px;
+  width: 500px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+`;
+
+export const SpanButtonPrevious = styled.button`
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  :after{
+    content: '\00AB';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 20px;
+    transition: 0.5s;
+  }
+  :hover
+  {padding-left: 25px;}
+  :hover&:after{
+    opacity: 1;
+    left: 0;
+  }
+
 `;

@@ -4,14 +4,14 @@ import styled from "styled-components";
 
 import { StartButtonContainer, Paragraph } from "components/StyledComponents";
 
-const ConceptHeader = () => {
+const ConceptHeader = ({ inputValue, handleOnChange }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.background}>
       <Container className={classes.container}>
+        <Title>Find your techy word here</Title>
         <Wrapper>
-          <Title>Find your techy word here</Title>
           <ContainerHeader role="main">
             <StartButtonContainer>
               <div className={classes.filter}>
@@ -21,6 +21,8 @@ const ConceptHeader = () => {
                       id="outlined-basic"
                       label="Outlined"
                       variant="outlined"
+                      value={inputValue}
+                      onChange={handleOnChange}
                     />
                   </form>
                 </Paragraph>
@@ -46,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     width: "100%",
-    height: "500px",
+    height: "200px",
+
     marginTop: "35px",
   },
 
@@ -79,6 +82,7 @@ export const ContainerHeader = styled.section`
   align-items: space-around;
   border: 2px black;
   padding: 20px;
+  border-radius: 10px;
 
   @media (min-width: 768px) {
     justify-content: space-around;
@@ -107,4 +111,5 @@ export const Title = styled.div`
   align-items: center;
   border: solid 2px #ffcff1;
   padding: 10px;
+  font-size: 50px;
 `;

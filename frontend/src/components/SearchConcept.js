@@ -8,9 +8,7 @@ const SearchConcept = () => {
 
   return (
     <>
-      <Form>
-        <input type="text" placeholder="search"></input>
-      </Form>
+      <div>hej</div>
     </>
   );
 };

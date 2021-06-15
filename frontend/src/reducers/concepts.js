@@ -1,40 +1,18 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const concepts = createSlice({
   name: "concepts",
   initialState: {
+    pageNumber: "",
     searchField: "",
-    // conceptList: [
-    //   {
-    //     id: "concept1",
-    //     concept: "API",
-    //     descriptions: [],
-    //   },
-    // ],
-    // descriptions: [
-    //   {
-    //     text: "",
-    //     likes: 5,
-    //     id: "desc1",
-    //     conceptId: "concept1",
-    //   },
-    // ],
   },
   reducers: {
-    setErrors: (store, action) => {
-      store.errors = action.payload;
-    },
     setSearchField: (store, action) => {
       store.searchField = action.payload;
     },
-    // setConcept: (store, action) => {
-    //   const addConcept = action.payload;
-    //   store.concepts.push(addConcept);
-    // },
-    // addDescription: (store, action) => {
-    //   const addItem = action.payload;
-    //   store.descriptions.push(addItem);
-    // },
+    setPageNumber: (store, action) => {
+      store.pageNumber = action.payload;
+    },
   },
   // extraReducers: {
   //   [fetchConcepts.fulfilled]: (state, action) => {
