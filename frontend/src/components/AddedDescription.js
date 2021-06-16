@@ -40,7 +40,6 @@ const AddedDescription = () => {
       });
   };
 
-  // vill få att knappen gör submit, inte vid enter..
   //vill få med så det syns på sidan vilket concept som man gör add på
   //vad ska hända när man trycker på done? Konfettiregn? link tillbaka till concepts?
   //töm input efter submit

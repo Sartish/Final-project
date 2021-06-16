@@ -1,20 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { Link, useHistory } from "react-router-dom";
 import { TextField, makeStyles } from "@material-ui/core";
 
 import Navigation from "../components/Navigation";
 import { CustomButton } from "./StyledComponents";
+import { API_URL } from "../reusables/urls";
 
 const ContributeConcept = () => {
   const classes = useStyles();
+  const history = useHistory();
+  // const [data, setData] = useState({});
+  const [description, setDescription] = useState("");
+  const [concept, setConcept] = useState("");
+
+  // const { description, concept } = data;
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ description, concept }),
+    };
+
+    fetch(API_URL("concepts"), options)
+      .then((res) => res.json())
+      .then(() => {
+        history.push("/");
+      });
+  };
+
   return (
     <>
       <Navigation />
       <Container>
         <Wrapper>
           <WriteHere>Contribute with your concept</WriteHere>
-          <Form>
+
+          <Form onSubmit={onFormSubmit}>
             <TextField
               className={classes.input}
               id="outlined-multiline-static"
@@ -24,6 +49,8 @@ const ContributeConcept = () => {
               columns={2}
               defaultValue="Type here"
               variant="outlined"
+              value={concept}
+              onChange={(e) => setConcept(e.target.value)}
             />
 
             <TextField
@@ -35,6 +62,8 @@ const ContributeConcept = () => {
               columns={8}
               defaultValue="Type here.."
               variant="outlined"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
 
             <ButtonSection>
