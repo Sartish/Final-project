@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import moment from "moment";
 
 import {
   Card,
@@ -14,6 +15,7 @@ import {
   Typography,
   Collapse,
   Button,
+  ListItemSecondaryAction,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
@@ -32,12 +34,13 @@ export default function Descriptions() {
   const [expanded, setExpanded] = React.useState(false);
   const [data, setData] = useState({});
   const [myClickedHeartId, setClickedHeartId] = useState([]);
+  const [sort, setSort] = useState("none");
+  // const [likes, setLikes] = useState([]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  // do fetch on concepts/conceptid? To get one Id and then do map over all the descriptions.
   const { description, user, concept } = data;
   const location = useLocation();
 
@@ -52,7 +55,23 @@ export default function Descriptions() {
       .then((data) => setData(data));
   };
 
-  // How do we add toggle, so user can only like once and not spam, FE or BE?
+  //Function here to sort by likes
+
+  // const sortLikes = (e) => {
+  //   e.preventDefault();
+  //   setLikes(data);
+  //   console.log(data);
+  // };
+  const sortDesc = () => {
+    if (description) {
+      if (sort === "likes") {
+        return description.sort((a, b) => (a.likes > b.likes ? -1 : 1));
+      } else {
+        return description;
+      }
+    }
+    return [];
+  };
   // Also sort, more likes on top of the page, BE, right?
 
   const postLikeToBackend = (descriptionId) => {
@@ -73,6 +92,13 @@ export default function Descriptions() {
       <Link to={`/contribute/${location.pathname.substring(1)}`}>
         <Button>contribute </Button>
       </Link>
+      <Button
+        onClick={() => {
+          setSort("likes");
+        }}
+      >
+        Click to sort by likes
+      </Button>
       <DescriptionHeader />
       <Container className={classes.container}>
         <h3 className={classes.header}>All Explanation here</h3>
@@ -96,7 +122,7 @@ export default function Descriptions() {
               contribute
             </Button>
           </Link>
-          {description?.map((item) => {
+          {sortDesc(description)?.map((item) => {
             //console.log(item);
             return (
               <Card className={classes.root} key={item._id}>
@@ -108,9 +134,13 @@ export default function Descriptions() {
                   <Icon className={classes.avatar} icon={robotIcon} />
                 </div>
 
+                {/* moment().format("MMM Do YY");
+                <p>{moment(item.createdAt).format("MMM Do YY")}</p> */}
+
                 <CardContent>
                   <Typography className={classes.concept}>
-                    {item.text}
+                    {item.text} Created at:{" "}
+                    {moment(item.createdAt).format("MMM Do YYYY")}
                   </Typography>
                   <Chip className={classes.tags} label="#frontend" />
                   <Chip className={classes.tags} label="#backend" />

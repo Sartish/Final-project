@@ -20,6 +20,7 @@ const AddedDescription = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    console.log("test");
 
     const options = {
       method: "PATCH",

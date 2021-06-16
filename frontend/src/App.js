@@ -13,6 +13,7 @@ import FrontPage from "./pages/FrontPage";
 
 import Descriptions from "./pages/Descriptions";
 import SearchConcept from "./components/SearchConcept";
+import ContributeConcept from "./components/ContributeConcept";
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -39,6 +40,8 @@ export const App = () => {
           />
           <Route path="/about" component={About} />
           <Route path="/contribute" component={AddedDescription} />
+
+          <Route path="/newconcept" component={ContributeConcept} />
 
           <Route path="/descriptions" component={Descriptions} />
 

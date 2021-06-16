@@ -32,6 +32,7 @@ const conceptSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  // eventuellt ta bort?!
   likes: {
     type: Number,
     default: 0,
@@ -46,6 +47,10 @@ const descriptionSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 5,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
   likes: {
     type: Number,
@@ -78,8 +83,6 @@ const userSchema = new mongoose.Schema({
     default: () => crypto.randomBytes(128).toString("hex"),
   },
 });
-
-
 
 const Concept = mongoose.model("Concept", conceptSchema);
 const User = mongoose.model("User", userSchema);
@@ -158,16 +161,6 @@ app.post("/signin", async (req, res) => {
 });
 
 
-// function hasProperty(property) {
-//   return function(req, res, next) {
-//     if (!req.body[property]) {
-//       res.status(400).json({ success: false, message: `${property} not allowed to add`, error });
-//     }
-
-//     next();
-//   }
-// }
-
 //POST CONCEPTS
 // Gör så att bara vi har behörighet till denna endpoint
 
@@ -222,6 +215,7 @@ app.patch("/concepts", async (req, res) => {
     });
     res.json(updatedConcept);
   } catch (error) {
+
     res.status(400).json({ sucess: false, message: "Invalid request", error });
   }
 });
@@ -301,19 +295,19 @@ app.get("/concepts", async (req, res) => {
 //     const page = parseInt(req.query.page)
 //     const size = parseInt(req.query.size)
 //     const conceptRegex = new RegExp(concept, 'i');
-   
+
 //     console.log(size)
 //     console.log(concept)
 
-//     const filteredConcepts = await Concept.aggregate([ 
+//     const filteredConcepts = await Concept.aggregate([
 //       {
 //         $match: {
 //           concept: conceptRegex
 //         },
-//       }, 
+//       },
 //       {
 //         $skip: (page -1) * size + 1
-//       }, 
+//       },
 //       {
 //         $limit: size
 //       }
@@ -327,25 +321,13 @@ app.get("/concepts", async (req, res) => {
 
 
 // One concept with all the desciptions through concept id
-// add pagination 
+// add pagination
 // query page size and sort
 
 //http://localhost:8080/concepts/conceptId?/page=1
 app.get("/concepts/:conceptId", async (req, res) => {
   const { conceptId } = req.params;
-  let { likes } = req.query;
-  let { createdAt, } = req.query;
   let { page, size } = req.query;
-  
-let sortOnLikes;
-let sortOnCreatedAt;
-
-  if (likes) 
-  sortOnLikes = {likes:1}
-  
-  if (createdAt)
-  sortOnCreatedAt = {createdAt:1}
-
 
   if (!page) {
     page = 1;
@@ -364,8 +346,6 @@ let sortOnCreatedAt;
         path : 'user'
       }
     })
-    .sort(sortOnLikes)
-    .sort(sortOnCreatedAt)
     .skip(skip)
     .limit(limit)
     if (oneConcept) {
