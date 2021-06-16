@@ -5,6 +5,8 @@ import logo from "../assets/logo.svg";
 import { useSelector } from "react-redux";
 import SignOut from "./SignOut";
 import HamburgerMenu from "./HamburgerMenu";
+import ContributeConcept from "./ContributeConcept";
+
 
 import { SigninButton } from "./StyledComponents";
 
@@ -40,7 +42,9 @@ const Navigation = () => {
             <Link>about</Link>
           </NavLink>
           {accessToken ? (
+            <>
             <SignOut />
+            </>
           ) : (
             <NavLink
               style={{
