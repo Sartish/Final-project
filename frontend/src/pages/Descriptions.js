@@ -89,9 +89,6 @@ export default function Descriptions() {
   return (
     <>
       <Navigation />
-      <Link to={`/contribute/${location.pathname.substring(1)}`}>
-        <Button>contribute </Button>
-      </Link>
       <Button
         onClick={() => {
           setSort("likes");

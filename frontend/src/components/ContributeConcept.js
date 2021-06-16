@@ -43,7 +43,6 @@ const ContributeConcept = () => {
       <Container>
         <Wrapper>
           <WriteHere>Contribute with your concept</WriteHere>
-
           <Form onSubmit={onFormSubmit}>
             <TextField
               className={classes.input}
@@ -57,7 +56,6 @@ const ContributeConcept = () => {
               value={concept}
               onChange={(e) => setConcept(e.target.value)}
             />
-
             <TextField
               className={classes.input}
               id="outlined-multiline-static"
