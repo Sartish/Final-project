@@ -17,6 +17,7 @@ const AddedDescription = () => {
   let idOfAConcept = conceptId;
 
   const accessToken = useSelector((store) => store.user.accessToken);
+  const username = useSelector((store) => store.user.username);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -49,11 +50,13 @@ const AddedDescription = () => {
       <Container>
         <Wrapper>
           <WriteHere>Contribute with your explanation</WriteHere>
+          <p>Nice{username}, you want to contribute!</p>
+
           <Form onSubmit={onFormSubmit}>
             <TextField
               className={classes.input}
               id="outlined-multiline-static"
-              label="Multiline"
+              label="Description"
               multiline
               rows={4}
               columns={8}
