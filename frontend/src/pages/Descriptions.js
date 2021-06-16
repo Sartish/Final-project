@@ -55,20 +55,17 @@ export default function Descriptions() {
       .then((data) => setData(data));
   };
 
-  //Function here to sort by likes
-
-  // const sortLikes = (e) => {
-  //   e.preventDefault();
-  //   setLikes(data);
-  //   console.log(data);
-  // };
   const sortDesc = () => {
     if (description) {
       if (sort === "likes") {
         return description.sort((a, b) => (a.likes > b.likes ? -1 : 1));
-      } else {
-        return description;
-      }
+      } else if (sort === "createdAt") {
+        return description.sort(function (a, b) {
+          const dateA = new Date(a.createdAt);
+          const dateB = new Date(b.createdAt);
+          return dateB - dateA;
+        });
+      } else return description;
     }
     return [];
   };
@@ -89,12 +86,20 @@ export default function Descriptions() {
   return (
     <>
       <Navigation />
+
       <Button
         onClick={() => {
           setSort("likes");
         }}
       >
         Click to sort by likes
+      </Button>
+      <Button
+        onClick={() => {
+          setSort("createdAt");
+        }}
+      >
+        Click to sort by date
       </Button>
       <DescriptionHeader />
       <Container className={classes.container}>
