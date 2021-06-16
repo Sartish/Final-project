@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { Link, useHistory } from "react-router-dom";
 import { TextField, makeStyles } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 import Navigation from "../components/Navigation";
 import { CustomButton } from "./StyledComponents";
@@ -14,6 +15,7 @@ const ContributeConcept = () => {
   const [description, setDescription] = useState("");
   const [concept, setConcept] = useState("");
 
+  const accessToken = useSelector((store) => store.user.accessToken);
   // const { description, concept } = data;
 
   const onFormSubmit = (e) => {
@@ -21,14 +23,17 @@ const ContributeConcept = () => {
 
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
       body: JSON.stringify({ description, concept }),
     };
 
     fetch(API_URL("concepts"), options)
       .then((res) => res.json())
       .then(() => {
-        history.push("/");
+        history.push("/concepts");
       });
   };
 

@@ -36,7 +36,7 @@ const AddedDescription = () => {
       .then((res) => res.json())
       // .then((data) => console.log(data));
       .then(() => {
-        history.push("/");
+        history.push("/concepts");
       });
   };
 

@@ -13,14 +13,14 @@ mongoose.Promise = Promise;
 
 const port = process.env.PORT || 8080;
 const app = express();
-app.use(cors())
+app.use(cors());
 
 // CONCEPT SCHEMA
 const conceptSchema = new mongoose.Schema({
   concept: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   description: [
     {
@@ -39,7 +39,7 @@ const conceptSchema = new mongoose.Schema({
   },
 });
 
-conceptSchema.index({concept: 'text'});
+conceptSchema.index({ concept: "text" });
 
 //Description Schema
 const descriptionSchema = new mongoose.Schema({
@@ -59,7 +59,7 @@ const descriptionSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-  }
+  },
 });
 
 // add username in description object
@@ -94,7 +94,7 @@ const authenticateUser = async (req, res, next) => {
   try {
     const user = await User.findOne({ accessToken });
     if (user) {
-      req.user=user
+      req.user = user;
       next();
     } else {
       res.status(401).json({ sucess: false, message: "Not authorized" });
@@ -160,16 +160,16 @@ app.post("/signin", async (req, res) => {
   }
 });
 
-
 //POST CONCEPTS
 // Gör så att bara vi har behörighet till denna endpoint
-
+app.post("/concepts", authenticateUser);
 app.post("/concepts", async (req, res) => {
   const { concept, description } = req.body;
 
   try {
     const newDescription = await new Description({
       text: description,
+      user: req.user,
     }).save();
 
     const newConcept = await new Concept({
@@ -187,16 +187,15 @@ app.post("/concepts", async (req, res) => {
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
 
-app.patch("/concepts", authenticateUser)
+app.patch("/concepts", authenticateUser);
 app.patch("/concepts", async (req, res) => {
   const { idOfAConcept, description } = req.body;
-  const { _id } = req.user
-
+  const { _id } = req.user;
 
   try {
     const newDescription = await new Description({
       text: description,
-      user: req.user
+      user: req.user,
     }).save();
 
     const updatedConcept = await Concept.findByIdAndUpdate(
@@ -208,14 +207,13 @@ app.patch("/concepts", async (req, res) => {
       },
       { new: true }
     ).populate({
-      path : 'description',
-      populate : {
-        path : 'user'
-      }
+      path: "description",
+      populate: {
+        path: "user",
+      },
     });
     res.json(updatedConcept);
   } catch (error) {
-
     res.status(400).json({ sucess: false, message: "Invalid request", error });
   }
 });
@@ -237,7 +235,7 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
         $inc: { likes: 1 },
       },
       {
-        new: true
+        new: true,
       }
     );
     if (likes) {
@@ -249,7 +247,6 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
     res.status(400).json({ message: "invalid request", error });
   }
 });
-
 
 //http://localhost:8080/concepts?page=1&size=20
 //GET CONCEPTS V1 WORKING
@@ -268,11 +265,11 @@ app.get("/concepts", async (req, res) => {
     const limit = parseInt(size);
     const skip = (page - 1) * size;
 
-    const concept = await Concept.find({ concept: new RegExp(searchText, 'i') })
+    const concept = await Concept.find({ concept: new RegExp(searchText, "i") })
       .sort({ concept: 1 })
       .skip(skip)
-      .limit(limit)
-      console.log(concept, 'concept')
+      .limit(limit);
+    console.log(concept, "concept");
 
     res.json({ page, size, data: concept });
   } catch (error) {
@@ -283,8 +280,6 @@ app.get("/concepts", async (req, res) => {
 //sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
 //men vi hade inte tid att sätta upp elasticsearch
 //elasticsearch == verktyg för att söka optimalt med text
-
-
 
 // WORKING ON THIS. SHOULD BE ABLE TO SEARCH
 
@@ -319,7 +314,6 @@ app.get("/concepts", async (req, res) => {
 //   }
 // });
 
-
 // One concept with all the desciptions through concept id
 // add pagination
 // query page size and sort
@@ -338,18 +332,17 @@ app.get("/concepts/:conceptId", async (req, res) => {
   const limit = parseInt(size);
   const skip = (page - 1) * size;
 
-
   try {
-    const oneConcept = await Concept.findOne({ _id: conceptId }).populate({
-      path : 'description',
-      populate : {
-        path : 'user'
-      }
-    })
-    .skip(skip)
-    .limit(limit)
+    const oneConcept = await Concept.findOne({ _id: conceptId })
+      .populate({
+        path: "description",
+        populate: {
+          path: "user",
+        },
+      })
+      .skip(skip)
+      .limit(limit);
     if (oneConcept) {
-
       console.log(oneConcept);
       res.json(oneConcept);
     } else {
