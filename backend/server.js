@@ -330,11 +330,23 @@ app.get("/concepts", async (req, res) => {
 // add pagination 
 // query page size and sort
 
-//http://localhost:8080/concepts/conceptId?/page=1&size=20
+//http://localhost:8080/concepts/conceptId?/page=1
 app.get("/concepts/:conceptId", async (req, res) => {
   const { conceptId } = req.params;
+  let { likes } = req.query;
+  let { createdAt, } = req.query;
   let { page, size } = req.query;
   
+let sortOnLikes;
+let sortOnCreatedAt;
+
+  if (likes) 
+  sortOnLikes = {likes:1}
+  
+  if (createdAt)
+  sortOnCreatedAt = {createdAt:1}
+
+
   if (!page) {
     page = 1;
   }
@@ -352,6 +364,8 @@ app.get("/concepts/:conceptId", async (req, res) => {
         path : 'user'
       }
     })
+    .sort(sortOnLikes)
+    .sort(sortOnCreatedAt)
     .skip(skip)
     .limit(limit)
     if (oneConcept) {
