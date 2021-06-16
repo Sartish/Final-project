@@ -257,7 +257,7 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
 });
 
 
-
+//http://localhost:8080/concepts?page=1&size=20
 //GET CONCEPTS V1 WORKING
 app.get("/concepts", async (req, res) => {
   try {
@@ -327,9 +327,23 @@ app.get("/concepts", async (req, res) => {
 
 
 // One concept with all the desciptions through concept id
+// add pagination 
+// query page size and sort
 
+//http://localhost:8080/concepts/conceptId?/page=1&size=20
 app.get("/concepts/:conceptId", async (req, res) => {
   const { conceptId } = req.params;
+  let { page, size } = req.query;
+  
+  if (!page) {
+    page = 1;
+  }
+  if (!size) {
+    size = 20;
+  }
+  const limit = parseInt(size);
+  const skip = (page - 1) * size;
+
 
   try {
     const oneConcept = await Concept.findOne({ _id: conceptId }).populate({
@@ -337,7 +351,9 @@ app.get("/concepts/:conceptId", async (req, res) => {
       populate : {
         path : 'user'
       }
-    });;
+    })
+    .skip(skip)
+    .limit(limit)
     if (oneConcept) {
 
       console.log(oneConcept);
