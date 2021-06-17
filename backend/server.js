@@ -245,7 +245,7 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
 });
 
 
-app.post("/concepts/:conceptId/likes", async (req, res) => {
+app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
   const { conceptId } = req.params;
 
   try {

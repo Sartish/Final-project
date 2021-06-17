@@ -12,7 +12,7 @@ import AddedDescription from "./components/AddedDescription";
 import FrontPage from "./pages/FrontPage";
 
 import Descriptions from "./pages/Descriptions";
-import SearchConcept from "./components/SearchConcept";
+import TopSearches from "./components/TopSearches";
 import ContributeConcept from "./components/ContributeConcept";
 
 const reducer = combineReducers({
@@ -31,8 +31,6 @@ export const App = () => {
           <Route exact path="/concepts" component={Concepts} />
           <Route path="/signin" component={Signin} />
           <Route path="/concepts/:conceptId" component={Descriptions} />
-          {/* <Route exact path="/concepts/descriptions" component={Description} /> */}
-
           <Route
             exact
             path="/contribute/concepts/:conceptId"
@@ -40,12 +38,11 @@ export const App = () => {
           />
           <Route path="/about" component={About} />
           <Route path="/contribute" component={AddedDescription} />
-
           <Route path="/newconcept" component={ContributeConcept} />
 
           <Route path="/descriptions" component={Descriptions} />
 
-          <Route path="/search" component={SearchConcept} />
+          <Route path="/search" component={TopSearches} />
           <div>hej appen</div>
         </Switch>
       </Provider>

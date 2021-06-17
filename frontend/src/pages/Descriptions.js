@@ -41,7 +41,7 @@ export default function Descriptions() {
     setExpanded(!expanded);
   };
 
-  const { description, user, concept } = data;
+  const { description, concept } = data;
   const location = useLocation();
 
   useEffect(() => {
@@ -135,10 +135,6 @@ export default function Descriptions() {
                   </p>
                   <Icon className={classes.avatar} icon={robotIcon} />
                 </div>
-
-                {/* moment().format("MMM Do YY");
-                <p>{moment(item.createdAt).format("MMM Do YY")}</p> */}
-
                 <CardContent>
                   <Typography className={classes.concept}>
                     {item.text} Created at:{" "}

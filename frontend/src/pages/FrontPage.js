@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Navigation from "../components/Navigation";
 import { Container } from "@material-ui/core";
 
 const FrontPage = () => {
+  const [allConcepts, setAllConcepts] = useState({ data: [] });
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/concepts`)
+      .then((res) => res.json())
+      .then((data) => setAllConcepts(data));
+  }, []);
+
   return (
     <>
       <Navigation />
       <Container>
         <ContainerHeader role="main">
           <CountingConceptHeader>
-            Curently <p>+ 156 </p> <p>Concept</p>
+            Curently <p>{allConcepts.data.length}</p> <p>Concept</p>
           </CountingConceptHeader>
           <TitleContainer>
             <Title>TECHTIONARY</Title>
