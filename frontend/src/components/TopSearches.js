@@ -29,17 +29,12 @@ const TopSearches = () => {
   return (
     <div>
       <div>Top 20 recent searches</div>
-      {sortDesc(allConcepts.data)?.map((item) => {
-        console.log(item._id);
-        return (
-          // add a grid
-          <>
-            <ol>
-              <li>{item.concept}</li>
-            </ol>
-          </>
-        );
-      })}
+      <ol>
+        {sortDesc(allConcepts.data)?.map((item) => {
+          console.log(item._id);
+          return <li>{item.concept}</li>;
+        })}
+      </ol>
     </div>
   );
 };
