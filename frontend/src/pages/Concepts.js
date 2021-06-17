@@ -8,10 +8,10 @@ import {
 } from "components/StyledComponents";
 import ConceptHeader from "../components/ConceptHeader";
 import Footer from "../components/Footer";
+import { API_URL } from "../reusables/urls";
 
 const Concepts = () => {
   const classes = useStyles();
-
   const [conceptList, setConceptList] = useState({});
   const [searchText, setSearchText] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
@@ -30,6 +30,17 @@ const Concepts = () => {
       .then((res) => res.json())
       .then((data) => setConceptList(data));
   }, [pageNumber, searchText]);
+
+
+ const postClickToBackend = (conceptId) => {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch(API_URL("concepts/" + conceptId + "/likes"), options)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+ }
 
   const moveNextPage = () => {
     setPageNumber(pageNumber + 1);
@@ -54,9 +65,11 @@ const Concepts = () => {
           color="blue"
         >
           {conceptList.data?.map((item) => {
+            console.log(item._id)
             return (
               <>
                 <ConceptCard
+                  postClickToBackend={() => {postClickToBackend(item._id)}}
                   link={`/concepts/${item._id}`}
                   itemId={item._id}
                   concept={item.concept}

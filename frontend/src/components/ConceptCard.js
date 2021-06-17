@@ -40,11 +40,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ConceptCard({ id, itemId, concept, link }) {
+export default function ConceptCard({ postClickToBackend, itemId, concept, link}) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} key={itemId}>
+    <Card 
+    onClick={() => postClickToBackend()}
+    className={classes.root} key={itemId}>
       <Link className={classes.link} to={link}>
         <CardContent>
           <Typography
@@ -57,7 +59,7 @@ export default function ConceptCard({ id, itemId, concept, link }) {
           <Typography className={classes.concept} variant="h5" component="h2">
             {concept}
           </Typography>
-          <div>{id}</div>
+    
           <Typography className={classes.date} variant="body2" component="p">
             latest contribution: date
           </Typography>

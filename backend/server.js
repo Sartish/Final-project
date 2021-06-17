@@ -32,7 +32,6 @@ const conceptSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  // eventuellt ta bort?!
   likes: {
     type: Number,
     default: 0,
@@ -219,10 +218,7 @@ app.patch("/concepts", async (req, res) => {
 });
 
 //POST
-//Relevant for update likes?
-//Same user can only like once. "toggle"
-// this one should like a specific description, not the concept
-// need to create an id for description
+
 app.post("/concepts/:descriptionId/likes", async (req, res) => {
   const { descriptionId } = req.params;
 
@@ -242,6 +238,32 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
       res.status(200).json(likes);
     } else {
       res.status(404).json({ message: "not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: "invalid request", error });
+  }
+});
+
+
+app.post("/concepts/:conceptId/likes", async (req, res) => {
+  const { conceptId } = req.params;
+
+  try {
+    const likes = await Concept.findOneAndUpdate(
+      {
+        _id: conceptId,
+      },
+      {
+        $inc: { likes: 1 },
+      },
+      {
+        new: true,
+      }
+    );
+    if (likes) {
+      res.status(200).json(likes);
+    } else {
+      res.status(404).json({ message: "no concept found"  });
     }
   } catch (error) {
     res.status(400).json({ message: "invalid request", error });
@@ -280,6 +302,9 @@ app.get("/concepts", async (req, res) => {
 //sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
 //men vi hade inte tid att sätta upp elasticsearch
 //elasticsearch == verktyg för att söka optimalt med text
+
+
+
 
 // WORKING ON THIS. SHOULD BE ABLE TO SEARCH
 
