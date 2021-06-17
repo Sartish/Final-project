@@ -242,7 +242,6 @@ export const SigninButton = styled.div`
   text-align: center;
   font-weight: bold;
   padding: 13px;
-  margin-top: 5px;
   border-radius: 10px;
   text-decoration: none;
   transition: background-color 1s ease-in, color 1s ease-in;

@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
 import { useSelector } from "react-redux";
 import SignOut from "./SignOut";
 import HamburgerMenu from "./HamburgerMenu";
+import "@lottiefiles/lottie-player";
+import lottiePlayer from "@lottiefiles/lottie-player";
 
 import { SigninButton } from "./StyledComponents";
 
@@ -17,9 +18,22 @@ const Navigation = () => {
         <Hamburger>
           <HamburgerMenu />
         </Hamburger>
-        <NavLink style={{ textDecoration: "none" }} to="/">
-          <Logo src={logo} alt="technigo logo" />
-        </NavLink>
+        <Logo>
+          <NavLink style={{ textDecoration: "none" }} to="/">
+            <lottie-player
+              autoplay
+              loop
+              mode="normal"
+              src="https://assets10.lottiefiles.com/private_files/lf30_pcBP5A.json"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: 300,
+                height: 120,
+              }}
+            ></lottie-player>
+          </NavLink>
+        </Logo>
         <RightNav>
           <NavLink
             style={{ paddingLeft: 10, textDecoration: "none" }}
@@ -44,8 +58,8 @@ const Navigation = () => {
           ) : (
             <NavLink
               style={{
-                paddingLeft: 10,
-                marginBottom: 10,
+                paddingLeft: 15,
+                marginBottom: 12,
                 textDecoration: "none",
               }}
               to="/signin"
@@ -61,20 +75,16 @@ const Navigation = () => {
 
 export default Navigation;
 
-//To do:
-// add styling features for letting user know what page we are on
-// add hamburger menu
-
 /*******DEFAULT SETTING*****/
 
 export const NavigationBar = styled.div`
   display: flex;
-  padding: 10px 15px;
+  padding: 2px 15px;
   justify-content: space-between;
   align-items: center;
   border-bottom: solid 0.16em;
   margin: 2px 3%;
-  @media (min-width: 1025px) {
+  @media (min-width: 768px) {
     justify-content: space-between;
   }
 `;
@@ -100,10 +110,13 @@ export const RightNav = styled.div`
   }
 `;
 
-export const Logo = styled.img`{
-  height: 60px;
-  justify-content: center;
-  margin: 0;
+export const Logo = styled.div`
+  border: 2px solid black;
+  margin-left: 120px;
+  @media (min-width: 768px) {
+    justify-content: space-between;
+    margin-left: 0px;
+  }
 `;
 export const Link = styled.div`
   text-decoration: none;
