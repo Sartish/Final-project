@@ -1,28 +1,35 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { TextField, makeStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
-
 import Navigation from "../components/Navigation";
 import { CustomButton } from "./StyledComponents";
 import { API_URL } from "../reusables/urls";
+import swal from "sweetalert";
 
 const ContributeConcept = () => {
   const classes = useStyles();
   const history = useHistory();
   const [description, setDescription] = useState("");
   const [concept, setConcept] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const accessToken = useSelector((store) => store.user.accessToken);
 
-const handleClick = () => {
-    setErrorMessage("Example error message!")
-
-    // if concepts exist, send error message, else continue
-    console.log("error")
-  }
+  const handleClick = () => {
+    console.log("hej");
+    if (accessToken) {
+      history.push("/");
+    } else {
+      swal({
+        title: "Not yet!",
+        text: "You have to sign in to contribute!",
+        icon: "error",
+        button: "Ah ok!",
+      });
+    }
+  };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +46,7 @@ const handleClick = () => {
     fetch(API_URL("concepts"), options)
       .then((res) => res.json())
       .then(() => {
-        history.push("/concepts");
+        handleClick();
       });
   };
 
@@ -76,13 +83,10 @@ const handleClick = () => {
             />
 
             <ButtonSection>
-              <Link to="/concepts">
-                <CustomButton>Back</CustomButton>
-              </Link>
-              <CustomButton onClick={handleClick} type="submit" value="description">
+              <CustomButton>Back</CustomButton>
+              <CustomButton type="submit" value="description">
                 Done!
               </CustomButton>
-              {errorMessage && <div> {errorMessage} </div>}
             </ButtonSection>
           </Form>
         </Wrapper>

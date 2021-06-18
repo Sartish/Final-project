@@ -8,7 +8,8 @@
     "@lottiefiles/lottie-player": "^1.0.4",
     "@reduxjs/toolkit": "^1.5.1",
     "moment": "^2.29.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "prettier": "2.3.0"

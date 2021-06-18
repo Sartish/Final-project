@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormButton } from "components/StyledComponents";
 import Container from "@material-ui/core/Container";
-import { Alert } from '@material-ui/lab';
+import { Alert } from "@material-ui/lab";
 
 import user from "../reducers/user";
 
@@ -26,9 +26,7 @@ const Signin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
-  const inputMin = {minLength: 5}
-
+  const inputMin = { minLength: 5 };
 
   useEffect(() => {
     if (accessToken) {
@@ -49,7 +47,7 @@ const Signin = () => {
       },
       body: JSON.stringify({ username, password }),
     };
-// version 1, funkar
+    // version 1, funkar
     // fetch(API_URL(mode), options)
     //   .then((res) => res.json())
     //   .then((data) => {
@@ -73,78 +71,78 @@ const Signin = () => {
     //       dispatch(user.actions.setErrors(data));
     //     }
     //   });
-//version 2, test för att få fram error,funkar ej, fail to compile
-  //     fetch(API_URL(mode), options)
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw new Error('Ops, something went wrong.');
-  //       }
-  //       return res.json();
-  //     })
+    //version 2, test för att få fram error,funkar ej, fail to compile
+    //     fetch(API_URL(mode), options)
+    //     .then((res) => {
+    //       if (!res.ok) {
+    //         throw new Error('Ops, something went wrong.');
+    //       }
+    //       return res.json();
+    //     })
 
+    //     .then((data) => {
+    //       if (data.success) {
+    //         console.log("Success");
+    //         batch(() => {
+    //           dispatch(user.actions.setUsername(data.username));
+    //           dispatch(user.actions.setAccessToken(data.accessToken));
+    //           dispatch(user.actions.setErrors(null));
 
-  //     .then((data) => {
-  //       if (data.success) {
-  //         console.log("Success");
-  //         batch(() => {
-  //           dispatch(user.actions.setUsername(data.username));
-  //           dispatch(user.actions.setAccessToken(data.accessToken));
-  //           dispatch(user.actions.setErrors(null));
+    //           localStorage.setItem(
+    //             "user",
+    //             JSON.stringify({
+    //               username: data.username,
+    //               accessToken: data.accessToken,
+    //             })
+    //           );
+    //         });
+    //       } else {
+    //         console.log("Failed");
+    //         dispatch(user.actions.setErrors(data));
+    //       }
+    //     });
+    //     .catch((error) => {
+    //       dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
+    //     });
 
-  //           localStorage.setItem(
-  //             "user",
-  //             JSON.stringify({
-  //               username: data.username,
-  //               accessToken: data.accessToken,
-  //             })
-  //           );
-  //         });
-  //       } else {
-  //         console.log("Failed");
-  //         dispatch(user.actions.setErrors(data));
-  //       }
-  //     });
-  //     .catch((error) => {
-  //       dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
-  //     });
+    // };
 
-  // };
-
-  //version 3,
-  fetch(API_URL(mode), options)
-  .then((res) => {
-    if (!res.ok) {
-      throw new Error('Ops something went wrong.');
-    }
-    return res.json();
-  })
-    .then((data) => {
-      if (data.success) {
-        console.log("Success");
-        batch(() => {
-          dispatch(user.actions.setUsername(data.username));
-          dispatch(user.actions.setAccessToken(data.accessToken));
-          dispatch(user.actions.setErrors(null));
-
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              username: data.username,
-              accessToken: data.accessToken,
-            })
+    //version 3,
+    fetch(API_URL(mode), options)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            "No user with this username or password, please try again"
           );
-        });
-      } else {
-        console.log("Failed");
-        dispatch(user.actions.setErrors(data));
-      }
-  })
-  // eslint-disable-next-line no-shadow
-  .catch((error) => {
-    dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
-  });
-};
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          console.log("Success");
+          batch(() => {
+            dispatch(user.actions.setUsername(data.username));
+            dispatch(user.actions.setAccessToken(data.accessToken));
+            dispatch(user.actions.setErrors(null));
 
+            localStorage.setItem(
+              "user",
+              JSON.stringify({
+                username: data.username,
+                accessToken: data.accessToken,
+              })
+            );
+          });
+        } else {
+          console.log("Failed");
+          dispatch(user.actions.setErrors(data));
+        }
+      })
+      // eslint-disable-next-line no-shadow
+      .catch((error) => {
+        dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
+      });
+  };
 
   console.log(mode);
   return (
@@ -220,7 +218,12 @@ const Signin = () => {
                 Sign up
               </FormButton>
               <div className={classes.error}>
-              {error && <Alert severity="error">{`${error}`}</Alert>}
+                {error && (
+                  <Alert
+                    severity="error"
+                    className={classes.error}
+                  >{`${error}`}</Alert>
+                )}
               </div>
             </form>
           </div>
@@ -236,12 +239,7 @@ const font = "'PT Sans', sans-serif";
 
 const useStyles = makeStyles((theme) => ({
   error: {
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
+    fontSize: "30px",
   },
   background: {
     width: "100vw",
