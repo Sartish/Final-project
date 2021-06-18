@@ -11,12 +11,16 @@ import { API_URL } from "../reusables/urls";
 const ContributeConcept = () => {
   const classes = useStyles();
   const history = useHistory();
-  // const [data, setData] = useState({});
   const [description, setDescription] = useState("");
   const [concept, setConcept] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const accessToken = useSelector((store) => store.user.accessToken);
-  // const { description, concept } = data;
+
+const handleClick = () => {
+    setErrorMessage("Example error message!")
+    console.log("error")
+  }
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -73,9 +77,10 @@ const ContributeConcept = () => {
               <Link to="/">
                 <CustomButton>Back</CustomButton>
               </Link>
-              <CustomButton type="submit" value="description">
+              <CustomButton onClick={handleClick} type="submit" value="description">
                 Done!
               </CustomButton>
+              {errorMessage && <div> {errorMessage} </div>}
             </ButtonSection>
           </Form>
         </Wrapper>

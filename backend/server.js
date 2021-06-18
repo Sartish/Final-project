@@ -71,11 +71,13 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+
   },
   //email
   password: {
     type: String,
     required: true,
+
   },
   accessToken: {
     type: String,
@@ -290,7 +292,8 @@ app.get("/concepts", async (req, res) => {
     const concept = await Concept.find({ concept: new RegExp(searchText, "i") })
       .sort({ concept: 1 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .collation({locale: "en" });
     console.log(concept, "concept");
 
     res.json({ page, size, data: concept });

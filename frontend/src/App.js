@@ -29,6 +29,8 @@ export const App = () => {
         <Switch>
           <Route exact path="/" component={FrontPage} />
           <Route exact path="/concepts" component={Concepts} />
+          <Route path="/newconcept" component={ContributeConcept} />
+
           <Route path="/signin" component={Signin} />
           <Route path="/concepts/:conceptId" component={Descriptions} />
           <Route
@@ -38,7 +40,7 @@ export const App = () => {
           />
           <Route path="/about" component={About} />
           <Route path="/contribute" component={AddedDescription} />
-          <Route path="/newconcept" component={ContributeConcept} />
+
 
           <Route path="/descriptions" component={Descriptions} />
 

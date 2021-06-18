@@ -43,7 +43,7 @@ const Navigation = () => {
           </NavLink>
           <NavLink
             style={{ paddingLeft: 10, textDecoration: "none" }}
-            to="/Contribute"
+            to="/newconcept"
           >
             <Link>Contribute</Link>
           </NavLink>

@@ -103,8 +103,9 @@ export default function Descriptions() {
       </Button>
       <DescriptionHeader />
       <Container className={classes.container}>
-        <h3 className={classes.header}>All Explanation here</h3>
         <h3 className={classes.header}>{concept}</h3>
+        <h3 className={classes.secondheader}>All Explanation here</h3>
+
         <form className={classes.search}>
           <TextField
             id="outlined-basic"
@@ -256,6 +257,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   header: {
+    textAlign: "center",
+    padding: "20px",
+    fontSize: "40px"
+  },
+  secondheader: {
+    fontSize: "16px",
     textAlign: "center",
     padding: "20px",
   },
