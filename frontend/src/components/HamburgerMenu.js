@@ -27,7 +27,7 @@ const HamburgerMenu = () => {
 
           <NavLink
             style={{ paddingLeft: 13, textDecoration: "none" }}
-            to="/Contribute"
+            to="/newconcept"
           >
             <Link>Contribute</Link>
           </NavLink>
