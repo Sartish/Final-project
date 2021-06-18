@@ -143,11 +143,16 @@ export default function Descriptions() {
                 </div>
                 <CardContent>
                   <Typography className={classes.concept}>
-                    {item.text} Created at:{" "}
+                    {item.text}
+                    {/* Created at:{" "}
+                    {moment(item.createdAt).format("MMM Do YYYY")} */}
+                  </Typography>
+                  <Typography className={classes.user}>
+                    Created at:{" "}
                     {moment(item.createdAt).format("MMM Do YYYY")}
                   </Typography>
-                  <Chip className={classes.tags} label="#frontend" />
-                  <Chip className={classes.tags} label="#backend" />
+                  {/* <Chip className={classes.tags} label="#frontend" />
+                  <Chip className={classes.tags} label="#backend" /> */}
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">

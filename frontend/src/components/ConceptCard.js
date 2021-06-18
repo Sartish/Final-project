@@ -3,6 +3,43 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardActions, CardContent, Typography } from "@material-ui/core";
 
+
+
+export default function ConceptCard({ postClickToBackend, itemId, concept, link}) {
+  const classes = useStyles();
+
+  return (
+    <Card
+    onClick={() => postClickToBackend()}
+    className={classes.root} key={itemId}>
+      <Link className={classes.link} to={link}>
+        <CardContent className={classes.container}>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            {/* xxx of contributions */}
+          </Typography>
+          <Typography className={classes.concept} variant="h5" component="h2">
+            {concept}
+          </Typography>
+
+          <Typography className={classes.date} variant="body2" component="p">
+            {/* latest contribution: date */}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          {/* <Link className={classes.link} to={link}>
+          <Button variant="contained" color="primary">
+            Look up
+          </Button> */}
+        </CardActions>
+      </Link>
+    </Card>
+  );
+};
+
 const useStyles = makeStyles({
   container: {
     width: "100%",
@@ -22,6 +59,7 @@ const useStyles = makeStyles({
   },
   concept: {
     color: "black",
+    textAlign:"center"
   },
   date: {
     marginBottom: 12,
@@ -38,39 +76,10 @@ const useStyles = makeStyles({
   link: {
     textDecoration: "none",
   },
+
+  container: {
+    "&:hover": {
+      cursor: "pointer",
+    }
+  },
 });
-
-export default function ConceptCard({ postClickToBackend, itemId, concept, link}) {
-  const classes = useStyles();
-
-  return (
-    <Card 
-    onClick={() => postClickToBackend()}
-    className={classes.root} key={itemId}>
-      <Link className={classes.link} to={link}>
-        <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            xxx of contributions
-          </Typography>
-          <Typography className={classes.concept} variant="h5" component="h2">
-            {concept}
-          </Typography>
-    
-          <Typography className={classes.date} variant="body2" component="p">
-            latest contribution: date
-          </Typography>
-        </CardContent>
-        <CardActions>
-          {/* <Link className={classes.link} to={link}>
-          <Button variant="contained" color="primary">
-            Look up
-          </Button> */}
-        </CardActions>
-      </Link>
-    </Card>
-  );
-}

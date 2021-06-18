@@ -76,7 +76,7 @@ const handleClick = () => {
             />
 
             <ButtonSection>
-              <Link to="/">
+              <Link to="/concepts">
                 <CustomButton>Back</CustomButton>
               </Link>
               <CustomButton onClick={handleClick} type="submit" value="description">
