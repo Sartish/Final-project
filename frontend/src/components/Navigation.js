@@ -45,13 +45,13 @@ const Navigation = () => {
             style={{ paddingLeft: 10, textDecoration: "none" }}
             to="/newconcept"
           >
-            <Link>Contribute</Link>
+            <Link>Add concept</Link>
           </NavLink>
           <NavLink
             style={{ paddingLeft: 10, textDecoration: "none" }}
             to="/about"
           >
-            <Link>about</Link>
+            <Link>About us</Link>
           </NavLink>
           {accessToken ? (
             <SignOut />

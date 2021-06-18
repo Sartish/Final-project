@@ -3,6 +3,9 @@ import { useLocation, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import moment from "moment";
+import styled from "styled-components/macro";
+
+import { CustomButton } from "../components/StyledComponents";
 
 import {
   Card,
@@ -86,33 +89,35 @@ export default function Descriptions() {
   return (
     <>
       <Navigation />
-
-      <Button
+      <ButtonContainer>
+      <CustomButton
         onClick={() => {
           setSort("likes");
         }}
       >
-        Click to sort by likes
-      </Button>
-      <Button
+        Sort by likes
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           setSort("createdAt");
         }}
       >
-        Click to sort by date
-      </Button>
-      <DescriptionHeader />
+        Sort by date
+      </CustomButton>
+      </ButtonContainer>
+      {/* <DescriptionHeader /> */}
       <Container className={classes.container}>
         <h3 className={classes.header}>{concept}</h3>
         <h3 className={classes.secondheader}>All Explanation here</h3>
+        <h3 className={classes.secondheader}>Do you have a good explanation for this? Add yours!</h3>
 
-        <form className={classes.search}>
+        {/* <form className={classes.search}>
           <TextField
             id="outlined-basic"
             label="some kind of filter"
             variant="outlined"
           />
-        </form>
+        </form> */}
         <Grid
           container
           direction="row"
@@ -258,13 +263,13 @@ const useStyles = makeStyles((theme) => ({
 
   header: {
     textAlign: "center",
-    padding: "20px",
+    padding: "5px",
     fontSize: "40px"
   },
   secondheader: {
     fontSize: "16px",
     textAlign: "center",
-    padding: "20px",
+
   },
   search: {
     display: "flex",
@@ -273,3 +278,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 }));
+
+
+const ButtonContainer = styled.div`
+  text-align: center;
+`;

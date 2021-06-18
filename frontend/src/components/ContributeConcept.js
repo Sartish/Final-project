@@ -19,6 +19,8 @@ const ContributeConcept = () => {
 
 const handleClick = () => {
     setErrorMessage("Example error message!")
+
+    // if concepts exist, send error message, else continue
     console.log("error")
   }
 

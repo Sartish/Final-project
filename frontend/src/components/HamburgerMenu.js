@@ -29,7 +29,7 @@ const HamburgerMenu = () => {
             style={{ paddingLeft: 13, textDecoration: "none" }}
             to="/newconcept"
           >
-            <Link>Contribute</Link>
+            <Link>Add concept</Link>
           </NavLink>
           <NavLink
             style={{ paddingLeft: 13, textDecoration: "none" }}

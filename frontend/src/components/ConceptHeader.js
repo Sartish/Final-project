@@ -19,7 +19,7 @@ const ConceptHeader = ({ inputValue, handleOnChange }) => {
                   <form className={classes.root} noValidate autoComplete="off">
                     <TextField
                       id="outlined-basic"
-                      label="Outlined"
+                      label="Search here..."
                       variant="outlined"
                       value={inputValue}
                       onChange={handleOnChange}

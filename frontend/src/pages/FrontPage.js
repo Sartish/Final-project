@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { Link} from "react-router-dom";
+import styled from "styled-components/macro";
 import Navigation from "../components/Navigation";
 import { Container } from "@material-ui/core";
+import { CustomButton } from "../components/StyledComponents";
 
 const FrontPage = () => {
   const [allConcepts, setAllConcepts] = useState({ data: [] });
@@ -28,6 +30,11 @@ const FrontPage = () => {
               possible! Have a look!
             </Paragraph>
           </TitleContainer>
+         <ButtonSection>
+           <Link to="/concepts">
+            <CustomButton>Show me!</CustomButton>
+           </Link>
+         </ButtonSection>
         </ContainerHeader>
       </Container>
     </>
@@ -103,4 +110,11 @@ export const Title = styled.div`
   @media (min-width: 768px) {
     font-size: 80px;
   }
+`;
+
+const ButtonSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 8px;
+  margin-right: 8px;
 `;
