@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
 import { TextField, makeStyles } from "@material-ui/core";
@@ -14,6 +14,7 @@ const ContributeConcept = () => {
   const [description, setDescription] = useState("");
   const [concept, setConcept] = useState("");
   // const [errorMessage, setErrorMessage] = useState("");
+  const [conceptList, setConceptList] = useState({});
 
   const accessToken = useSelector((store) => store.user.accessToken);
 
@@ -30,6 +31,14 @@ const ContributeConcept = () => {
       });
     }
   };
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:8080/concepts?searchText=${concept}`
+    )
+      .then((res) => res.json())
+      .then((data) => setConceptList(data));
+  }, [concept]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +58,7 @@ const ContributeConcept = () => {
         handleClick();
       });
   };
-
+  console.log(conceptList)
   return (
     <>
       <Navigation />
@@ -81,7 +90,6 @@ const ContributeConcept = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-
             <ButtonSection>
               <CustomButton>Back</CustomButton>
               <CustomButton type="submit" value="description">

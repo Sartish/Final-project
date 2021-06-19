@@ -172,13 +172,43 @@ app.post("/concepts", async (req, res) => {
       text: description,
       user: req.user,
     }).save();
+    // console.log("New description:" + newDescription);
+    // check if concept already exist
+    const existingConcept = await Concept.find({concept: concept});
+    if (existingConcept.length > 0) {
 
-    const newConcept = await new Concept({
-      concept,
-      description: [newDescription],
-    }).save();
-    res.json(newConcept);
+      console.log("concept already exists...lets reuse");
+      // console.log(existingConcept);
+      // console.log("id:" + existingConcept[0]._id)
+      const updatedConcept = await Concept.findByIdAndUpdate(
+        existingConcept[0]._id,
+        {
+          $push: {
+            description: newDescription,
+          },
+        },
+        { new: true }
+      ).populate({
+        path: "description",
+        populate: {
+          path: "user",
+        },
+      });
+      res.json(updatedConcept);
+      // console.log(updatedConcept);
+
+    } else {
+      // concept does not already exist. create it and add description
+      console.log("concept dont exist..lets create it")
+      const newConcept = await new Concept({
+        concept,
+        description: [newDescription],
+      }).save();
+      res.json(newConcept);
+      // console.log(newConcept);
+    }
   } catch (error) {
+    console.log("Test;"+error)
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
@@ -294,13 +324,14 @@ app.get("/concepts", async (req, res) => {
       .skip(skip)
       .limit(limit)
       .collation({locale: "en" });
-    console.log(concept, "concept");
+    //console.log(concept, "concept");
 
     res.json({ page, size, data: concept });
   } catch (error) {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
+
 
 //sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
 //men vi hade inte tid att sätta upp elasticsearch
@@ -371,7 +402,7 @@ app.get("/concepts/:conceptId", async (req, res) => {
       .skip(skip)
       .limit(limit);
     if (oneConcept) {
-      console.log(oneConcept);
+      //console.log(oneConcept);
       res.json(oneConcept);
     } else {
       // Error when the id format is valid, but no concept is found with that id
