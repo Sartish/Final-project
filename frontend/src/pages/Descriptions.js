@@ -78,26 +78,27 @@ export default function Descriptions() {
       <Navigation />
       <DescriptionHeader heading={concept} />
       <Container className={classes.container}>
-        <ButtonContainer>
-          <SubHeading>All explanations</SubHeading>
-          <FilterButtons>
-            <LikesButton
-              onClick={() => {
-                setSort("likes");
-              }}
-            >
-              Sort by likes <span>🖤</span>
-            </LikesButton>
-            <LikesButton
-              onClick={() => {
-                setSort("createdAt");
-              }}
-            >
-              Sort by date <span>📅</span>
-            </LikesButton>
-          </FilterButtons>
-        </ButtonContainer>
-
+        <WrapperFilter>
+          <ButtonContainer>
+            <SubHeading>All explanations</SubHeading>
+            <FilterButtons>
+              <LikesButton
+                onClick={() => {
+                  setSort("likes");
+                }}
+              >
+                Sort by likes <span>🖤</span>
+              </LikesButton>
+              <LikesButton
+                onClick={() => {
+                  setSort("createdAt");
+                }}
+              >
+                Sort by date <span>📅</span>
+              </LikesButton>
+            </FilterButtons>
+          </ButtonContainer>
+        </WrapperFilter>
         <Grid
           container
           direction="row"
@@ -130,7 +131,6 @@ export default function Descriptions() {
                     <Typography className={classes.user}>
                       Created at: {moment(item.createdAt).format("MMM Do YYYY")}
                     </Typography>
-
                     <CardActions disableSpacing>
                       <IconButton aria-label="add to favorites">
                         <FavoriteIcon
@@ -225,12 +225,27 @@ const ButtonContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 80px;
+  background-color: #FFF5D1;
 
   @media (min-width: 768px) {
+    width: 800px;
     margin-top: 30px;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 10px 80px 5px 80px;
+    padding: 20px
+
 `;
 
+const WrapperFilter = styled.div`
+width: 90%;
+  @media (min-width: 768px) {
+    display: flex;
+    width: 1200px;
+    margin-top: 30px;
+    justify-content: space-between;
+    margin: 10px 80px 5px 80px;
+    padding: 20px
+`;
 const FilterButtons = styled.div`
   display: flex;
 `;

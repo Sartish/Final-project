@@ -19,8 +19,8 @@ const FrontPage = () => {
 
   return (
     <>
+      <Navigation />
       <Container>
-        <Navigation />
         <ContainerHeader role="main">
           <CountingConceptHeader>
             <CountText>Currently</CountText>
@@ -51,8 +51,8 @@ const FrontPage = () => {
             </ButtonSection>
           </TitleContainer>
         </ContainerHeader>
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 };

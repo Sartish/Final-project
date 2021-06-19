@@ -38,11 +38,7 @@ const TopSearches = () => {
           {sortDesc(allConcepts.data)?.map((item) => {
             console.log(item._id);
             return (
-              <Link
-                style={{ textDecoration: "none" }}
-                className={classes.link}
-                to={`/concepts/${item._id}`}
-              >
+              <Link className={classes.link} to={`/concepts/${item._id}`}>
                 <Numbers style={{ textDecoration: "none" }}>
                   <li style={{ textDecoration: "none" }}>{item.concept}</li>
                 </Numbers>
@@ -67,7 +63,12 @@ const useStyles = makeStyles(() => ({
     },
   },
   link: {
+    color: "black",
     textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline",
+      textDecorationColor: "#ff69b4;",
+    },
   },
 }));
 
@@ -80,19 +81,19 @@ const List = styled.ol`
   align-items: flex-start;
   height: 600px;
   width: 150px;
-  border: black solid 2px;
+  background-color: #fff5d1;
   padding: 0px;
   text-decoration: none;
   @media screen and (min-width: 768px) {
     width: 1000px;
     height: 370px;
     padding: 80px;
+    margin-bottom: 30px;
   }
 `;
 
 const Numbers = styled.li`
   display: flex;
-  border: black solid 2px;
   padding-bottom: 0px;
   flex-direction: column;
   align-items: flex-start;
@@ -100,11 +101,7 @@ const Numbers = styled.li`
   font-size: 16px;
   cursor: pointer;
   text-decoration: none;
-  :hover {
-    text-decoration: underline;
-    text-decoration-color: #ff69b4;
-    font-weight: bold;
-  }
+
   @media screen and (min-width: 768px) {
     font-size: 25px;
     padding-bottom: 40px;
@@ -119,28 +116,27 @@ const TopSearchesHeaderContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: black solid 1px;
-  padding: 5px;
   @media (min-width: 768px) {
     width: 100%;
+    margin: 0;
   }
 `;
 
 const Header = styled.h2`
   display: flex;
   font-size: 40px;
-  margin: 10px;
+margin 0;
 `;
 
 const Border = styled.div`
   display: flex;
   text-align: center;
   width: 210px;
-  height: 7px;
-  border: #c7feff 2px solid;
-  background-color: #c7feff;
+  height: 10px;
+  background-color: #ffcff1;
   border-radius: 50px;
   @media (min-width: 768px) {
     width: 500px;
+    margin 0;
   }
 `;

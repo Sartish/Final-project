@@ -71,7 +71,7 @@ export const HamburgerButton = styled.button`
   div {
     width: 50px;
     height: 7px;
-    background-color: #f4a68c;
+    background-color: black;
     margin: 5px;
     border-radius: 30px;
   }
@@ -82,7 +82,7 @@ export const MenuContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background-color: rgba(242, 237, 228, 0.9);
+  background-color: #fff5d1;
   position: absolute;
   top: 10px;
   width: 300px;

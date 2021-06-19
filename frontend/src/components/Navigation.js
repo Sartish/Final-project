@@ -126,6 +126,10 @@ export const Link = styled.div`
   color: black;
   text-align: center;
   transition: all 0.2s;
+  :hover {
+    text-decoration: underline;
+    text-decoration-color: #ff69b4;
+  }
 `;
 
 export const Button = styled.div`

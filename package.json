@@ -7,7 +7,10 @@
   "dependencies": {
     "@lottiefiles/lottie-player": "^1.0.4",
     "@reduxjs/toolkit": "^1.5.1",
+    "install": "^0.13.0",
     "moment": "^2.29.1",
+    "npm": "^7.18.1",
+    "react-copy-to-clipboard": "^5.0.3",
     "react-counter": "^1.1.0",
     "react-countup": "^4.3.3",
     "react-router-dom": "^5.2.0",

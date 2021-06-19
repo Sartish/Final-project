@@ -11,6 +11,7 @@ const ConceptHeader = ({ inputValue, handleOnChange }) => {
     <div className={classes.background}>
       <Container className={classes.container}>
         <Title>Find your techy word here</Title>
+        <Border>hej</Border>
         <Wrapper>
           <ContainerHeader role="main">
             <StartButtonContainer>
@@ -58,14 +59,12 @@ export const ContainerHeader = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: space-around;
-  border: 2px black;
   padding: 20px;
   border-radius: 10px;
 
   @media (min-width: 768px) {
     justify-content: space-around;
     flex-direction: row;
-    border: black solid 2px;
     box-sizing: border-box;
     padding: 0;
   }
@@ -92,8 +91,20 @@ export const Title = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: solid 10px #ffcff1;
   border-bottom-radius: 50%;
   padding: 10px;
   font-size: 50px;
+`;
+const Border = styled.div`
+  display: flex;
+  text-align: center;
+  width: 210px;
+  height: 60px;
+  color: #ffcff1;
+  border:  #ffcff1; 2px solid;
+  background-color: #ffcff1;
+  border-radius: 50px;
+  @media (min-width: 768px) {
+    width: 500px;
+  }
 `;

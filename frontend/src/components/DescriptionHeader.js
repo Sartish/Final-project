@@ -1,16 +1,9 @@
 import React from "react";
 import { Container, makeStyles } from "@material-ui/core";
 import styled from "styled-components";
-import { useLocation, Link } from "react-router-dom";
-import {
-  StartButtonContainer,
-  Paragraph,
-  CustomButton,
-} from "components/StyledComponents";
 
 const DescriptionHeader = ({ heading }) => {
   const classes = useStyles();
-  const location = useLocation();
 
   return (
     <div className={classes.background}>
@@ -43,4 +36,5 @@ export const Title = styled.div`
   border: solid 2px #ffcff1;
   padding: 10px;
   font-size: 50px;
+  padding: 20px;
 `;

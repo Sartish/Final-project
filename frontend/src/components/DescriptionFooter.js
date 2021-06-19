@@ -8,7 +8,7 @@ import {
   CustomButton,
 } from "components/StyledComponents";
 
-const DescriptionFooter = ({ heading }) => {
+const DescriptionFooter = () => {
   const classes = useStyles();
   const location = useLocation();
 
@@ -21,13 +21,12 @@ const DescriptionFooter = ({ heading }) => {
               <div className={classes.filter}>
                 <Paragraph>
                   Do you have a nice explanation to this concept?
-                  <Link
-                    to={`/contribute/${location.pathname.substring(1)}`}
-                  ></Link>
                 </Paragraph>
-                <CustomButton variant="contained" color="secondary">
-                  contribute
-                </CustomButton>
+                <Link to={`/contribute/${location.pathname.substring(1)}`}>
+                  <CustomButton variant="contained" color="secondary">
+                    contribute
+                  </CustomButton>
+                </Link>
               </div>
             </StartButtonContainer>
           </ContainerHeader>
@@ -45,10 +44,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "column",
-    width: "100%",
-    height: "200px",
-
-    marginTop: "35px",
+    width: "90%",
+    height: "300px",
   },
 
   filter: {
@@ -57,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     margin: "5px",
+    backgroundColor: "#FFF5D1",
+    padding: "10px",
   },
   contribute: {
     display: "flex",
@@ -78,16 +77,12 @@ export const ContainerHeader = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: space-around;
-  border: 2px black;
   padding: 20px;
-  border-radius: 10px;
 
   @media (min-width: 768px) {
     justify-content: space-around;
     flex-direction: row;
     width: 1200px;
-    border: black solid 2px;
-    box-sizing: border-box;
     padding: 0;
   }
 `;
@@ -97,7 +92,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: space-between;
-  border: solid 2px #ffcff1;
   padding: 10px;
   height: 400px;
 `;
