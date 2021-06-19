@@ -28,8 +28,9 @@ const Navigation = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                width: 300,
+                width: 200,
                 height: 120,
+                marginLeft: 0,
               }}
             ></lottie-player>
           </NavLink>

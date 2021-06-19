@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import Navigation from "../components/Navigation";
-import { Container } from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import { CustomButton } from "../components/StyledComponents";
+import CountUp from "react-countup";
+import Footer from "../components/Footer";
 
 const FrontPage = () => {
+  const classes = useStyles();
   const [allConcepts, setAllConcepts] = useState({ data: [] });
 
   useEffect(() => {
@@ -16,26 +19,34 @@ const FrontPage = () => {
 
   return (
     <>
-      <Navigation />
       <Container>
+        <Navigation />
         <ContainerHeader role="main">
           <CountingConceptHeader>
-            Curently <p>{allConcepts.data.length}</p> <p>Concept</p>
+            <CountText>Currently</CountText>
+            <CountUp
+              style={{ fontSize: 80, marginBottom: 0 }}
+              duration={10}
+              end={allConcepts.data.length}
+            />
+            <CountText>Concepts</CountText>
           </CountingConceptHeader>
           <TitleContainer>
             <Title>TECHTIONARY</Title>
             <Border></Border>
             <Paragraph>
-              Here you find difficult tech-concept explained as easy as
-              possible! Have a look!
+              A open source tech-concept library, with the aim to understand
+              tech concepts in an easier and fun way!
             </Paragraph>
+            <ButtonSection>
+              <ShowMe>Show me!</ShowMe>
+              <Link to="/concepts">
+                <CustomButton>Concepts</CustomButton>
+              </Link>
+            </ButtonSection>
           </TitleContainer>
-         <ButtonSection>
-           <Link to="/concepts">
-            <CustomButton>Show me!</CustomButton>
-           </Link>
-         </ButtonSection>
         </ContainerHeader>
+        <Footer />
       </Container>
     </>
   );
@@ -44,6 +55,18 @@ const FrontPage = () => {
 export default FrontPage;
 
 // Frontpage
+
+const useStyles = makeStyles(() => ({
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "200px",
+    ["@media (min-width:780px)"]: {
+      marginTop: "60px",
+    },
+  },
+}));
 
 export const ContainerHeader = styled.section`
   display: flex;
@@ -54,14 +77,15 @@ export const ContainerHeader = styled.section`
   padding: 20px;
 
   @media (min-width: 768px) {
+    position: relative;
     justify-content: space-around;
-    margin-top: 100px;
+    margin-top: 50px;
     flex-direction: row;
-    width: 1200px;
-    border: black solid 2px;
+    width: 100%;
     box-sizing: border-box;
     height: 400px;
     padding: 0;
+    margin-bottom: 80px;
   }
 `;
 
@@ -71,8 +95,17 @@ export const CountingConceptHeader = styled.div`
   padding: 30px;
   margin-bottom: 20px;
   @media (min-width: 768px) {
-    margin-bottom: 0;
+    @media (min-width: 768px) {
+      width: 15%;
+      position: absolute;
+      top: 2%;
+      left: 2%;
+    }
   }
+`;
+
+export const CountText = styled.div`
+  font-size: 40px;
 `;
 
 export const Border = styled.div`
@@ -92,15 +125,19 @@ export const Paragraph = styled.p`
 `;
 
 export const TitleContainer = styled.div`
-  width: 100%;
+position: relative;
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center
   justify-content: center;
-  border: black solid 1px;
+  border: #fff5d1 solid 5px;
   padding: 5px;
   @media (min-width: 768px) {
     width: 50%;
+    position: absolute;
+    top: 20%;
+    left: 25%;
   }
 `;
 export const Title = styled.div`
@@ -108,13 +145,32 @@ export const Title = styled.div`
   font-size: 40px;
   margin-bottom: 10px;
   @media (min-width: 768px) {
-    font-size: 80px;
+    font-size: 120px;
   }
 `;
 
 const ButtonSection = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   margin-left: 8px;
   margin-right: 8px;
+  border: 2px solid black;
+  width: 170px;
+  margin-top: 10px;
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 50%;
+    left: 105%;
+    margin-bottom: 50px;
+    padding: 10px;
+  }
+`;
+
+const ShowMe = styled.p`
+  font-size: 28px;
+  background-color: #c7feff;
+  @media (min-width: 768px) {
+    font-size: 40px;
+  }
 `;
