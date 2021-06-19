@@ -33,8 +33,6 @@ export const Title = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 2px #ffcff1;
-  padding: 10px;
+  border-bottom: solid 4px #ffcff1;
   font-size: 50px;
-  padding: 20px;
 `;

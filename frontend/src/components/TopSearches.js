@@ -58,8 +58,11 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     alignItems: "flex-start",
     flexDirection: "column",
+    backgroundColor: "#fff5d1",
     ["@media (min-width:780px)"]: {
       marginTop: "60px",
+      marginBottom: "60px",
+      padding: "20px",
     },
   },
   link: {
@@ -80,15 +83,14 @@ const List = styled.ol`
   flex-direction: column;
   align-items: flex-start;
   height: 600px;
-  width: 150px;
-  background-color: #fff5d1;
+  width: 400px;
   padding: 0px;
+
   text-decoration: none;
   @media screen and (min-width: 768px) {
     width: 1000px;
-    height: 370px;
-    padding: 80px;
-    margin-bottom: 30px;
+    height: 350px;
+    padding: 0 80px;
   }
 `;
 
@@ -107,6 +109,7 @@ const Numbers = styled.li`
     padding-bottom: 40px;
     line-height: 30px;
     padding-left: 30px;
+    margin: 0px;
   }
 `;
 
@@ -118,14 +121,14 @@ const TopSearchesHeaderContainer = styled.div`
   justify-content: center;
   @media (min-width: 768px) {
     width: 100%;
-    margin: 0;
+    margin-bottom: 0px;
   }
 `;
 
 const Header = styled.h2`
   display: flex;
   font-size: 40px;
-margin 0;
+  margin 0;
 `;
 
 const Border = styled.div`

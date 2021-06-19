@@ -65,7 +65,7 @@ const Navigation = () => {
               }}
               to="/signin"
             >
-              <SigninButton>Signin</SigninButton>
+              <SigninButton>Sign in</SigninButton>
             </NavLink>
           )}
         </RightNav>

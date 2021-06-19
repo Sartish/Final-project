@@ -235,16 +235,9 @@ const Signin = () => {
 
 export default Signin;
 
-const font = "'PT Sans', sans-serif";
-
 const useStyles = makeStyles((theme) => ({
-  error: {
-    fontSize: "30px",
-  },
   background: {
-    width: "100vw",
-    height: "100vh",
-    // backgroundImage: "linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)",
+    width: "100%",
   },
   wrapper: {
     display: "flex",
@@ -253,28 +246,21 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   header: {
-    fontFamily: font,
-    fontWeight: "bold",
-    fontSize: "38px",
-    color: "#4B0082",
+    fontSize: "40px",
     marginTop: "100px",
   },
   paragraph: {
-    fontFamily: font,
-    fontWeight: "bold",
     fontSize: "24px",
-    color: "black",
     marginBottom: "40px",
   },
   paper: {
-    //   marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#FF69B4",
   },
   form: {
     width: "100%", // Fix IE 11 issue.

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import swal from "sweetalert";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -19,6 +20,20 @@ const AddedDescription = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
   const username = useSelector((store) => store.user.username);
 
+  const handleClick = () => {
+    console.log("hej");
+    if (accessToken) {
+      history.push("/");
+    } else {
+      swal({
+        title: "Not yet!",
+        text: "You have to sign in to contribute!",
+        icon: "error",
+        button: "Ah ok!",
+      });
+    }
+  };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     console.log("test");
@@ -35,23 +50,26 @@ const AddedDescription = () => {
 
     fetch(API_URL("concepts"), options)
       .then((res) => res.json())
-      // .then((data) => console.log(data));
       .then(() => {
-        history.push("/concepts");
+        handleClick();
       });
   };
 
-  //vill få med så det syns på sidan vilket concept som man gör add på
-  //vad ska hända när man trycker på done? Konfettiregn? link tillbaka till concepts?
-  //töm input efter submit
   return (
     <>
       <Navigation />
       <Container>
         <Wrapper>
           <WriteHere>Contribute with your explanation</WriteHere>
-          <p>Nice{username}, you want to contribute!</p>
-
+          <ParagraphInstructions>
+            <p>
+              Nice{username}, you want to contribute<span>🖤</span>
+            </p>
+            <p>
+              Make sure you are signed in and then write you explanation, make
+              it short and sweet, maximum 200 characters
+            </p>
+          </ParagraphInstructions>
           <Form onSubmit={onFormSubmit}>
             <TextField
               className={classes.input}
@@ -66,7 +84,6 @@ const AddedDescription = () => {
               onChange={(e) => setDescription(e.target.value)}
             />
             <TextCounter>{description.length}/200</TextCounter>
-            {/* <TextCounter>Number of characters:{description.length}</TextCounter> */}
             <ButtonSection>
               <Link to="/">
                 <CustomButton>Back</CustomButton>
@@ -76,7 +93,7 @@ const AddedDescription = () => {
                 value="description"
                 onClick={onFormSubmit}
                 disabled={
-                  !!(description.length < 5 || description.length > 140)
+                  !!(description.length < 1 || description.length > 140)
                 }
               >
                 Done!
@@ -107,25 +124,16 @@ const Container = styled.div`
   align-items: center;
   margin-right: 30px;
 `;
-
-const Button = styled.button`
-  border-radius: 8px;
-  background-color: #8ca2ab;
-  padding: 10px 20px;
-  border: solid #fff 1.5px;
-  border-radius: 50px;
-  outline: none;
-  color: #fff;
-  font-size: 17px;
-  margin-bottom: 10px;
-
-  // :hover {
-  //   background-color: #fc00ff;
-  //   background-image: linear-gradient(90deg, #fc00ff 0%, #006cde 100%);
-  // }
-
+const ParagraphInstructions = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 30px;
+  flex-direction: column;
+  margin: 0px;
+  width: 50%;
   @media (min-width: 767px) {
-    font-size: 19px;
+    width: 90%;
   }
 `;
 
@@ -167,9 +175,11 @@ const WriteHere = styled.h3`
   justify-content: center;
   align-text: center;
   width: 200px;
-  margin-top: 70px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  padding: 5px;
   font-size: 24px;
-  border: 2px black solid;
+  border-bottom: 5px #ffcff1 solid;
   @media (min-width: 767px) {
     font-size: 30px;
     width: 500px;

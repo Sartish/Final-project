@@ -96,7 +96,6 @@ export const ContainerHeader = styled.section`
 
 export const CountingConceptHeader = styled.div`
   font-size: 30px;
-  border: solid #ffcff1 2px;
   padding: 30px;
   margin-bottom: 20px;
   @media (min-width: 768px) {
@@ -136,7 +135,6 @@ position: relative;
   flex-direction: column;
   align-items: center
   justify-content: center;
-  border: #fff5d1 solid 5px;
   padding: 5px;
   @media (min-width: 768px) {
     width: 50%;
@@ -166,7 +164,6 @@ const ButtonSection = styled.div`
   flex-direction: column;
   margin-left: 8px;
   margin-right: 8px;
-  border: 1px solid #ffcff1;
   width: 170px;
   margin-top: 10px;
   @media (min-width: 768px) {
