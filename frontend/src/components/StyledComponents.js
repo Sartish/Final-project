@@ -42,11 +42,13 @@ export const StartButtonContainer = styled.div`
 // Concept Header
 export const Paragraph = styled.p`
   text-align: center;
-  color: ${pink};
+  color: black;
   font-size: 24px;
   width: 400px;
   font: ${SecondaryFont};
   font-weight: bold;
+  padding: 20px;
+  margin: 0;
 `;
 
 // Concepts
@@ -75,7 +77,7 @@ export const FooterWrapper = styled.div`
   background-color: white;
   border-top: 2px solid black;
   color: black;
-  height: 150px;
+  height: 100px;
   @media (min-width: 767px) {
     font-size: 20px;
   }
@@ -100,10 +102,10 @@ export const Link = styled.a`
 
 export const SigninButton = styled.div`
   display: inline-block;
-  color: black;
-  background-color: #FFCFF1;
+  color: white;
+  background-color: #ff69b4;
   width: 100px;
-  border: 4px solid #FFCFF1;
+  border: 4px solid #ff69b4;
   text-align: center;
   font-weight: bold;
   padding: 13px;
@@ -116,22 +118,48 @@ export const SigninButton = styled.div`
     background-color: black;
     border:4px solid white;
     transition: background-color 0.5s ease-out, color 0.5s ease-out;
-
-    
 `;
 
 export const CustomButton = styled.button`
-  border-radius: 4px;
-  background-color: black;
-  border: none;
-  color: #ffffff;
-  text-align: center;
-  font-size: 22px;
-  padding: 15px;
+display: inline-block;
+  color: white;
+  background-color: #ff69b4;
   width: 150px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
+  border: 4px solid #ff69b4;
+  text-align: center;
+  font-weight: bold;
+  padding: 15px;
+  font-size: 17px;
+
+
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 1s ease-in, color 1s ease-in;
+  :hover {
+    color: white;
+    background-color: black;
+    border:4px solid white;
+    transition: background-color 0.5s ease-out, color 0.5s ease-out;
+`;
+
+export const LikesButton = styled.button`
+display: inline-block;
+color: black;
+background-color: #FFCFF1;
+width: 150x;
+border: 4px solid #FFCFF1;;
+text-align: center;
+font-weight: bold;
+padding: 13px;
+margin: 5px;
+border-radius: 10px;
+text-decoration: none;
+transition: background-color 1s ease-in, color 1s ease-in;
+:hover {
+  color: white;
+  background-color: black;
+  border:4px solid white;
+  transition: background-color 0.5s ease-out, color 0.5s ease-out;
 `;
 
 export const FormButton = styled.button`

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import Navigation from "../components/Navigation";
 import { Container, makeStyles } from "@material-ui/core";
-import { CustomButton } from "../components/StyledComponents";
+import { CustomButton, SigninButton } from "../components/StyledComponents";
 import CountUp from "react-countup";
 import Footer from "../components/Footer";
 
@@ -25,7 +25,12 @@ const FrontPage = () => {
           <CountingConceptHeader>
             <CountText>Currently</CountText>
             <CountUp
-              style={{ fontSize: 80, marginBottom: 0 }}
+              style={{
+                fontSize: 60,
+                marginBottom: 0,
+                marginLeft: 20,
+                color: "black",
+              }}
               duration={10}
               end={allConcepts.data.length}
             />
@@ -35,13 +40,13 @@ const FrontPage = () => {
             <Title>TECHTIONARY</Title>
             <Border></Border>
             <Paragraph>
-              A open source tech-concept library, with the aim to understand
-              tech concepts in an easier and fun way!
+              An open source <Span>tech-concept library</Span>, with the aim to
+              understand tech concepts in an easier and fun way!
             </Paragraph>
             <ButtonSection>
               <ShowMe>Show me!</ShowMe>
               <Link to="/concepts">
-                <CustomButton>Concepts</CustomButton>
+                <SigninButton>Concepts</SigninButton>
               </Link>
             </ButtonSection>
           </TitleContainer>
@@ -140,6 +145,11 @@ position: relative;
     left: 25%;
   }
 `;
+
+export const Span = styled.span`
+  border-bottom: #ff69b4 solid 2px;
+`;
+
 export const Title = styled.div`
   font-weight: 200;
   font-size: 40px;
@@ -152,25 +162,27 @@ export const Title = styled.div`
 const ButtonSection = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   margin-left: 8px;
   margin-right: 8px;
-  border: 2px solid black;
+  border: 1px solid #ffcff1;
   width: 170px;
   margin-top: 10px;
   @media (min-width: 768px) {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 105%;
     margin-bottom: 50px;
-    padding: 10px;
+    padding: 30px;
   }
 `;
 
 const ShowMe = styled.p`
   font-size: 28px;
-  background-color: #c7feff;
+  margin: 0;
   @media (min-width: 768px) {
     font-size: 40px;
+    padding-bottom: 20px;
   }
 `;

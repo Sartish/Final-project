@@ -1,35 +1,21 @@
 import React from "react";
-import { Container, makeStyles, TextField } from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import styled from "styled-components";
+import { useLocation, Link } from "react-router-dom";
+import {
+  StartButtonContainer,
+  Paragraph,
+  CustomButton,
+} from "components/StyledComponents";
 
-import { StartButtonContainer, Paragraph } from "components/StyledComponents";
-
-const DescriptionHeader = ({ searchText, handleChange }) => {
+const DescriptionHeader = ({ heading }) => {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <div className={classes.background}>
       <Container className={classes.container}>
-        <Wrapper>
-          <Title>Find your techy word here</Title>
-          <ContainerHeader role="main">
-            <StartButtonContainer>
-              <div className={classes.filter}>
-                <Paragraph>
-                  <form className={classes.root} noValidate autoComplete="off">
-                    <TextField
-                      id="outlined-basic"
-                      label="Outlined"
-                      variant="outlined"
-                      value={searchText}
-                      onChange={handleChange}
-                    />
-                  </form>
-                </Paragraph>
-              </div>
-            </StartButtonContainer>
-          </ContainerHeader>
-        </Wrapper>
+        <Title>{heading}</Title>
       </Container>
     </div>
   );
@@ -38,69 +24,16 @@ const DescriptionHeader = ({ searchText, handleChange }) => {
 export default DescriptionHeader;
 
 const useStyles = makeStyles((theme) => ({
-  //   background: {
-  //     backgroundColor: "#8CA2AB",
-  //     width: "100%",
-  //   },
   container: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
     width: "100%",
-    height: "300px",
+    height: "100px",
     marginTop: "35px",
   },
-
-  filter: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    margin: "5px",
-  },
-  contribute: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-  contributeText: {
-    fontSize: "16x",
-    textAlign: "center",
-  },
-  button: {
-    backgroundColor: "pink",
-  },
 }));
-
-export const ContainerHeader = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: space-around;
-  border: 2px black;
-  padding: 20px;
-
-  @media (min-width: 768px) {
-    justify-content: space-around;
-    flex-direction: row;
-    width: 1200px;
-    border: black solid 2px;
-    box-sizing: border-box;
-    padding: 0;
-  }
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: space-between;
-  border: solid 2px #ffcff1;
-  padding: 10px;
-  height: 400px;
-`;
 
 export const Title = styled.div`
   display: flex;
@@ -109,4 +42,5 @@ export const Title = styled.div`
   align-items: center;
   border: solid 2px #ffcff1;
   padding: 10px;
+  font-size: 50px;
 `;

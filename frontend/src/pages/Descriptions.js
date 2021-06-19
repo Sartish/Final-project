@@ -1,49 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import moment from "moment";
 import styled from "styled-components/macro";
 
-import { CustomButton } from "../components/StyledComponents";
+import { CustomButton, LikesButton } from "../components/StyledComponents";
 
 import {
   Card,
   Grid,
   Container,
-  Chip,
   CardContent,
   CardActions,
   IconButton,
   Typography,
-  Collapse,
-  Button,
-  ListItemSecondaryAction,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-import TextField from "@material-ui/core/TextField";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import robotIcon from "@iconify-icons/mdi/robot";
-import { Icon } from "@iconify/react";
-
 import { API_URL } from "../reusables/urls";
 import DescriptionHeader from "../components/DescriptionHeader";
+import DescriptionFooter from "../components/DescriptionFooter";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
 export default function Descriptions() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
   const [data, setData] = useState({});
   const [myClickedHeartId, setClickedHeartId] = useState([]);
   const [sort, setSort] = useState("none");
-  // const [likes, setLikes] = useState([]);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  const url = window.location.href;
   const { description, concept } = data;
   const location = useLocation();
 
@@ -89,35 +76,28 @@ export default function Descriptions() {
   return (
     <>
       <Navigation />
-      <ButtonContainer>
-      <CustomButton
-        onClick={() => {
-          setSort("likes");
-        }}
-      >
-        Sort by likes
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          setSort("createdAt");
-        }}
-      >
-        Sort by date
-      </CustomButton>
-      </ButtonContainer>
-      {/* <DescriptionHeader /> */}
+      <DescriptionHeader heading={concept} />
       <Container className={classes.container}>
-        <h3 className={classes.header}>{concept}</h3>
-        <h3 className={classes.secondheader}>All Explanation here</h3>
-        <h3 className={classes.secondheader}>Do you have a good explanation for this? Add yours!</h3>
+        <ButtonContainer>
+          <SubHeading>All explanations</SubHeading>
+          <FilterButtons>
+            <LikesButton
+              onClick={() => {
+                setSort("likes");
+              }}
+            >
+              Sort by likes <span>🖤</span>
+            </LikesButton>
+            <LikesButton
+              onClick={() => {
+                setSort("createdAt");
+              }}
+            >
+              Sort by date <span>📅</span>
+            </LikesButton>
+          </FilterButtons>
+        </ButtonContainer>
 
-        {/* <form className={classes.search}>
-          <TextField
-            id="outlined-basic"
-            label="some kind of filter"
-            variant="outlined"
-          />
-        </form> */}
         <Grid
           container
           direction="row"
@@ -125,83 +105,54 @@ export default function Descriptions() {
           alignItems="start"
           color="blue"
         >
-          <Link to={`/contribute/${location.pathname.substring(1)}`}>
-            <Button variant="contained" color="secondary">
-              contribute
-            </Button>
-          </Link>
           {sortDesc(description)?.map((item) => {
             //console.log(item);
             return (
               <Card className={classes.root} key={item._id}>
                 <div className={classes.heading}>
-                  <p className={classes.user}>
+                  <Typography className={classes.user}>
                     {item.user ? item.user.username : "no user"}
                     <span className={classes.span}> added a explanation</span>
-                  </p>
-                  <Icon className={classes.avatar} icon={robotIcon} />
+                  </Typography>
+                  <CardActions disableSpacing>
+                    <CopyToClipboard text={url}>
+                      <IconButton aria-label="share this page">
+                        <ShareIcon className={classes.share} />
+                      </IconButton>
+                    </CopyToClipboard>
+                  </CardActions>
                 </div>
                 <CardContent>
                   <Typography className={classes.concept}>
                     {item.text}
-                    {/* Created at:{" "}
-                    {moment(item.createdAt).format("MMM Do YYYY")} */}
                   </Typography>
-                  <Typography className={classes.user}>
-                    Created at:{" "}
-                    {moment(item.createdAt).format("MMM Do YYYY")}
-                  </Typography>
-                  {/* <Chip className={classes.tags} label="#frontend" />
-                  <Chip className={classes.tags} label="#backend" /> */}
+                  <div className={classes.heading}>
+                    <Typography className={classes.user}>
+                      Created at: {moment(item.createdAt).format("MMM Do YYYY")}
+                    </Typography>
+
+                    <CardActions disableSpacing>
+                      <IconButton aria-label="add to favorites">
+                        <FavoriteIcon
+                          className={classes.heart}
+                          onClick={() => postLikeToBackend(item._id)}
+                        />
+                        <Typography
+                          variant="body1"
+                          color="textPrimary"
+                          component="p"
+                        >
+                          x {item.likes}
+                        </Typography>
+                      </IconButton>
+                    </CardActions>
+                  </div>
                 </CardContent>
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon
-                      className={classes.heart}
-                      onClick={() => postLikeToBackend(item._id)}
-                    />
-                    <Typography
-                      variant="body1"
-                      color="textPrimary"
-                      component="p"
-                    >
-                      x {item.likes}
-                    </Typography>
-                  </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon className={classes.share} />
-                    <Typography
-                      variant="body1"
-                      color="textPrimary"
-                      component="p"
-                    >
-                      share
-                    </Typography>
-                  </IconButton>
-                  <IconButton
-                    className={clsx(classes.expand, {
-                      [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
-                  </IconButton>
-                </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                      Heat 1/2 cup of the broth in a pot until simmering, add
-                      saffron and set aside for 10 minutes.
-                    </Typography>
-                  </CardContent>
-                </Collapse>
               </Card>
             );
           })}
         </Grid>
+        <DescriptionFooter />
       </Container>
       <Footer />
     </>
@@ -210,15 +161,24 @@ export default function Descriptions() {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: "#e1e8eb",
-    width: "100%",
-    // height: "1000px",
+    container: {
+      width: "100%",
+      marginTop: "200px",
+      ["@media (min-width:780px)"]: {
+        marginTop: "60px",
+        display: "flex",
+        justifyContent: "center",
+      },
+    },
   },
   root: {
-    width: "500px",
+    minWidth: 200,
     marginTop: "20px",
     marginRight: "5px",
     marginLeft: "5px",
+    "&:hover": {
+      backgroundColor: "#FFF5D1",
+    },
   },
   heading: {
     display: "flex",
@@ -241,50 +201,40 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     fontSize: "20px",
   },
-  tags: {
-    backgroundColor: "pink",
-    margin: "5px",
-    fontSize: "15px",
-  },
   heart: {
     fontSize: "40px",
   },
   share: {
     fontSize: "40px",
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
-  avatar: {
-    fontSize: "30px",
+    display: "flex",
   },
 
   header: {
     textAlign: "center",
     padding: "5px",
-    fontSize: "40px"
+    fontSize: "40px",
   },
   secondheader: {
     fontSize: "16px",
     textAlign: "center",
-
-  },
-  search: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
   },
 }));
 
-
 const ButtonContainer = styled.div`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 80px;
+
+  @media (min-width: 768px) {
+    margin-top: 30px;
+    justify-content: space-around;
+`;
+
+const FilterButtons = styled.div`
+  display: flex;
+`;
+
+const SubHeading = styled.h2`
+  display: flex;
 `;

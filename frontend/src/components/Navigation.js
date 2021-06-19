@@ -112,7 +112,6 @@ export const RightNav = styled.div`
 `;
 
 export const Logo = styled.div`
-  border: 2px solid black;
   margin-left: 120px;
   @media (min-width: 768px) {
     justify-content: space-between;

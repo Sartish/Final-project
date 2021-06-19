@@ -112,7 +112,7 @@ export default Concepts;
 const useStyles = makeStyles(() => ({
   container: {
     width: "100%",
-    marginTop: "200px",
+    marginTop: "300px",
     ["@media (min-width:780px)"]: {
       marginTop: "60px",
     },

@@ -1,31 +1,33 @@
 import React from "react";
-import { Container, makeStyles, TextField } from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import styled from "styled-components";
+import { useLocation, Link } from "react-router-dom";
+import {
+  StartButtonContainer,
+  Paragraph,
+  CustomButton,
+} from "components/StyledComponents";
 
-import { StartButtonContainer, Paragraph } from "components/StyledComponents";
-
-const ConceptHeader = ({ inputValue, handleOnChange }) => {
+const DescriptionFooter = ({ heading }) => {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <div className={classes.background}>
       <Container className={classes.container}>
-        <Title>Find your techy word here</Title>
         <Wrapper>
           <ContainerHeader role="main">
             <StartButtonContainer>
               <div className={classes.filter}>
                 <Paragraph>
-                  <form className={classes.root} noValidate autoComplete="off">
-                    <TextField
-                      id="outlined-basic"
-                      label="Search here..."
-                      variant="outlined"
-                      value={inputValue}
-                      onChange={handleOnChange}
-                    />
-                  </form>
+                  Do you have a nice explanation to this concept?
+                  <Link
+                    to={`/contribute/${location.pathname.substring(1)}`}
+                  ></Link>
                 </Paragraph>
+                <CustomButton variant="contained" color="secondary">
+                  contribute
+                </CustomButton>
               </div>
             </StartButtonContainer>
           </ContainerHeader>
@@ -35,7 +37,7 @@ const ConceptHeader = ({ inputValue, handleOnChange }) => {
   );
 };
 
-export default ConceptHeader;
+export default DescriptionFooter;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -43,13 +45,31 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "column",
-    width: "50% ",
+    width: "100%",
     height: "200px",
+
     marginTop: "35px",
   },
 
   filter: {
     display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    margin: "5px",
+  },
+  contribute: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  contributeText: {
+    fontSize: "16x",
+    textAlign: "center",
+  },
+  button: {
+    backgroundColor: "pink",
   },
 }));
 
@@ -65,6 +85,7 @@ export const ContainerHeader = styled.section`
   @media (min-width: 768px) {
     justify-content: space-around;
     flex-direction: row;
+    width: 1200px;
     border: black solid 2px;
     box-sizing: border-box;
     padding: 0;
@@ -76,15 +97,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: space-between;
+  border: solid 2px #ffcff1;
   padding: 10px;
   height: 400px;
-  width: 200px;
-  background-color: #fff5d1;
-  @media (min-width: 768px) {
-    margin-top: 20px;
-    margin-bottom: 0px;
-    width: 800px;
-  }
 `;
 
 export const Title = styled.div`
@@ -92,8 +107,7 @@ export const Title = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: solid 10px #ffcff1;
-  border-bottom-radius: 50%;
+  border: solid 2px #ffcff1;
   padding: 10px;
   font-size: 50px;
 `;
