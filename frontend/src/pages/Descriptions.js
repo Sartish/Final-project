@@ -172,13 +172,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   root: {
-    minWidth: 200,
+    width: "450px",
     marginTop: "20px",
     marginRight: "5px",
     marginLeft: "5px",
-    "&:hover": {
-      backgroundColor: "#FFF5D1",
-    },
+    // "&:hover": {
+    //   backgroundColor: "#FFF5D1",
+    // },
   },
   heading: {
     display: "flex",
