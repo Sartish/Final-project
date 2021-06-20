@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Navigation from "../components/Navigation";
 import { CustomButton } from "./StyledComponents";
 import { API_URL } from "../reusables/urls";
+import Signin from "../pages/Signin";
 import swal from "sweetalert";
 
 const ContributeConcept = () => {
@@ -21,7 +22,13 @@ const ContributeConcept = () => {
   const handleClick = () => {
     console.log("hej");
     if (accessToken) {
-      history.push("/");
+      swal({
+        title: "Success!",
+        text: "Your concept & description have been added",
+        icon: "success",
+        button: "ok",
+      });
+      history.push("/concepts");
     } else {
       swal({
         title: "Not yet!",
@@ -56,51 +63,73 @@ const ContributeConcept = () => {
       .then((res) => res.json())
       .then(() => {
         handleClick();
+      })
+      .catch((error) => {
+        // post failed, show error message to let user know
+        console.log("Catch error:"+error)
+        swal({
+          title: "Failed to add concept",
+          text: error.message,
+          icon: "error",
+          button: "OK!",
+        });
       });
   };
   console.log(conceptList)
-  return (
+  if(!accessToken) {
+    // if not signedin then display signin/signup page
+    return (
     <>
-      <Navigation />
-      <Container>
-        <Wrapper>
-          <WriteHere>Contribute with your concept</WriteHere>
-          <Form onSubmit={onFormSubmit}>
-            <TextField
-              className={classes.input}
-              id="outlined-multiline-static"
-              label="Concept"
-              multiline
-              rows={1}
-              columns={2}
-              defaultValue="Type here"
-              variant="outlined"
-              value={concept}
-              onChange={(e) => setConcept(e.target.value)}
-            />
-            <TextField
-              className={classes.input}
-              id="outlined-multiline-static"
-              label="Description"
-              multiline
-              rows={4}
-              columns={8}
-              defaultValue="Type here.."
-              variant="outlined"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <ButtonSection>
-              <CustomButton>Back</CustomButton>
-              <CustomButton type="submit" value="description">
-                Done!
-              </CustomButton>
-            </ButtonSection>
-          </Form>
-        </Wrapper>
-      </Container>
+      <Signin />
     </>
-  );
+    )
+  }
+  else
+  {
+    // user signedin let him/her contribute
+    return (
+      <>
+        <Navigation />
+        <Container>
+          <Wrapper>
+            <WriteHere>Contribute with your concept</WriteHere>
+            <Form onSubmit={onFormSubmit}>
+              <TextField
+                className={classes.input}
+                id="outlined-multiline-static"
+                label="Concept"
+                multiline
+                rows={1}
+                columns={2}
+                defaultValue="Type here"
+                variant="outlined"
+                value={concept}
+                onChange={(e) => setConcept(e.target.value)}
+              />
+              <TextField
+                className={classes.input}
+                id="outlined-multiline-static"
+                label="Description"
+                multiline
+                rows={4}
+                columns={8}
+                defaultValue="Type here.."
+                variant="outlined"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <ButtonSection>
+                <CustomButton>Back</CustomButton>
+                <CustomButton type="submit" value="description">
+                  Done!
+                </CustomButton>
+              </ButtonSection>
+            </Form>
+          </Wrapper>
+        </Container>
+      </>
+    );
+  }
 };
 
 export default ContributeConcept;
