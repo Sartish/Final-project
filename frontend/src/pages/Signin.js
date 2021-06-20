@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
@@ -8,8 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { FormButton } from "components/StyledComponents";
 import Container from "@material-ui/core/Container";
 import { Alert } from "@material-ui/lab";
-
 import user from "../reducers/user";
+import styled from "styled-components";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -18,7 +18,9 @@ const Signin = () => {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [fileName, setFileName] = useState();
   const [mode, setMode] = useState(null);
+  const fileInput = useRef();
 
   const error = useSelector((store) => store.user.errorMessage);
 
@@ -47,67 +49,7 @@ const Signin = () => {
       },
       body: JSON.stringify({ username, password }),
     };
-    // version 1, funkar
-    // fetch(API_URL(mode), options)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.success) {
-    //       console.log("Success");
-    //       batch(() => {
-    //         dispatch(user.actions.setUsername(data.username));
-    //         dispatch(user.actions.setAccessToken(data.accessToken));
-    //         dispatch(user.actions.setErrors(null));
 
-    //         localStorage.setItem(
-    //           "user",
-    //           JSON.stringify({
-    //             username: data.username,
-    //             accessToken: data.accessToken,
-    //           })
-    //         );
-    //       });
-    //     } else {
-    //       console.log("Failed");
-    //       dispatch(user.actions.setErrors(data));
-    //     }
-    //   });
-    //version 2, test för att få fram error,funkar ej, fail to compile
-    //     fetch(API_URL(mode), options)
-    //     .then((res) => {
-    //       if (!res.ok) {
-    //         throw new Error('Ops, something went wrong.');
-    //       }
-    //       return res.json();
-    //     })
-
-    //     .then((data) => {
-    //       if (data.success) {
-    //         console.log("Success");
-    //         batch(() => {
-    //           dispatch(user.actions.setUsername(data.username));
-    //           dispatch(user.actions.setAccessToken(data.accessToken));
-    //           dispatch(user.actions.setErrors(null));
-
-    //           localStorage.setItem(
-    //             "user",
-    //             JSON.stringify({
-    //               username: data.username,
-    //               accessToken: data.accessToken,
-    //             })
-    //           );
-    //         });
-    //       } else {
-    //         console.log("Failed");
-    //         dispatch(user.actions.setErrors(data));
-    //       }
-    //     });
-    //     .catch((error) => {
-    //       dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
-    //     });
-
-    // };
-
-    //version 3,
     fetch(API_URL(mode), options)
       .then((res) => {
         if (!res.ok) {
@@ -143,13 +85,49 @@ const Signin = () => {
         dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
       });
   };
-
   console.log(mode);
+
+  const uploadImage = () => {
+    setMode("signup");
+    const formData = new FormData();
+    formData.append("image", fileInput.current.files[0]);
+    fetch(`http://localhost:8080/profile/image`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            "Oops! Choose a picture first! (formats: png/jpg/jpeg)"
+          );
+        }
+        return res.json();
+      })
+      .then(() => {
+        console.log("working?");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <Navigation />
       <div className={classes.background}>
         <div className={classes.wrapper}>
+          <PicInput
+            type="file"
+            ref={fileInput}
+            id="profilepic-button"
+            onChange={(event) => setFileName(event.target.value)}
+            accept="image/png, image/jpeg, image/jpg"
+          />
+          {/* <button type="submit" onClick={uploadImage}>
+            Upload
+          </button> */}
+          <FileName>{fileName}</FileName>
+
           <Typography className={classes.header}>
             Want to be able to contribute?
           </Typography>
@@ -213,7 +191,7 @@ const Signin = () => {
                 color="primary"
                 className={classes.submit}
                 type="submit"
-                onClick={() => setMode("signup")}
+                onClick={uploadImage}
               >
                 Sign up
               </FormButton>
@@ -284,3 +262,45 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
+const PicInput = styled.input`
+  color: transparent;
+  width: 400px;
+  height: 106px;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  &::before {
+    content: "+";
+    color: transparent;
+    display: inline-block;
+    background-image: url(${process.env.PUBLIC_URL +
+    "/assets/profileButton.svg"});
+    width: 106px;
+    height: 106px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &:active::before {
+    background-image: none;
+  }
+
+  &:focus {
+    outline: 2px solid #f56c54;
+  }
+`;
+
+const FileName = styled.p`
+  font-size: 10px;
+  width: 100px;
+  overflow-wrap: break-word;
+  color: #31556d;
+`;

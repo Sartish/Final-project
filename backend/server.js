@@ -3,6 +3,12 @@ import cors from "cors";
 import mongoose from "mongoose";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
+import cloudinaryFramework from "cloudinary";
+import multer from "multer";
+import cloudinaryStorage from "multer-storage-cloudinary";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject";
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -71,13 +77,14 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-
   },
   //email
   password: {
     type: String,
     required: true,
-
+  },
+  profilePic: {
+    type: String,
   },
   accessToken: {
     type: String,
@@ -113,6 +120,25 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Our backend");
 });
+
+// Cloudinary setup to store images
+const cloudinary = cloudinaryFramework.v2;
+cloudinary.config({
+  cloud_name: "dz5cwhifr",
+  api_key: "686531833792562",
+  api_secret: "HUtvkjerxrLd8pkM7UUfPL-hPNs",
+});
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "profileImages",
+    allowedFormats: ["jpg", "png", "jpeg"],
+    transformation: [{ width: 100, height: 100, crop: "limit" }],
+  },
+});
+
+const parser = multer({ storage });
 
 //POST USER "/singup" and "/signin"
 app.post("/signup", async (req, res) => {
@@ -160,6 +186,19 @@ app.post("/signin", async (req, res) => {
     res.status(400).json({ sucess: false, message: "Invalid request" });
   }
 });
+
+// Add profile pic to user model
+app.post('/signup/user/:id/image', parser.single('image'), async (req, res) => {
+  const { id } = req.params
+  try {
+    const userProfile = await User.findOneAndUpdate(
+      { _id: id },
+      { profilePic: req.file.path, profilePicName: req.file.filename },
+      { new: true })
+    res.json(userProfile)
+  } catch (err) {
+    res.status(400).json({ message: "Can't post profile pic" })
+  }
 
 //POST CONCEPTS
 // Gör så att bara vi har behörighet till denna endpoint
@@ -246,7 +285,6 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
   }
 });
 
-
 app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
   const { conceptId } = req.params;
 
@@ -265,7 +303,7 @@ app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
     if (likes) {
       res.status(200).json(likes);
     } else {
-      res.status(404).json({ message: "no concept found"  });
+      res.status(404).json({ message: "no concept found" });
     }
   } catch (error) {
     res.status(400).json({ message: "invalid request", error });
@@ -293,7 +331,7 @@ app.get("/concepts", async (req, res) => {
       .sort({ concept: 1 })
       .skip(skip)
       .limit(limit)
-      .collation({locale: "en" });
+      .collation({ locale: "en" });
     console.log(concept, "concept");
 
     res.json({ page, size, data: concept });
@@ -305,9 +343,6 @@ app.get("/concepts", async (req, res) => {
 //sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
 //men vi hade inte tid att sätta upp elasticsearch
 //elasticsearch == verktyg för att söka optimalt med text
-
-
-
 
 // WORKING ON THIS. SHOULD BE ABLE TO SEARCH
 
