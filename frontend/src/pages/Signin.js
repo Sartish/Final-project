@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
@@ -8,8 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { FormButton } from "components/StyledComponents";
 import Container from "@material-ui/core/Container";
 import { Alert } from "@material-ui/lab";
-
 import user from "../reducers/user";
+import styled from "styled-components";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -18,6 +18,7 @@ const Signin = () => {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const [mode, setMode] = useState(null);
 
   const error = useSelector((store) => store.user.errorMessage);
@@ -47,67 +48,7 @@ const Signin = () => {
       },
       body: JSON.stringify({ username, password }),
     };
-    // version 1, funkar
-    // fetch(API_URL(mode), options)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.success) {
-    //       console.log("Success");
-    //       batch(() => {
-    //         dispatch(user.actions.setUsername(data.username));
-    //         dispatch(user.actions.setAccessToken(data.accessToken));
-    //         dispatch(user.actions.setErrors(null));
 
-    //         localStorage.setItem(
-    //           "user",
-    //           JSON.stringify({
-    //             username: data.username,
-    //             accessToken: data.accessToken,
-    //           })
-    //         );
-    //       });
-    //     } else {
-    //       console.log("Failed");
-    //       dispatch(user.actions.setErrors(data));
-    //     }
-    //   });
-    //version 2, test för att få fram error,funkar ej, fail to compile
-    //     fetch(API_URL(mode), options)
-    //     .then((res) => {
-    //       if (!res.ok) {
-    //         throw new Error('Ops, something went wrong.');
-    //       }
-    //       return res.json();
-    //     })
-
-    //     .then((data) => {
-    //       if (data.success) {
-    //         console.log("Success");
-    //         batch(() => {
-    //           dispatch(user.actions.setUsername(data.username));
-    //           dispatch(user.actions.setAccessToken(data.accessToken));
-    //           dispatch(user.actions.setErrors(null));
-
-    //           localStorage.setItem(
-    //             "user",
-    //             JSON.stringify({
-    //               username: data.username,
-    //               accessToken: data.accessToken,
-    //             })
-    //           );
-    //         });
-    //       } else {
-    //         console.log("Failed");
-    //         dispatch(user.actions.setErrors(data));
-    //       }
-    //     });
-    //     .catch((error) => {
-    //       dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
-    //     });
-
-    // };
-
-    //version 3,
     fetch(API_URL(mode), options)
       .then((res) => {
         if (!res.ok) {
@@ -143,8 +84,8 @@ const Signin = () => {
         dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
       });
   };
-
   console.log(mode);
+
   return (
     <>
       <Navigation />
@@ -235,9 +176,16 @@ const Signin = () => {
 
 export default Signin;
 
+const font = "'PT Sans', sans-serif";
+
 const useStyles = makeStyles((theme) => ({
+  error: {
+    fontSize: "30px",
+  },
   background: {
-    width: "100%",
+    width: "100vw",
+    height: "100vh",
+    // backgroundImage: "linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)",
   },
   wrapper: {
     display: "flex",
@@ -246,21 +194,28 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   header: {
-    fontSize: "40px",
+    fontFamily: font,
+    fontWeight: "bold",
+    fontSize: "38px",
+    color: "#4B0082",
     marginTop: "100px",
   },
   paragraph: {
+    fontFamily: font,
+    fontWeight: "bold",
     fontSize: "24px",
+    color: "black",
     marginBottom: "40px",
   },
   paper: {
+    //   marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: "#FF69B4",
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -270,3 +225,45 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
+const PicInput = styled.input`
+  color: transparent;
+  width: 400px;
+  height: 106px;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  &::before {
+    content: "+";
+    color: transparent;
+    display: inline-block;
+    background-image: url(${process.env.PUBLIC_URL +
+    "/assets/profileButton.svg"});
+    width: 106px;
+    height: 106px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &:active::before {
+    background-image: none;
+  }
+
+  &:focus {
+    outline: 2px solid #f56c54;
+  }
+`;
+
+const FileName = styled.p`
+  font-size: 10px;
+  width: 100px;
+  overflow-wrap: break-word;
+  color: #31556d;
+`;
