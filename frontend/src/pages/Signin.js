@@ -21,7 +21,8 @@ const Signin = () => {
 
   const [mode, setMode] = useState(null);
 
-  const error = useSelector((store) => store.user.errorMessage);
+  const error = useSelector((store) => store.user.errors);
+  console.log(error)
 
   const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch();
@@ -48,7 +49,32 @@ const Signin = () => {
       },
       body: JSON.stringify({ username, password }),
     };
+    //version 1, funkar
+    // fetch(API_URL(mode), options)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.success) {
+    //       console.log("Success");
+    //       batch(() => {
+    //         dispatch(user.actions.setUsername(data.username));
+    //         dispatch(user.actions.setAccessToken(data.accessToken));
+    //         dispatch(user.actions.setErrors(null));
 
+    //         localStorage.setItem(
+    //           "user",
+    //           JSON.stringify({
+    //             username: data.username,
+    //             accessToken: data.accessToken,
+    //           })
+    //         );
+    //       });
+    //     } else {
+    //       console.log("Failed");
+    //       dispatch(user.actions.setErrors(data));
+    //     }
+    //   });
+
+    //version 3,
     fetch(API_URL(mode), options)
       .then((res) => {
         if (!res.ok) {
@@ -81,7 +107,9 @@ const Signin = () => {
       })
       // eslint-disable-next-line no-shadow
       .catch((error) => {
-        dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
+        console.log("Catch error:"+error)
+        // dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
+        dispatch(user.actions.setErrors(error.message));
       });
   };
   console.log(mode);
