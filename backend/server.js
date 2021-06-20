@@ -71,13 +71,11 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-
   },
   //email
   password: {
     type: String,
     required: true,
-
   },
   accessToken: {
     type: String,
@@ -246,7 +244,6 @@ app.post("/concepts/:descriptionId/likes", async (req, res) => {
   }
 });
 
-
 app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
   const { conceptId } = req.params;
 
@@ -265,7 +262,7 @@ app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
     if (likes) {
       res.status(200).json(likes);
     } else {
-      res.status(404).json({ message: "no concept found"  });
+      res.status(404).json({ message: "no concept found" });
     }
   } catch (error) {
     res.status(400).json({ message: "invalid request", error });
@@ -293,7 +290,7 @@ app.get("/concepts", async (req, res) => {
       .sort({ concept: 1 })
       .skip(skip)
       .limit(limit)
-      .collation({locale: "en" });
+      .collation({ locale: "en" });
     console.log(concept, "concept");
 
     res.json({ page, size, data: concept });
@@ -305,9 +302,6 @@ app.get("/concepts", async (req, res) => {
 //sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
 //men vi hade inte tid att sätta upp elasticsearch
 //elasticsearch == verktyg för att söka optimalt med text
-
-
-
 
 // WORKING ON THIS. SHOULD BE ABLE TO SEARCH
 
