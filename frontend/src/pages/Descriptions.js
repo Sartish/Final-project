@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import moment from "moment";
 import styled from "styled-components/macro";
 
-import { CustomButton, LikesButton } from "../components/StyledComponents";
+import {LikesButton } from "../components/StyledComponents";
 
 import {
   Card,
@@ -59,7 +59,7 @@ export default function Descriptions() {
     }
     return [];
   };
-  // Also sort, more likes on top of the page, BE, right?
+
 
   const postLikeToBackend = (descriptionId) => {
     if (myClickedHeartId.includes(descriptionId)) return;
@@ -87,14 +87,19 @@ export default function Descriptions() {
                   setSort("likes");
                 }}
               >
-                Sort by likes <span>🖤</span>
+                Sort by likes
+                <span role="img" aria-label="calender">
+                {" 🖤"}</span>
               </LikesButton>
               <LikesButton
                 onClick={() => {
                   setSort("createdAt");
                 }}
               >
-                Sort by date <span>📅</span>
+                Sort by date
+                <span role="img" aria-label="calender">
+                {" 📅"}</span>
+
               </LikesButton>
             </FilterButtons>
           </ButtonContainer>

@@ -9,7 +9,8 @@ const Footer = () => {
           &copy; developed 2021 by Sara Carlstein and Ann-Sofi Jönsson{" "}
         </FooterParagraphs>
         <FooterParagraphs>
-          Final Project: Techtionary <span>🖤</span> | Technigo bootcamp
+          Final Project: Techtionary <span role="img" aria-label="heart">
+                {"🖤"}</span> | Technigo bootcamp
         </FooterParagraphs>
         <FooterParagraphs></FooterParagraphs>
       </FooterWrapper>

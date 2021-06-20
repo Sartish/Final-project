@@ -1,73 +1,84 @@
 import React from "react";
-import { Container, makeStyles, TextField } from "@material-ui/core";
-import styled from "styled-components";
+
+import styled from "styled-components/macro";
 
 import Navigation from "../components/Navigation";
+import annsofiimg from "../assets/annsofi.profile.JPG";
+import saraimg from "../assets/profile-picture.jpg";
 
 const About = () => {
-  const classes = useStyles();
-  return (
-    <div className={classes.background}>
-    <Container className={classes.container}>
-      <Wrapper>
-        <Title>ABOUT</Title>
-        <ContainerHeader role="main">
 
-            <div className={classes.contributeText}>
+  return (
+    <>
+     <Navigation />
+
+    <Container>
+    <Wrapper>
+      <InfoText>
+        <Title>ABOUT</Title>
+
            <p>This site was created in Technigo Bootcamp as the final project. The idea came from our own experience, entering the tech-world and being exposed to A LOT of new words. If you are lucky are they quite self-explanatory for example "something here". But many of them are short for something such as "example", but and a lot of word might as well be greek!</p>
            <p>The purpose of this site is to be a friend in need when there is something you heard somewhere but maybe afraid to ask, or maybe just forgot. And if you feel like you have a good explanation for something, please add it! </p>
-            </div>
+      </InfoText>
 
-        </ContainerHeader>
-      </Wrapper>
+        <AboutUs>
+          <AboutSara>
+            <p>Sara Carlstein</p>
+            <SaraImg src={saraimg} alt="Sara Carlstein" />
+            <p>Text and link to likedin and github</p>
+          </AboutSara>
+          <AboutAnnSofi>
+            <p>Ann-Sofi Jönsson </p>
+            <AnnSofiImg src= {annsofiimg}alt="Ann-Sofi Jönsson" />
+            <p>Text and link to likedin and github</p>
+          </AboutAnnSofi>
+        </AboutUs>
+        </Wrapper>
+
     </Container>
-  </div>
+
+
+  </>
   );
 };
 
 export default About;
 
+const SaraImg = styled.img`
+  height: 150px;
+  border-radius: 10%;
+
+`
+
+const AnnSofiImg = styled.img`
+  height: 150px;
+  border-radius: 10%;
+`
 
 
+const AboutSara = styled.div`
+border: 2px solid black;
+`
 
-const useStyles = makeStyles((theme) => ({
-  //   background: {
-  //     backgroundColor: "#8CA2AB",
-  //     width: "100%",
-  //   },
-  container: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "column",
-    width: "100%",
-    height: "300px",
-    marginTop: "35px",
-  },
 
-  filter: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    margin: "5px",
-  },
-  contribute: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-  contributeText: {
-    fontSize: "16x",
-    textAlign: "center",
-  },
-  button: {
-    backgroundColor: "pink",
-  },
-}));
+const AboutAnnSofi = styled.div`
+border: 2px solid black;
+`
 
-export const ContainerHeader = styled.section`
+const Container = styled.div`
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+`
+const Wrapper = styled.div`
+max-width: 370px;
+margin-top: 20px;
+`
+
+const ContainerHeader = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,21 +96,41 @@ export const ContainerHeader = styled.section`
   }
 `;
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: space-between;
-  border: solid 2px #ffcff1;
-  padding: 10px;
-  height: 400px;
-`;
 
-export const Title = styled.div`
+const InfoText = styled.div`
+  border: 2px solid pink;
+`
+
+
+
+// const Wrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: space-between;
+//   border: solid 2px #ffcff1;
+//   padding: 10px;
+//   // height: 400px;
+//   max-width: 370px;
+//   border: 2px, solid, pink;
+// `;
+
+const Title = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 2px #ffcff1;
+  // border: solid 2px #ffcff1;
   padding: 10px;
 `;
+
+const AboutUs = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 2px solid pink;
+  margin-top: 20px;
+`;
+
+
+
+

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import SignOut from "./SignOut";
 import HamburgerMenu from "./HamburgerMenu";
 import "@lottiefiles/lottie-player";
-import lottiePlayer from "@lottiefiles/lottie-player";
 
 import { SigninButton } from "./StyledComponents";
 

@@ -170,9 +170,10 @@ app.post("/concepts", async (req, res) => {
       text: description,
       user: req.user,
     }).save();
-    // console.log("New description:" + newDescription);
-    // check if concept already exist
-    const existingConcept = await Concept.find({concept: concept});
+
+    // check if concept already exist, case insensitive
+    const existingConcept = await Concept.find({concept: {'$regex':concept,$options:'i'}});
+
     if (existingConcept.length > 0) {
 
       console.log("concept already exists...lets reuse");
