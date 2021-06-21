@@ -4,7 +4,6 @@ import { useHistory, Link } from "react-router-dom";
 import { TextField, makeStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import Navigation from "../components/Navigation";
-// import { CustomButton } from "./StyledComponents";
 import { API_URL } from "../reusables/urls";
 import Signin from "../pages/Signin";
 import swal from "sweetalert";
@@ -20,7 +19,9 @@ const ContributeConcept = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
 
   const checkIfConceptExist = () => {
-    return conceptList.data?.find(item => item.concept.toLowerCase()===concept.toLowerCase());
+    return conceptList.data?.find(
+      (item) => item.concept.toLowerCase() === concept.toLowerCase()
+    );
   };
 
   const handleClick = () => {
@@ -49,13 +50,10 @@ const ContributeConcept = () => {
         });
       }
     }
-
   };
 
   useEffect(() => {
-    fetch(
-      `http://localhost:8080/concepts?searchText=${concept}`
-    )
+    fetch(`http://localhost:8080/concepts?searchText=${concept}`)
       .then((res) => res.json())
       .then((data) => setConceptList(data));
   }, [concept]);
@@ -79,7 +77,7 @@ const ContributeConcept = () => {
       })
       .catch((error) => {
         // post failed, show error message to let user know
-        console.log("Catch error:"+error)
+        console.log("Catch error:" + error);
         swal({
           title: "Failed to add concept",
           text: error.message,
@@ -89,16 +87,14 @@ const ContributeConcept = () => {
       });
   };
 
-  if(!accessToken) {
+  if (!accessToken) {
     // if not signedin then display signin/signup page
     return (
-    <>
-      <Signin />
-    </>
-    )
-  }
-  else
-  {
+      <>
+        <Signin />
+      </>
+    );
+  } else {
     // user signedin let him/her contribute
 
     return (
@@ -108,12 +104,19 @@ const ContributeConcept = () => {
           <Wrapper>
             <WriteHere>Contribute with your concept and description.</WriteHere>
             <Border></Border>
-            <HowToText>Remember to keep it short and sweet, description is max 160 characters!</HowToText>
+            <HowToText>
+              Remember to keep it short and sweet, description is max 160
+              characters!
+            </HowToText>
             <Form onSubmit={onFormSubmit}>
               <TextField
                 className={classes.input}
                 id="outlined-multiline-static"
-                label={checkIfConceptExist() ? "Concept already exist, but feel free to add a description" : "Concept"}
+                label={
+                  checkIfConceptExist()
+                    ? "Concept already exist, but feel free to add a description"
+                    : "Concept"
+                }
                 multiline
                 rows={1}
                 columns={2}
@@ -122,7 +125,9 @@ const ContributeConcept = () => {
                 value={concept}
                 onChange={(e) => setConcept(e.target.value)}
               />
-              {checkIfConceptExist() ? "Concept already exist, but feel free to add a description" : ""}
+              {checkIfConceptExist()
+                ? "Concept already exist, but feel free to add a description"
+                : ""}
               <TextField
                 className={classes.input}
                 id="outlined-multiline-static"
@@ -135,13 +140,12 @@ const ContributeConcept = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-               <TextCounter>{description.length}/160</TextCounter>
+              <TextCounter>{description.length}/160</TextCounter>
               <ButtonSection>
-                <Link to ="/concepts">
-                <CustomButton>Back</CustomButton>
+                <Link to="/concepts">
+                  <CustomButton>Back</CustomButton>
                 </Link>
-                <CustomButton type="submit" value="description"
-                >
+                <CustomButton type="submit" value="description">
                   Done!
                 </CustomButton>
               </ButtonSection>
@@ -155,9 +159,17 @@ const ContributeConcept = () => {
 
 export default ContributeConcept;
 
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif";
+const HotPink = "#FF69B4";
+const LightPink = "#FFCFF1";
+const Yellow = "#FFF5D1";
+const Gray = "#404040;";
+const DarkGray = "#282828";
+
 const useStyles = makeStyles(() => ({
   input: {
-    marginTop: "50px",
+    marginTop: "30px",
     width: "250px",
     ["@media (min-width:768px)"]: {
       width: "600px",
@@ -199,8 +211,10 @@ const TextCounter = styled.p`
 
 const HowToText = styled.p`
   text-align: center;
-  margin-right: 15px;
-  margin-left: 15px;
+  margin: 40px 15px 15px 5px;
+  font-size: 16px;
+  font-family: ${ParagraphFont};
+  color: ${Gray};
 `;
 
 const WriteHere = styled.h3`
@@ -208,13 +222,15 @@ const WriteHere = styled.h3`
   justify-content: center;
   text-align: center;
   width: 335px;
-  // margin-top: 10px;
-  margin: 0;
+  margin-top: 45px;
   margin-bottom: 15px;
   font-size: 24px;
+  font-family: ${HeaderFont};
+  color: ${DarkGray};
   @media (min-width: 767px) {
-    font-size: 40px;
-    width: 500px;
+    font-size: 35px;
+    width: 600px;
+    margin-top: 40px;
   }
 `;
 const ButtonSection = styled.div`

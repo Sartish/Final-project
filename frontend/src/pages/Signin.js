@@ -5,14 +5,14 @@ import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { FormButton } from "components/StyledComponents";
 import Container from "@material-ui/core/Container";
 import { Alert } from "@material-ui/lab";
 import user from "../reducers/user";
-
+import styled from "styled-components/macro";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 const Signin = () => {
   const classes = useStyles();
@@ -22,7 +22,7 @@ const Signin = () => {
   const [mode, setMode] = useState(null);
 
   const error = useSelector((store) => store.user.errors);
-  console.log(error)
+  console.log(error);
 
   const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch();
@@ -107,7 +107,7 @@ const Signin = () => {
       })
       // eslint-disable-next-line no-shadow
       .catch((error) => {
-        console.log("Catch error:"+error)
+        console.log("Catch error:" + error);
         // dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
         dispatch(user.actions.setErrors(error.message));
       });
@@ -117,25 +117,25 @@ const Signin = () => {
   return (
     <>
       <Navigation />
-      <div className={classes.background}>
-        <div className={classes.wrapper}>
-          <Typography className={classes.header}>
-            Want to be able to contribute?
+      <Container>
+        <Wrapper>
+          <WriteHere>Sign in or Sign up</WriteHere>
+          <ParagraphInstructions>
+            <HiUser>
+              Sign in or Sing up to to contribute with a concept and your unique
+              description.
+            </HiUser>
+          </ParagraphInstructions>
+          <Avatar className={classes.avatar}>
+            {/* <LockOutlinedIcon /> */}
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
           </Typography>
-          <Typography className={classes.paragraph}>
-            Sign in or create your account
-          </Typography>
-        </div>
-        <Container component="main" maxWidth="xs">
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              {/* <LockOutlinedIcon /> */}
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form onSubmit={onFormSubmit}>
+          <form onSubmit={onFormSubmit}>
+            <WrapperForInput>
               <TextField
+                className={classes.input}
                 variant="outlined"
                 margin="normal"
                 required
@@ -150,6 +150,7 @@ const Signin = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
               <TextField
+                className={classes.input}
                 variant="outlined"
                 margin="normal"
                 required
@@ -163,6 +164,7 @@ const Signin = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 inputProps={inputMin}
               />
+
               <FormButton
                 fullWidth
                 variant="contained"
@@ -191,25 +193,35 @@ const Signin = () => {
                   >{`${error}`}</Alert>
                 )}
               </div>
-            </form>
-          </div>
-        </Container>
-      </div>
+            </WrapperForInput>
+          </form>
+        </Wrapper>
+      </Container>
+      <Footer />
     </>
   );
 };
 
 export default Signin;
 
-const font = "'PT Sans', sans-serif";
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif";
+const HotPink = "#FF69B4";
+const LightPink = "#FFCFF1";
+const Yellow = "#FFF5D1";
+const Gray = "#404040;";
+const DarkGray = "#282828";
 
 const useStyles = makeStyles((theme) => ({
   error: {
     fontSize: "30px",
   },
-  background: {
-    width: "100vw",
-    height: "100vh",
+  input: {
+    display: "flex",
+    width: "350px",
+    ["@media (min-width:780px)"]: {
+      width: "550px",
+    },
   },
   wrapper: {
     display: "flex",
@@ -217,20 +229,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
   },
-  header: {
-    fontFamily: font,
-    fontWeight: "bold",
-    fontSize: "38px",
-    color: "#4B0082",
-    marginTop: "100px",
-  },
-  paragraph: {
-    fontFamily: font,
-    fontWeight: "bold",
-    fontSize: "24px",
-    color: "black",
-    marginBottom: "40px",
-  },
+
   paper: {
     //   marginTop: theme.spacing(8),
     display: "flex",
@@ -250,44 +249,75 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const PicInput = styled.input`
-//   color: transparent;
-//   width: 400px;
-//   height: 106px;
-//   transition: 0.2s ease-in-out;
+const WriteHere = styled.h3`
+  display: flex;
+  justify-content: center;
+  align-text: center;
+  width: 200px;
+  text-align: center;
+  margin: 40px 15px 15px 5px;
+  padding: 5px;
+  font-size: 24px;
+  color: ${DarkGray};
+  font-family: ${HeaderFont};
+  border-bottom: 5px solid ${LightPink};
+  @media (min-width: 767px) {
+    font-size: 35px;
+    width: 400px;
+  }
+`;
 
-//   &:hover {
-//     opacity: 0.7;
-//   }
+const HiUser = styled.p`
+  font-size: 16px;
+  color: ${Gray};
+  width: 300px;
+  text-align: center;
+  font-family: ${ParagraphFont};
+  @media (min-width: 768px) {
+    font-size: 24px;
+    width: 400px;
+  }
+`;
 
-//   &::-webkit-file-upload-button {
-//     visibility: hidden;
-//   }
+const ParagraphInstructions = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 30px;
+  flex-direction: column;
+  margin: 0px;
+`;
 
-//   &::before {
-//     content: "+";
-//     color: transparent;
-//     display: inline-block;
-//     background-image: url(${process.env.PUBLIC_URL +
-//     "/assets/profileButton.svg"});
-//     width: 106px;
-//     height: 106px;
-//     border-radius: 50%;
-//     cursor: pointer;
-//   }
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+`;
 
-//   &:active::before {
-//     background-image: none;
-//   }
+const WrapperForInput = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
-//   &:focus {
-//     outline: 2px solid #f56c54;
-//   }
-// `;
-
-// const FileName = styled.p`
-//   font-size: 10px;
-//   width: 100px;
-//   overflow-wrap: break-word;
-//   color: #31556d;
-// `;
+export const FormButton = styled.button`
+  border-radius: 4px;
+  background-color: #ffcff1;
+  border: none;
+  color: ${DarkGray};
+  text-align: center;
+  font-size: 16px;
+  padding: 15px;
+  width: 350px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  @media (min-width: 767px) {
+    width: 550px;
+    font-size: 22px;
+  }
+`;

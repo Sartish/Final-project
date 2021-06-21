@@ -56,16 +56,13 @@ const HamburgerMenu = () => {
 
 export default HamburgerMenu;
 
-
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
-const LightPink = "#FFCFF1"
-const Yellow = "#FFF5D1"
-
+const ParagraphFont = "'Roboto', sans-serif;";
+const LightPink = "#FFCFF1";
+const DarkGray = "#282828";
 
 export const HamburgerButton = styled.button`
   position: absolute;
-  top: 40px;
+  top: 30px;
   background-color: transparent;
   border: none;
   width: 60px;
@@ -78,7 +75,7 @@ export const HamburgerButton = styled.button`
   div {
     width: 50px;
     height: 7px;
-    background-color: black;
+    background-color: ${DarkGray};
     margin: 5px;
     border-radius: 30px;
   }
@@ -99,10 +96,10 @@ export const MenuContainer = styled.div`
 
 export const Link = styled.div`
   font-size: 25px;
-  font-family: ${LightPink}
+  font-family: ${ParagraphFont}
   text-decoration: none;
   margin: 10px;
-  color: black;
+  color: ${DarkGray};
   &visited {
     color: #0b1d34;
   }

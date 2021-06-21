@@ -32,31 +32,29 @@ const TopSearches = () => {
       <TopSearchesHeaderContainer>
         <Header>Top 20 recent searches</Header>
       </TopSearchesHeaderContainer>
-      <Container className={classes.container}>
-        <List>
-          {sortDesc(allConcepts.data)?.map((item) => {
-            // console.log(item._id);
-            return (
-              <Link key={item._id} className={classes.link} to={`/concepts/${item._id}`}>
-                <Numbers style={{ textDecoration: "none" }}>
-                  {item.concept}
-                </Numbers>
-              </Link>
-            );
-          })}
-        </List>
-      </Container>
+      <List>
+        {sortDesc(allConcepts.data)?.map((item) => {
+          console.log(item._id);
+          return (
+            <Link className={classes.link} to={`/concepts/${item._id}`}>
+              <Numbers style={{ textDecoration: "none" }}>
+                <li style={{ textDecoration: "none" }}>{item.concept}</li>
+              </Numbers>
+            </Link>
+          );
+        })}
+      </List>
     </Container>
   );
 };
-
 export default TopSearches;
 
 const HeaderFont = "'Manrope', sans-serif";
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
-const LightPink = "#FFCFF1"
-const Yellow = "#FFF5D1"
+const ParagraphFont = "'Roboto', sans-serif;";
+const LightPink = "#FFCFF1";
+
+const Gray = "#404040;";
+const DarkGray = "#282828";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -70,6 +68,7 @@ const useStyles = makeStyles(() => ({
       marginTop: "60px",
       marginBottom: "60px",
       padding: "20px",
+      alignItems: "center",
     },
   },
   link: {
@@ -82,9 +81,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-
 const TopSearchesHeaderContainer = styled.div`
-  // width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,12 +97,14 @@ const Header = styled.h3`
   font-size: 24px;
   justify-content: center;
   align-items: center;
-  margin 0;
+  margin-left: 50px;
   text-align: center;
   border-bottom: 2px solid ${LightPink};
   font-family: ${HeaderFont};
+  color: ${DarkGray};
   @media (min-width: 768px) {
     font-size: 35px;
+    margin-left: 0px;
   }
 `;
 
@@ -114,20 +113,21 @@ const List = styled.ol`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
-  height: 600px;
-  width: 400px;
+  width: 200px;
   padding: 0px;
-
+  height: 900px;
+  margin-left: 50px;
   text-decoration: none;
   @media screen and (min-width: 768px) {
     width: 1000px;
-    height: 350px;
-    padding: 0 80px;
+    height: 400px;
+    margin-left: 0px;
   }
 `;
 
-const Numbers = styled.li`
+const Numbers = styled.p`
   display: flex;
+  flex-wrap: wrap;
   padding-bottom: 0px;
   flex-direction: column;
   align-items: flex-start;
@@ -136,25 +136,15 @@ const Numbers = styled.li`
   font-family: ${ParagraphFont}
   cursor: pointer;
   text-decoration: none;
-
+  height: 50px;
+  box-sizing: border-box;
+  max-width: 50%;
+  color: ${Gray};
   @media screen and (min-width: 768px) {
-    font-size: 25px;
-    padding-bottom: 40px;
+    font-size: 16px;
+    padding-bottom: 20px;
     line-height: 30px;
-    padding-left: 30px;
+    align-items: center;
     margin: 0px;
-  }
-`;
-
-const Border = styled.div`
-  display: flex;
-  text-align: center;
-  width: 300px;
-  height: 10px;
-  background-color: ${Yellow};
-  border-radius: 50px;
-  @media (min-width: 768px) {
-    width: 500px;
-    margin 0;
   }
 `;

@@ -16,13 +16,9 @@ const DescriptionHeader = ({ heading }) => {
 
 export default DescriptionHeader;
 
-
 const HeaderFont = "'Manrope', sans-serif";
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
-const LightPink = "#FFCFF1"
-const Yellow = "#FFF5D1"
-
+const LightPink = "#FFCFF1";
+const DarkGray = "#282828";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,12 +37,12 @@ export const Title = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: solid 4px #ffcff1;
+  border-bottom: solid 4px ${LightPink};
   font-size: 24px;
   margin: 0px;
   font-family: ${HeaderFont};
+  color: ${DarkGray};
   @media (min-width: 768px) {
     font-size: 40px;
   }
-
 `;

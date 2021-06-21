@@ -54,13 +54,11 @@ const Concepts = () => {
       <Navigation />
       <ConceptHeader inputValue={searchText} handleOnChange={handleChange} />
       <Container className={classes.container}>
-        <HeaderConcepts> <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph></HeaderConcepts>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          color="blue"
-        >
+        <HeaderConcepts>
+          {" "}
+          <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
+        </HeaderConcepts>
+        <Grid container direction="row" justify="center" color="blue">
           {conceptList.data?.map((item) => {
             return (
               <>
@@ -106,10 +104,11 @@ const Concepts = () => {
 
 export default Concepts;
 
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
-const LightPink = "#FFCFF1"
+const ParagraphFont = "'Roboto', sans-serif;";
+const HotPink = "#FF69B4";
+const LightPink = "#FFCFF1";
 const HeaderFont = "'Manrope', sans-serif";
+const DarkGray = "#282828";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -123,25 +122,26 @@ const useStyles = makeStyles(() => ({
 }));
 
 const HeaderConcepts = styled.div`
-width: 100%;
-display: flex;
-justify-content: center;
-margin: 0px;
-align-items: center;
-`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  align-items: center;
+`;
 
 const ConceptsParagraph = styled.h3`
-display: flex;
-font-size: 24px;
-margin: 0px;
-font-family: ${HeaderFont};
-border-bottom: 2px solid ${LightPink};
-`
+  display: flex;
+  font-size: 24px;
+  margin: 0px;
+  font-family: ${HeaderFont};
+  border-bottom: 2px solid ${LightPink};
+  color: ${DarkGray};
+`;
 
 const PageNumber = styled.p`
   font-family: ${ParagraphFont};
   font-size: 16px;
-`
+`;
 const ConceptButtonWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;

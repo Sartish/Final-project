@@ -2,40 +2,38 @@ import React from "react";
 import { Container, makeStyles, TextField } from "@material-ui/core";
 import styled from "styled-components";
 
-import { StartButtonContainer } from "components/StyledComponents";
-
 const ConceptHeader = ({ inputValue, handleOnChange }) => {
   const classes = useStyles();
 
   return (
-      <Container className={classes.container}>
-        <Title>Find your techy word here</Title>
-        <Border>.</Border>
-        <Wrapper>
-          <ContainerForSearch>
-              <SearchField>
-                  <form noValidate autoComplete="off">
-                    <TextField
-                      id="outlined-basic"
-                      label="Search here..."
-                      variant="outlined"
-                      value={inputValue}
-                      onChange={handleOnChange}
-                    />
-                  </form>
-              </SearchField>
-          </ContainerForSearch>
-        </Wrapper>
-      </Container>
+    <Container className={classes.container}>
+      <Title>Find your techy word here</Title>
+      <Border>.</Border>
+      <Wrapper>
+        <ContainerForSearch>
+          <SearchField>
+            <form noValidate autoComplete="off">
+              <TextField
+                id="outlined-basic"
+                label="Search here..."
+                variant="outlined"
+                value={inputValue}
+                onChange={handleOnChange}
+              />
+            </form>
+          </SearchField>
+        </ContainerForSearch>
+      </Wrapper>
+    </Container>
   );
 };
 
 export default ConceptHeader;
 
-
 const HeaderFont = "'Manrope', sans-serif";
-const LightPink = "#FFCFF1"
-const Yellow = "#FFF5D1"
+const LightPink = "#FFCFF1";
+const Yellow = "#FFF5D1";
+const DarkGray = "#282828";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -65,18 +63,17 @@ export const ContainerForSearch = styled.section`
   }
 `;
 
-
 export const Title = styled.h2`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: ${HeaderFont};
-  padding: 10px;
+  padding: 0px;
   font-size: 24px;
   padding: 0px;
-  margin-bottom: 20px;
-
+  margin: 0px;
+  color: ${DarkGray};
   @media (min-width: 768px) {
     font-size: 35px;
   }
@@ -97,7 +94,6 @@ const Border = styled.div`
     width: 500px;
   }
 `;
-
 
 export const Wrapper = styled.div`
   display: flex;
@@ -120,4 +116,4 @@ export const Wrapper = styled.div`
 
 const SearchField = styled.div`
   display: flex;
-`
+`;

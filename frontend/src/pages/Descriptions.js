@@ -4,9 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import moment from "moment";
 import styled from "styled-components/macro";
-
-import {LikesButton } from "../components/StyledComponents";
-
 import {
   Card,
   Grid,
@@ -18,6 +15,7 @@ import {
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
+
 import { API_URL } from "../reusables/urls";
 import DescriptionHeader from "../components/DescriptionHeader";
 import DescriptionFooter from "../components/DescriptionFooter";
@@ -60,7 +58,6 @@ export default function Descriptions() {
     return [];
   };
 
-
   const postLikeToBackend = (descriptionId) => {
     if (myClickedHeartId.includes(descriptionId)) return;
     setClickedHeartId((arr) => [...arr, descriptionId]);
@@ -89,7 +86,8 @@ export default function Descriptions() {
               >
                 Sort by likes
                 <span role="img" aria-label="calender">
-                {" 🖤"}</span>
+                  {" 🖤"}
+                </span>
               </LikesButton>
               <LikesButton
                 onClick={() => {
@@ -98,18 +96,13 @@ export default function Descriptions() {
               >
                 Sort by date
                 <span role="img" aria-label="calender">
-                {" 📅"}</span>
-
+                  {" 📅"}
+                </span>
               </LikesButton>
             </FilterButtons>
           </ButtonContainer>
         </WrapperFilter>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          color="blue"
-        >
+        <Grid container direction="row" justify="center" color="blue">
           {sortDesc(description)?.map((item) => {
             //console.log(item);
             return (
@@ -136,10 +129,11 @@ export default function Descriptions() {
                       Created at: {moment(item.createdAt).format("MMM Do YYYY")}
                     </Typography>
                     <CardActions disableSpacing>
-                      <IconButton aria-label="add to favorites"
-                          onClick={() => postLikeToBackend(item._id)}>
-                        <FavoriteIcon className={classes.heart}
-                        />
+                      <IconButton
+                        aria-label="add to favorites"
+                        onClick={() => postLikeToBackend(item._id)}
+                      >
+                        <FavoriteIcon className={classes.heart} />
                         <Typography
                           variant="body1"
                           color="textPrimary"
@@ -163,11 +157,10 @@ export default function Descriptions() {
 }
 
 const HeaderFont = "'Manrope', sans-serif";
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
-const LightPink = "#FFCFF1"
-const Yellow = "#FFF5D1"
-
+const ParagraphFont = "'Roboto', sans-serif;";
+const LightPink = "#FFCFF1";
+const Yellow = "#FFF5D1";
+const DarkGray = "#282828";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -197,9 +190,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginLeft: "10px",
     marginRight: "8px",
+    fontFamily: "'Manrope', sans-serif",
+    color: "#282828",
   },
   user: {
-    fontSize: "17px",
+    fontSize: "16px",
+    fontFamily: "'Roboto', sans-serif;",
   },
   span: {
     fontSize: "17px",
@@ -209,7 +205,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: "20px",
+    fontSize: "16px",
+    fontFamily: { ParagraphFont },
   },
   heart: {
     fontSize: "40px",
@@ -235,20 +232,21 @@ const ButtonContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  margin-top: 40px;
-  background-color: #FFF5D1;
+  margin-top: 10px;
+  padding: 30px;
+  background-color: ${Yellow};
 
   @media (min-width: 768px) {
     width: 800px;
     margin-top: 30px;
     justify-content: space-between;
     margin: 10px 80px 5px 80px;
-    padding: 20px
+    padding: 20px;
   }
 `;
 
 const WrapperFilter = styled.div`
-width: 90%;
+  width: 90%;
   @media (min-width: 768px) {
     display: flex;
     width: 1200px;
@@ -261,6 +259,36 @@ const FilterButtons = styled.div`
   display: flex;
 `;
 
-const SubHeading = styled.h2`
+const SubHeading = styled.p`
   display: flex;
+  margin: 5px;
+  font-family: ${HeaderFont};
+  color: ${DarkGray};
+  font-size: 24px;
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
+`;
+
+export const LikesButton = styled.button`
+display: inline-block;
+color: ${DarkGray};
+background-color: ${LightPink};
+width: 150x;
+border: 4px solid ${LightPink};
+text-align: center;
+font-weight: bold;
+font-family: ${ParagraphFont},
+font-size: 16px;
+padding: 13px;
+margin: 5px;
+border-radius: 10px;
+text-decoration: none;
+cursor: pointer;
+transition: background-color 1s ease-in, color 1s ease-in;
+:hover {
+  color: white;
+  background-color: black;
+  border:4px solid black;
+  transition: background-color 0.5s ease-out, color 0.5s ease-out;
 `;

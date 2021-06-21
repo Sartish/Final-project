@@ -34,13 +34,13 @@ const Navigation = () => {
         </Logo>
         <RightNav>
           <NavLink
-            style={{ paddingLeft: 10, textDecoration: "none" }}
+            style={{ paddingLeft: 5, textDecoration: "none" }}
             to="/concepts"
           >
             <Link>Concepts</Link>
           </NavLink>
           <NavLink
-            style={{ paddingLeft: 10, textDecoration: "none" }}
+            style={{ paddingLeft: 5, textDecoration: "none" }}
             to="/newconcept"
           >
             <Link>Add concept</Link>
@@ -73,26 +73,24 @@ const Navigation = () => {
 
 export default Navigation;
 
-const HeaderFont = "'Manrope', sans-serif";
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
-const LightPink = "#FFCFF1"
-const Yellow = "#FFF5D1"
-
+const ParagraphFont = "'Roboto', sans-serif;";
+const HotPink = "#FF69B4";
+const Gray = "#404040;";
+const DarkGray = "#282828";
 
 export const NavigationBar = styled.div`
   display: flex;
   padding: 0px 15px;
   justify-content: space-between;
-  margin: 5px;
+  margin: 2px 3%;
   align-items: center;
-  border-bottom: black solid 2px;
+  border-bottom: ${DarkGray} solid 1.5px;
   @media (min-width: 768px) {
     justify-content: space-between;
   }
 `;
 
- const Hamburger = styled.div`
+const Hamburger = styled.div`
   display: flex;
   width: 35px;
   height: 5px;

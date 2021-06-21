@@ -14,7 +14,6 @@ const AddedDescription = () => {
   const { conceptId } = useParams();
   const history = useHistory();
 
-
   let idOfAConcept = conceptId;
 
   const accessToken = useSelector((store) => store.user.accessToken);
@@ -46,7 +45,6 @@ const AddedDescription = () => {
         });
       }
     }
-
   };
 
   const onFormSubmit = (e) => {
@@ -78,7 +76,8 @@ const AddedDescription = () => {
           <WriteHere>Contribute with your explanation</WriteHere>
           <ParagraphInstructions>
             <HiUser>
-              Nice <strong>{username}</strong>, you want to contribute<span>🖤</span>
+              Nice <strong>{username}</strong>, you want to contribute
+              <span>🖤</span>
             </HiUser>
             <HowToAddDescription>
               Make sure you are signed in and then write you explanation, make
@@ -120,6 +119,14 @@ const AddedDescription = () => {
 
 export default AddedDescription;
 
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif";
+const HotPink = "#FF69B4";
+const LightPink = "#FFCFF1";
+const Yellow = "#FFF5D1";
+const Gray = "#404040;";
+const DarkGray = "#282828";
+
 const useStyles = makeStyles(() => ({
   input: {
     marginTop: "50px",
@@ -151,14 +158,17 @@ const ParagraphInstructions = styled.div`
 
 const HiUser = styled.p`
   font-size: 16px;
-
+  color: ${Gray};
+  font-family: ${ParagraphFont};
   @media (min-width: 768px) {
     font-size: 24px;
   }
-` ;
+`;
 
 const HowToAddDescription = styled.p`
-  font-size: 14px;
+  font-size: 16px;
+  color: ${Gray};
+  font-family: ${ParagraphFont};
   margin: 0;
 `;
 
@@ -179,7 +189,7 @@ const Wrapper = styled.div`
 
   @media (min-width: 767px) {
     // width: 50%;
-    max-width:500px;
+    max-width: 500px;
   }
 
   // @media (min-width: 1025px) {
@@ -190,6 +200,9 @@ const Wrapper = styled.div`
 const TextCounter = styled.p`
   text-align: right;
   margin-right: 5px;
+  font-size: 16px;
+  color: ${Gray};
+  font-family: ${ParagraphFont};
 `;
 
 const Form = styled.form`
@@ -202,14 +215,15 @@ const WriteHere = styled.h3`
   align-text: center;
   width: 250px;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin: 40px 15px 15px 5px;
   padding: 5px;
   font-size: 24px;
-  border-bottom: 5px #ffcff1 solid;
+  color: ${DarkGray};
+  font-family: ${HeaderFont};
+  border-bottom: 5px solid ${LightPink};
   @media (min-width: 767px) {
-    font-size: 40px;
-    width: 500px;
+    font-size: 35px;
+    width: 550px;
   }
 `;
 

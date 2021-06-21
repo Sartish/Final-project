@@ -5,7 +5,6 @@ import Navigation from "../components/Navigation";
 import CountUp from "react-countup";
 import Footer from "../components/Footer";
 
-
 const FrontPage = () => {
   const [allConcepts, setAllConcepts] = useState({ data: [] });
 
@@ -19,18 +18,18 @@ const FrontPage = () => {
     <>
       <Navigation />
       <BackgroundContainer>
-      <FrontPageContainer>
+        <FrontPageContainer>
           <CountingConceptHeader>
             <CountText>Currently</CountText>
             <CountText>
-            <CountUp
-              style={{
-                marginBottom: 0,
-                display: "flex",
-              }}
-              duration={10}
-              end={allConcepts.data.length}
-            />
+              <CountUp
+                style={{
+                  marginBottom: 0,
+                  display: "flex",
+                }}
+                duration={10}
+                end={allConcepts.data.length}
+              />
             </CountText>
             <CountText>Concepts</CountText>
           </CountingConceptHeader>
@@ -43,15 +42,15 @@ const FrontPage = () => {
             </Paragraph>
           </TitleContainer>
           <ButtonSection>
-              <ShowMe>Show me!</ShowMe>
-              <Link to="/concepts">
-                <FrontPageButton>Concepts</FrontPageButton>
-              </Link>
-            </ButtonSection>
-      </FrontPageContainer>
+            <ShowMe>Show me!</ShowMe>
+            <Link to="/concepts">
+              <FrontPageButton>Concepts</FrontPageButton>
+            </Link>
+          </ButtonSection>
+        </FrontPageContainer>
       </BackgroundContainer>
       <Footer />
-      </>
+    </>
   );
 };
 
@@ -60,35 +59,37 @@ export default FrontPage;
 // Frontpage
 
 const HeaderFont = "'Manrope', sans-serif";
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
-const LightPink = "#FFCFF1"
-const Yellow = "#FFF5D1"
+const ParagraphFont = "'Roboto', sans-serif";
+const HotPink = "#FF69B4";
+const LightPink = "#FFCFF1";
+const Yellow = "#FFF5D1";
+const Gray = "#404040;";
+const DarkGray = "#282828";
 
 const BackgroundContainer = styled.section`
-    margin: 0px;
-    @media (min-width: 768px) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  `
-const FrontPageContainer = styled.section`
+  margin: 0px;
+  @media (min-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 90%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    @media (min-width: 768px) {
-      justify-content: space-around;
-      flex-direction: row;
-      width: 100%;
-      margin: 0px;
-      height: 500px;
-    }
-  `
+  }
+`;
+const FrontPageContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  @media (min-width: 768px) {
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+    height: 500px;
+  }
+`;
 
 export const CountingConceptHeader = styled.div`
   display: flex;
@@ -99,9 +100,10 @@ export const CountingConceptHeader = styled.div`
   width: 200px;
   font-family: ${HeaderFont};
   padding: 0px;
-    @media (min-width: 768px) {
+  color: ${Gray};
+  @media (min-width: 768px) {
     margin-top: 200px;
-    }
+  }
 `;
 
 export const CountText = styled.h3`
@@ -128,19 +130,18 @@ export const TitleContainer = styled.h1`
   }
 `;
 
-
 export const Title = styled.h1`
   display: flex;
   font-size: 40px;
   font-family: ${HeaderFont};
   margin-bottom: 10px;
+  color: ${DarkGray};
   line-height: 150%;
   @media (min-width: 768px) {
     font-size: 120px;
     margin: 0px;
   }
 `;
-
 
 export const Border = styled.div`
   width: 200px;
@@ -158,6 +159,7 @@ export const Paragraph = styled.p`
   font-family: ${HeaderFont};
   line-height: 150%;
   padding: 10px;
+  color: #404040;
   background-color: ${Yellow};
   @media (min-width: 768px) {
     width: 600px;
@@ -185,6 +187,7 @@ const ShowMe = styled.h3`
   font-size: 24px;
   font-family: ${ParagraphFont};
   margin-bottom: 5px;
+  color: ${Gray};
   @media (min-width: 768px) {
     font-size: 40px;
     padding-bottom: 20px;

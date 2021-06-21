@@ -28,11 +28,6 @@ export default function ConceptCard({
   );
 }
 
-
-const ParagraphFont = "'Roboto', sans-serif;"
-
-const Yellow = "#FFF5D1"
-
 const useStyles = makeStyles({
   container: {
     width: "100%",
@@ -58,7 +53,8 @@ const useStyles = makeStyles({
     color: "black",
     textAlign: "center",
     fontSize: "16px",
-    fontFamily: "${ParagraphFont}"
+    fontFamily: "'Roboto', sans-serif;",
+    color: "#404040",
   },
 
   link: {
