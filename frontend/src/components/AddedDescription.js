@@ -65,6 +65,16 @@ const AddedDescription = () => {
       .then((res) => res.json())
       .then(() => {
         handleClick();
+      })
+      .catch((error) => {
+        // post failed, show error message to let user know
+        console.log("Catch error:" + error);
+        swal({
+          title: "Failed to add concept",
+          text: error.message,
+          icon: "error",
+          button: "OK!",
+        });
       });
   };
 

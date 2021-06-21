@@ -143,7 +143,7 @@ const Numbers = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 16px;
     padding-bottom: 20px;
-    line-height: 30px;
+    // line-height: 30px;
     align-items: center;
     margin: 0px;
   }
