@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 import { TextField, makeStyles } from "@material-ui/core";
-import { CustomButton } from "./StyledComponents";
+// import { CustomButton } from "./StyledComponents";
 
 const AddedDescription = () => {
   const classes = useStyles();
@@ -15,15 +15,21 @@ const AddedDescription = () => {
   const { conceptId } = useParams();
   const history = useHistory();
 
+
   let idOfAConcept = conceptId;
 
   const accessToken = useSelector((store) => store.user.accessToken);
   const username = useSelector((store) => store.user.username);
 
   const handleClick = () => {
-    console.log("hej");
     if (accessToken) {
-      history.push("/");
+      swal({
+        title: "Success!",
+        text: "Your description have been added",
+        icon: "success",
+        button: "ok",
+      });
+      history.push("/concepts");
     } else {
       swal({
         title: "Not yet!",
@@ -62,13 +68,13 @@ const AddedDescription = () => {
         <Wrapper>
           <WriteHere>Contribute with your explanation</WriteHere>
           <ParagraphInstructions>
-            <p>
-              Nice{username}, you want to contribute<span>🖤</span>
-            </p>
-            <p>
+            <HiUser>
+              Nice <strong>{username}</strong>, you want to contribute<span>🖤</span>
+            </HiUser>
+            <HowToAddDescription>
               Make sure you are signed in and then write you explanation, make
-              it short and sweet, maximum 200 characters
-            </p>
+              it short and sweet, maximum 160 characters!
+            </HowToAddDescription>
           </ParagraphInstructions>
           <Form onSubmit={onFormSubmit}>
             <TextField
@@ -83,9 +89,9 @@ const AddedDescription = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <TextCounter>{description.length}/200</TextCounter>
+            <TextCounter>{description.length}/160</TextCounter>
             <ButtonSection>
-              <Link to="/">
+              <Link to="/concepts">
                 <CustomButton>Back</CustomButton>
               </Link>
               <CustomButton
@@ -93,7 +99,7 @@ const AddedDescription = () => {
                 value="description"
                 onClick={onFormSubmit}
                 disabled={
-                  !!(description.length < 1 || description.length > 140)
+                  !!(description.length < 1 || description.length > 160)
                 }
               >
                 Done!
@@ -122,8 +128,8 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 30px;
 `;
+
 const ParagraphInstructions = styled.div`
   display: flex;
   justify-content: center;
@@ -131,10 +137,23 @@ const ParagraphInstructions = styled.div`
   margin-right: 30px;
   flex-direction: column;
   margin: 0px;
-  width: 50%;
+  width: 80%;
   @media (min-width: 767px) {
     width: 90%;
   }
+`;
+
+const HiUser = styled.p`
+  font-size: 16px;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+` ;
+
+const HowToAddDescription = styled.p`
+  font-size: 14px;
+  margin: 0;
 `;
 
 const ButtonSection = styled.div`
@@ -153,12 +172,13 @@ const Wrapper = styled.div`
   max-width: 370px;
 
   @media (min-width: 767px) {
-    width: 50%;
+    // width: 50%;
+    max-width:500px;
   }
 
-  @media (min-width: 1025px) {
-    width: 20%;
-  }
+  // @media (min-width: 1025px) {
+  //   width: 20%;
+  // }
 `;
 
 const TextCounter = styled.p`
@@ -174,14 +194,38 @@ const WriteHere = styled.h3`
   display: flex;
   justify-content: center;
   align-text: center;
-  width: 200px;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  width: 250px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
   padding: 5px;
   font-size: 24px;
   border-bottom: 5px #ffcff1 solid;
   @media (min-width: 767px) {
-    font-size: 30px;
+    font-size: 40px;
     width: 500px;
   }
+`;
+
+
+const CustomButton = styled.button`
+display: inline-block;
+  color: white;
+  background-color: #ff69b4;
+  width: 100px;
+  border: 4px solid #ff69b4;
+  text-align: center;
+  font-weight: bold;
+  padding: 15px;
+  font-size: 15px;
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 1s ease-in, color 1s ease-in;
+  :hover {
+    color: white;
+    background-color: black;
+    border:4px solid white;
+    transition: background-color 0.5s ease-out, color 0.5s ease-out;
 `;

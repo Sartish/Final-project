@@ -3,8 +3,8 @@ import { Container, makeStyles } from "@material-ui/core";
 import styled from "styled-components";
 import { useLocation, Link } from "react-router-dom";
 import {
-  StartButtonContainer,
-  Paragraph,
+  // StartButtonContainer,
+  // Paragraph,
   CustomButton,
 } from "components/StyledComponents";
 
@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "5px",
     backgroundColor: "#FFF5D1",
     padding: "10px",
+    ["@media (min-width:768px)"]: {
+      width: "800px",
+    },
   },
   contribute: {
     display: "flex",
@@ -72,6 +75,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const Paragraph = styled.p`
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  width: 300px;
+  font-weight: bold;
+  padding: 20px;
+  margin: 0;
+`;
+
+const StartButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // @media (min-width: 1024px) {
+  //   flex-direction: row;
+  // }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    width: 800px;
+  }
+`;
 export const ContainerHeader = styled.section`
   display: flex;
   flex-direction: column;

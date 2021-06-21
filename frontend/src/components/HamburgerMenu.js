@@ -58,7 +58,7 @@ export default HamburgerMenu;
 
 export const HamburgerButton = styled.button`
   position: absolute;
-  top: 20px;
+  top: 40px;
   background-color: transparent;
   border: none;
   width: 60px;

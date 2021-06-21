@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import "@lottiefiles/lottie-player";
 
-// const primaryFont = "'Corben', cursive";
+const primaryFont = "'Corben', cursive";
 const SecondaryFont = "'Manrope', sans-serif";
 
 // const blue = "#223A59";
@@ -64,36 +64,6 @@ export const ConceptButtonWrapper = styled.div`
 
 //Desciption
 //Footer
-
-export const FooterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 2px 3%;
-  margin-bottom: 10px;
-  padding: 0;
-  font-size: 14px;
-  background-color: white;
-  border-top: 2px solid black;
-  color: black;
-  height: 100px;
-  @media (min-width: 767px) {
-    font-size: 20px;
-  }
-`;
-
-export const FooterParagraphs = styled.div`
-  margin: 0;
-  text-align: center;
-`;
-
-export const Logo = styled.div`
-  width: 50px;
-  height: 50px;
-  margin: 0;
-`;
-
 export const Link = styled.a`
   color: #aa0000;
 `;

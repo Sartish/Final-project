@@ -2,22 +2,19 @@ import React from "react";
 import { Container, makeStyles, TextField } from "@material-ui/core";
 import styled from "styled-components";
 
-import { StartButtonContainer, Paragraph } from "components/StyledComponents";
+import { StartButtonContainer } from "components/StyledComponents";
 
 const ConceptHeader = ({ inputValue, handleOnChange }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.background}>
       <Container className={classes.container}>
         <Title>Find your techy word here</Title>
-        <Border>hej</Border>
+        <Border>.</Border>
         <Wrapper>
-          <ContainerHeader role="main">
-            <StartButtonContainer>
-              <div className={classes.filter}>
-                <Paragraph>
-                  <form className={classes.root} noValidate autoComplete="off">
+          <ContainerHeader>
+              <Filter>
+                  <form noValidate autoComplete="off">
                     <TextField
                       id="outlined-basic"
                       label="Search here..."
@@ -26,17 +23,21 @@ const ConceptHeader = ({ inputValue, handleOnChange }) => {
                       onChange={handleOnChange}
                     />
                   </form>
-                </Paragraph>
-              </div>
-            </StartButtonContainer>
+              </Filter>
           </ContainerHeader>
         </Wrapper>
       </Container>
-    </div>
   );
 };
 
 export default ConceptHeader;
+
+
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif;"
+const HotPink = "#FF69B4"
+const LightPink = "#FFCFF1"
+const Yellow = "#FFF5D1"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -44,13 +45,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "column",
-    width: "50% ",
+    width: "85% ",
     height: "200px",
     marginTop: "35px",
-  },
-
-  filter: {
-    display: "flex",
   },
 }));
 
@@ -77,8 +74,10 @@ export const Wrapper = styled.div`
   align-items: space-between;
   padding: 10px;
   height: 400px;
-  width: 200px;
+  // width: 200px;
+  width: 320px;
   background-color: #fff5d1;
+
   @media (min-width: 768px) {
     margin-top: 20px;
     margin-bottom: 0px;
@@ -93,13 +92,20 @@ export const Title = styled.div`
   align-items: center;
   border-bottom-radius: 50%;
   padding: 10px;
-  font-size: 50px;
+  font-size: 35px;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 40px;
+  }
 `;
 const Border = styled.div`
   display: flex;
   text-align: center;
-  width: 210px;
-  height: 60px;
+  // width: 210px;
+  width: 335px;
+  height: 10px;
+  margin-bottom: 15px;
   color: #ffcff1;
   border:  #ffcff1; 2px solid;
   background-color: #ffcff1;
@@ -108,3 +114,16 @@ const Border = styled.div`
     width: 500px;
   }
 `;
+
+export const ConceptButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin: 30px 80px;
+  padding: 20px;
+`;
+
+const Filter = styled.div`
+  display: flex;
+`

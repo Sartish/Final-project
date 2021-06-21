@@ -108,7 +108,6 @@ export default function Descriptions() {
           container
           direction="row"
           justify="center"
-          alignItems="start"
           color="blue"
         >
           {sortDesc(description)?.map((item) => {
@@ -137,10 +136,9 @@ export default function Descriptions() {
                       Created at: {moment(item.createdAt).format("MMM Do YYYY")}
                     </Typography>
                     <CardActions disableSpacing>
-                      <IconButton aria-label="add to favorites">
-                        <FavoriteIcon
-                          className={classes.heart}
-                          onClick={() => postLikeToBackend(item._id)}
+                      <IconButton aria-label="add to favorites"
+                          onClick={() => postLikeToBackend(item._id)}>
+                        <FavoriteIcon className={classes.heart}
                         />
                         <Typography
                           variant="body1"
@@ -229,7 +227,8 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 80px;
+  flex-direction: column;
+  margin-top: 40px;
   background-color: #FFF5D1;
 
   @media (min-width: 768px) {
@@ -238,7 +237,7 @@ const ButtonContainer = styled.div`
     justify-content: space-between;
     margin: 10px 80px 5px 80px;
     padding: 20px
-
+  }
 `;
 
 const WrapperFilter = styled.div`

@@ -210,7 +210,6 @@ const useStyles = makeStyles((theme) => ({
   background: {
     width: "100vw",
     height: "100vh",
-    // backgroundImage: "linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)",
   },
   wrapper: {
     display: "flex",

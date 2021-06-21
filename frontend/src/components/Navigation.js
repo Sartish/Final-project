@@ -6,8 +6,6 @@ import SignOut from "./SignOut";
 import HamburgerMenu from "./HamburgerMenu";
 import "@lottiefiles/lottie-player";
 
-import { SigninButton } from "./StyledComponents";
-
 const Navigation = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
 
@@ -28,7 +26,7 @@ const Navigation = () => {
                 display: "flex",
                 justifyContent: "center",
                 width: 200,
-                height: 120,
+                height: 100,
                 marginLeft: 0,
               }}
             ></lottie-player>
@@ -75,23 +73,30 @@ const Navigation = () => {
 
 export default Navigation;
 
-/*******DEFAULT SETTING*****/
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif;"
+const HotPink = "#FF69B4"
+const LightPink = "#FFCFF1"
+const Yellow = "#FFF5D1"
+
 
 export const NavigationBar = styled.div`
   display: flex;
-  padding: 2px 15px;
+  padding: 0px 15px;
   justify-content: space-between;
+  margin: 5px;
   align-items: center;
-  border-bottom: solid 0.16em;
-  margin: 2px 3%;
+  border-bottom: black solid 2px;
   @media (min-width: 768px) {
     justify-content: space-between;
   }
 `;
 
-export const Hamburger = styled.div`
+ const Hamburger = styled.div`
+  display: flex;
   width: 35px;
   height: 5px;
+  padding-bottom: 15px;
   @media (min-width: 1025px) {
     display: none;
   }
@@ -120,6 +125,7 @@ export const Logo = styled.div`
 export const Link = styled.div`
   text-decoration: none;
   font-size: 17px;
+  font-family: ${ParagraphFont}
   padding: 10px;
   margin: 10px;
   color: black;
@@ -127,18 +133,28 @@ export const Link = styled.div`
   transition: all 0.2s;
   :hover {
     text-decoration: underline;
-    text-decoration-color: #ff69b4;
+    text-decoration-color: ${HotPink};
   }
 `;
 
-export const Button = styled.div`
-  text-decoration: none;
-  padding: 10px;
-  margin: 10px;
-  border: 0.16em solid black;
-  background: #ffcff1;
-  color: black;
+export const SigninButton = styled.button`
+  display: inline-block;
+  color: white;
+  background-color: ${HotPink};
+  width: 100px;
+  border: 4px solid ${HotPink};
   text-align: center;
-  transition: all 0.2s;
-  font-size: 17px;
+  font-weight: bold;
+  padding: 13px;
+  cursor: pointer;
+  font-family: ${ParagraphFont};
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 1s ease-in, color 1s ease-in;
+  :hover {
+    color: white;
+    background-color: black;
+    border:4px solid white;
+    transition: background-color 0.5s ease-out, color 0.5s ease-out;
 `;

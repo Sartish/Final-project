@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import { Grid, makeStyles, Container } from "@material-ui/core";
+import styled from "styled-components/macro";
 import ConceptCard from "../components/ConceptCard";
-import {
-  ConceptButtonWrapper,
-  CustomButton,
-} from "components/StyledComponents";
 import ConceptHeader from "../components/ConceptHeader";
 import Footer from "../components/Footer";
 import { API_URL } from "../reusables/urls";
@@ -61,7 +58,6 @@ const Concepts = () => {
           container
           direction="row"
           justify="center"
-          alignItems="start"
           color="blue"
         >
           {conceptList.data?.map((item) => {
@@ -89,6 +85,7 @@ const Concepts = () => {
           >
             Back
           </CustomButton>
+          <PageNumber>{pageNumber}</PageNumber>
           <CustomButton
             variant="contained"
             color="primary"
@@ -108,22 +105,50 @@ const Concepts = () => {
 
 export default Concepts;
 
+const ParagraphFont = "'Roboto', sans-serif;"
+const HotPink = "#FF69B4"
+
+
 const useStyles = makeStyles(() => ({
   container: {
     width: "100%",
-    marginTop: "300px",
+    marginTop: "100px",
     ["@media (min-width:780px)"]: {
       marginTop: "60px",
     },
   },
-  header: {
-    textAlign: "center",
-    padding: "20px",
-  },
-  search: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-  },
 }));
+
+const PageNumber = styled.p`
+  font-family: ${ParagraphFont};
+  font-size: 16px;
+`
+
+const ConceptButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px;
+`;
+
+const CustomButton = styled.button`
+  display: inline-block;
+  color: white;
+  background-color: ${HotPink};
+  width: 100px;
+  border: 4px solid ${HotPink};
+  text-align: center;
+  font-weight: bold;
+  font-family: ${ParagraphFont};
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 1s ease-in, color 1s ease-in;
+  :hover {
+    color: white;
+    background-color: black;
+    border:4px solid white;
+    transition: background-color 0.5s ease-out, color 0.5s ease-out;
+`;

@@ -45,7 +45,8 @@ const descriptionSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 2,
+    maxlength:160,
   },
   createdAt: {
     type: Date,

@@ -40,7 +40,7 @@ const TopSearches = () => {
             return (
               <Link key={item._id} className={classes.link} to={`/concepts/${item._id}`}>
                 <Numbers style={{ textDecoration: "none" }}>
-                  <li style={{ textDecoration: "none" }}>{item.concept}</li>
+                  {item.concept}
                 </Numbers>
               </Link>
             );
@@ -114,7 +114,7 @@ const Numbers = styled.li`
 `;
 
 const TopSearchesHeaderContainer = styled.div`
-  width: 200px;
+  // width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,14 +127,19 @@ const TopSearchesHeaderContainer = styled.div`
 
 const Header = styled.h2`
   display: flex;
-  font-size: 40px;
+  font-size: 24px;
   margin 0;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 40px;
+  }
 `;
 
 const Border = styled.div`
   display: flex;
   text-align: center;
-  width: 210px;
+  width: 300px;
   height: 10px;
   background-color: #ffcff1;
   border-radius: 50px;
