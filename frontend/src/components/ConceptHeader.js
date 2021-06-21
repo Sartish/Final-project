@@ -12,8 +12,8 @@ const ConceptHeader = ({ inputValue, handleOnChange }) => {
         <Title>Find your techy word here</Title>
         <Border>.</Border>
         <Wrapper>
-          <ContainerHeader>
-              <Filter>
+          <ContainerForSearch>
+              <SearchField>
                   <form noValidate autoComplete="off">
                     <TextField
                       id="outlined-basic"
@@ -23,8 +23,8 @@ const ConceptHeader = ({ inputValue, handleOnChange }) => {
                       onChange={handleOnChange}
                     />
                   </form>
-              </Filter>
-          </ContainerHeader>
+              </SearchField>
+          </ContainerForSearch>
         </Wrapper>
       </Container>
   );
@@ -34,8 +34,6 @@ export default ConceptHeader;
 
 
 const HeaderFont = "'Manrope', sans-serif";
-const ParagraphFont = "'Roboto', sans-serif;"
-const HotPink = "#FF69B4"
 const LightPink = "#FFCFF1"
 const Yellow = "#FFF5D1"
 
@@ -51,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ContainerHeader = styled.section`
+export const ContainerForSearch = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,6 +65,40 @@ export const ContainerHeader = styled.section`
   }
 `;
 
+
+export const Title = styled.h2`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: ${HeaderFont};
+  padding: 10px;
+  font-size: 24px;
+  padding: 0px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    font-size: 35px;
+  }
+`;
+const Border = styled.div`
+  display: flex;
+  text-align: center;
+  width: 300px;
+  height: 10px;
+  margin-bottom: 15px;
+  margin-top: 0px;
+  padding: 0px;
+  color: ${LightPink};
+  border: ${LightPink};; 2px solid;
+  background-color: ${LightPink};
+  border-radius: 50px;
+  @media (min-width: 768px) {
+    width: 500px;
+  }
+`;
+
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,9 +106,10 @@ export const Wrapper = styled.div`
   align-items: space-between;
   padding: 10px;
   height: 400px;
-  // width: 200px;
   width: 320px;
-  background-color: #fff5d1;
+  margin: 0px;
+  padding: 20px;
+  background-color: ${Yellow};
 
   @media (min-width: 768px) {
     margin-top: 20px;
@@ -85,45 +118,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-bottom-radius: 50%;
-  padding: 10px;
-  font-size: 35px;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    font-size: 40px;
-  }
-`;
-const Border = styled.div`
-  display: flex;
-  text-align: center;
-  // width: 210px;
-  width: 335px;
-  height: 10px;
-  margin-bottom: 15px;
-  color: #ffcff1;
-  border:  #ffcff1; 2px solid;
-  background-color: #ffcff1;
-  border-radius: 50px;
-  @media (min-width: 768px) {
-    width: 500px;
-  }
-`;
-
-export const ConceptButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  margin: 30px 80px;
-  padding: 20px;
-`;
-
-const Filter = styled.div`
+const SearchField = styled.div`
   display: flex;
 `

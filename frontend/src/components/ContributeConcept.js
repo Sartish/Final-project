@@ -46,7 +46,6 @@ const ContributeConcept = () => {
           text: "You have to sign in to contribute!",
           icon: "error",
           button: "Ah ok!",
-          width: '50px'
         });
       }
     }
@@ -142,9 +141,6 @@ const ContributeConcept = () => {
                 <CustomButton>Back</CustomButton>
                 </Link>
                 <CustomButton type="submit" value="description"
-                //  disabled={
-                //   !!(description.length < 1 || description.length > 160)
-                // }
                 >
                   Done!
                 </CustomButton>

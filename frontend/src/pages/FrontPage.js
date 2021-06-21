@@ -182,7 +182,7 @@ const ButtonSection = styled.div`
 `;
 
 const ShowMe = styled.h3`
-  font-size: 25px;
+  font-size: 24px;
   font-family: ${ParagraphFont};
   margin-bottom: 5px;
   @media (min-width: 768px) {

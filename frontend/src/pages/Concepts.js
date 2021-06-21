@@ -54,6 +54,7 @@ const Concepts = () => {
       <Navigation />
       <ConceptHeader inputValue={searchText} handleOnChange={handleChange} />
       <Container className={classes.container}>
+        <HeaderConcepts> <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph></HeaderConcepts>
         <Grid
           container
           direction="row"
@@ -107,23 +108,40 @@ export default Concepts;
 
 const ParagraphFont = "'Roboto', sans-serif;"
 const HotPink = "#FF69B4"
-
+const LightPink = "#FFCFF1"
+const HeaderFont = "'Manrope', sans-serif";
 
 const useStyles = makeStyles(() => ({
   container: {
     width: "100%",
-    marginTop: "100px",
+    marginTop: "50px",
+    marginBottom: "0px",
     ["@media (min-width:780px)"]: {
       marginTop: "60px",
     },
   },
 }));
 
+const HeaderConcepts = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+margin: 0px;
+align-items: center;
+`
+
+const ConceptsParagraph = styled.h3`
+display: flex;
+font-size: 24px;
+margin: 0px;
+font-family: ${HeaderFont};
+border-bottom: 2px solid ${LightPink};
+`
+
 const PageNumber = styled.p`
   font-family: ${ParagraphFont};
   font-size: 16px;
 `
-
 const ConceptButtonWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -146,6 +164,7 @@ const CustomButton = styled.button`
   border-radius: 10px;
   text-decoration: none;
   transition: background-color 1s ease-in, color 1s ease-in;
+  cursor: pointer;
   :hover {
     color: white;
     background-color: black;

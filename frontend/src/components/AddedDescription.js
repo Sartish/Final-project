@@ -7,7 +7,6 @@ import swal from "sweetalert";
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 import { TextField, makeStyles } from "@material-ui/core";
-// import { CustomButton } from "./StyledComponents";
 
 const AddedDescription = () => {
   const classes = useStyles();
@@ -22,22 +21,32 @@ const AddedDescription = () => {
   const username = useSelector((store) => store.user.username);
 
   const handleClick = () => {
-    if (accessToken) {
+    if (description.length > 160) {
       swal({
-        title: "Success!",
-        text: "Your description have been added",
-        icon: "success",
+        title: "Sorry",
+        text: "Your description is to long!",
+        icon: "error",
         button: "ok",
       });
-      history.push("/concepts");
     } else {
-      swal({
-        title: "Not yet!",
-        text: "You have to sign in to contribute!",
-        icon: "error",
-        button: "Ah ok!",
-      });
+      if (accessToken) {
+        swal({
+          title: "Success!",
+          text: "Your description have been added",
+          icon: "success",
+          button: "ok",
+        });
+        history.push("/concepts");
+      } else {
+        swal({
+          title: "Not yet!",
+          text: "You have to sign in to contribute!",
+          icon: "error",
+          button: "Ah ok!",
+        });
+      }
     }
+
   };
 
   const onFormSubmit = (e) => {
@@ -98,9 +107,6 @@ const AddedDescription = () => {
                 type="submit"
                 value="description"
                 onClick={onFormSubmit}
-                disabled={
-                  !!(description.length < 1 || description.length > 160)
-                }
               >
                 Done!
               </CustomButton>
@@ -206,7 +212,6 @@ const WriteHere = styled.h3`
     width: 500px;
   }
 `;
-
 
 const CustomButton = styled.button`
 display: inline-block;

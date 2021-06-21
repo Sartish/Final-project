@@ -31,7 +31,6 @@ const TopSearches = () => {
     <Container className={classes.container}>
       <TopSearchesHeaderContainer>
         <Header>Top 20 recent searches</Header>
-        <Border></Border>
       </TopSearchesHeaderContainer>
       <Container className={classes.container}>
         <List>
@@ -50,6 +49,14 @@ const TopSearches = () => {
     </Container>
   );
 };
+
+export default TopSearches;
+
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif;"
+const HotPink = "#FF69B4"
+const LightPink = "#FFCFF1"
+const Yellow = "#FFF5D1"
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -75,7 +82,32 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default TopSearches;
+
+const TopSearchesHeaderContainer = styled.div`
+  // width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media (min-width: 768px) {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+`;
+
+const Header = styled.h3`
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
+  align-items: center;
+  margin 0;
+  text-align: center;
+  border-bottom: 2px solid ${LightPink};
+  font-family: ${HeaderFont};
+  @media (min-width: 768px) {
+    font-size: 35px;
+  }
+`;
 
 const List = styled.ol`
   display: flex;
@@ -101,6 +133,7 @@ const Numbers = styled.li`
   align-items: flex-start;
   padding-bottom: 30px;
   font-size: 16px;
+  font-family: ${ParagraphFont}
   cursor: pointer;
   text-decoration: none;
 
@@ -113,35 +146,12 @@ const Numbers = styled.li`
   }
 `;
 
-const TopSearchesHeaderContainer = styled.div`
-  // width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  @media (min-width: 768px) {
-    width: 100%;
-    margin-bottom: 0px;
-  }
-`;
-
-const Header = styled.h2`
-  display: flex;
-  font-size: 24px;
-  margin 0;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    font-size: 40px;
-  }
-`;
-
 const Border = styled.div`
   display: flex;
   text-align: center;
   width: 300px;
   height: 10px;
-  background-color: #ffcff1;
+  background-color: ${Yellow};
   border-radius: 50px;
   @media (min-width: 768px) {
     width: 500px;

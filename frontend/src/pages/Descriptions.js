@@ -162,6 +162,13 @@ export default function Descriptions() {
   );
 }
 
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif;"
+const HotPink = "#FF69B4"
+const LightPink = "#FFCFF1"
+const Yellow = "#FFF5D1"
+
+
 const useStyles = makeStyles((theme) => ({
   container: {
     container: {

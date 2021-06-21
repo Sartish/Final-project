@@ -56,6 +56,13 @@ const HamburgerMenu = () => {
 
 export default HamburgerMenu;
 
+
+const ParagraphFont = "'Roboto', sans-serif;"
+const HotPink = "#FF69B4"
+const LightPink = "#FFCFF1"
+const Yellow = "#FFF5D1"
+
+
 export const HamburgerButton = styled.button`
   position: absolute;
   top: 40px;
@@ -82,19 +89,20 @@ export const MenuContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background-color: #fff5d1;
+  background-color: ${LightPink};
   position: absolute;
-  top: 10px;
+  top: 30px;
   width: 300px;
   height: 400px;
   z-index: 1;
 `;
 
 export const Link = styled.div`
-  font-size: 30px;
+  font-size: 25px;
+  font-family: ${LightPink}
   text-decoration: none;
   margin: 10px;
-  color: #0b1d34;
+  color: black;
   &visited {
     color: #0b1d34;
   }

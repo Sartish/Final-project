@@ -16,6 +16,14 @@ const DescriptionHeader = ({ heading }) => {
 
 export default DescriptionHeader;
 
+
+const HeaderFont = "'Manrope', sans-serif";
+const ParagraphFont = "'Roboto', sans-serif;"
+const HotPink = "#FF69B4"
+const LightPink = "#FFCFF1"
+const Yellow = "#FFF5D1"
+
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -34,5 +42,11 @@ export const Title = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: solid 4px #ffcff1;
-  font-size: 50px;
+  font-size: 24px;
+  margin: 0px;
+  font-family: ${HeaderFont};
+  @media (min-width: 768px) {
+    font-size: 40px;
+  }
+
 `;
