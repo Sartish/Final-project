@@ -36,9 +36,9 @@ const TopSearches = () => {
       <Container className={classes.container}>
         <List>
           {sortDesc(allConcepts.data)?.map((item) => {
-            console.log(item._id);
+            // console.log(item._id);
             return (
-              <Link className={classes.link} to={`/concepts/${item._id}`}>
+              <Link key={item._id} className={classes.link} to={`/concepts/${item._id}`}>
                 <Numbers style={{ textDecoration: "none" }}>
                   <li style={{ textDecoration: "none" }}>{item.concept}</li>
                 </Numbers>

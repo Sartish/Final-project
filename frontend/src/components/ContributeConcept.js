@@ -19,8 +19,17 @@ const ContributeConcept = () => {
 
   const accessToken = useSelector((store) => store.user.accessToken);
 
+  const checkIfConceptExist = () => {
+    return conceptList.data?.find(item => item.concept.toLowerCase()===concept.toLowerCase());
+    // console.log(found)
+    // if (found) {
+    //   return true
+    // } else {
+    //   return false
+    // }
+  };
+
   const handleClick = () => {
-    console.log("hej");
     if (accessToken) {
       swal({
         title: "Success!",
@@ -75,7 +84,7 @@ const ContributeConcept = () => {
         });
       });
   };
-  console.log(conceptList)
+
   if(!accessToken) {
     // if not signedin then display signin/signup page
     return (
@@ -87,6 +96,7 @@ const ContributeConcept = () => {
   else
   {
     // user signedin let him/her contribute
+
     return (
       <>
         <Navigation />
@@ -97,15 +107,16 @@ const ContributeConcept = () => {
               <TextField
                 className={classes.input}
                 id="outlined-multiline-static"
-                label="Concept"
+                label={checkIfConceptExist() ? "Concept already exist, but feel free to add a description" : "Concept"}
                 multiline
                 rows={1}
                 columns={2}
-                defaultValue="Type here"
+                // defaultValue="Type here"
                 variant="outlined"
                 value={concept}
                 onChange={(e) => setConcept(e.target.value)}
               />
+              {/* {checkIfConceptExist() ? "Concept already exist, but feel free to add a description" : ""} */}
               <TextField
                 className={classes.input}
                 id="outlined-multiline-static"
@@ -113,7 +124,7 @@ const ContributeConcept = () => {
                 multiline
                 rows={4}
                 columns={8}
-                defaultValue="Type here.."
+                // defaultValue="Type here.."
                 variant="outlined"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -166,11 +177,6 @@ const Wrapper = styled.div`
   @media (min-width: 1025px) {
     width: 20%;
   }
-`;
-
-const TextCounter = styled.p`
-  text-align: right;
-  margin-right: 5px;
 `;
 
 const Form = styled.form`

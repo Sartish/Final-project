@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
@@ -9,7 +9,7 @@ import { FormButton } from "components/StyledComponents";
 import Container from "@material-ui/core/Container";
 import { Alert } from "@material-ui/lab";
 import user from "../reducers/user";
-import styled from "styled-components";
+
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
@@ -159,13 +159,11 @@ const Signin = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 inputProps={inputMin}
               />
               <FormButton
-                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
@@ -176,7 +174,6 @@ const Signin = () => {
                 Sign in
               </FormButton>
               <FormButton
-                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
@@ -254,44 +251,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PicInput = styled.input`
-  color: transparent;
-  width: 400px;
-  height: 106px;
-  transition: 0.2s ease-in-out;
+// const PicInput = styled.input`
+//   color: transparent;
+//   width: 400px;
+//   height: 106px;
+//   transition: 0.2s ease-in-out;
 
-  &:hover {
-    opacity: 0.7;
-  }
+//   &:hover {
+//     opacity: 0.7;
+//   }
 
-  &::-webkit-file-upload-button {
-    visibility: hidden;
-  }
+//   &::-webkit-file-upload-button {
+//     visibility: hidden;
+//   }
 
-  &::before {
-    content: "+";
-    color: transparent;
-    display: inline-block;
-    background-image: url(${process.env.PUBLIC_URL +
-    "/assets/profileButton.svg"});
-    width: 106px;
-    height: 106px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
+//   &::before {
+//     content: "+";
+//     color: transparent;
+//     display: inline-block;
+//     background-image: url(${process.env.PUBLIC_URL +
+//     "/assets/profileButton.svg"});
+//     width: 106px;
+//     height: 106px;
+//     border-radius: 50%;
+//     cursor: pointer;
+//   }
 
-  &:active::before {
-    background-image: none;
-  }
+//   &:active::before {
+//     background-image: none;
+//   }
 
-  &:focus {
-    outline: 2px solid #f56c54;
-  }
-`;
+//   &:focus {
+//     outline: 2px solid #f56c54;
+//   }
+// `;
 
-const FileName = styled.p`
-  font-size: 10px;
-  width: 100px;
-  overflow-wrap: break-word;
-  color: #31556d;
-`;
+// const FileName = styled.p`
+//   font-size: 10px;
+//   width: 100px;
+//   overflow-wrap: break-word;
+//   color: #31556d;
+// `;

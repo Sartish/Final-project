@@ -65,7 +65,6 @@ const Concepts = () => {
           color="blue"
         >
           {conceptList.data?.map((item) => {
-            console.log(item._id);
             return (
               <>
                 <ConceptCard

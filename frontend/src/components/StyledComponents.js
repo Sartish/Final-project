@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import "@lottiefiles/lottie-player";
 
-const primaryFont = "'Corben', cursive";
+// const primaryFont = "'Corben', cursive";
 const SecondaryFont = "'Manrope', sans-serif";
 
-const blue = "#223A59";
-const red = "#ec4646";
-const pink = "#ffdcdc";
-const lightblue = "#a3ddcb";
-const orange = "#f2a154";
+// const blue = "#223A59";
+// const red = "#ec4646";
+// const pink = "#ffdcdc";
+// const lightblue = "#a3ddcb";
+// const orange = "#f2a154";
 
 export const Button = styled.button`
   border-radius: 8px;
