@@ -1,4 +1,4 @@
-# Project Auth
+# Final Project - Techtionary
 
 
 ## The build 🛠

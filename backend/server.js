@@ -3,19 +3,17 @@ import cors from "cors";
 import mongoose from "mongoose";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
+import listEndpoints from "express-list-endpoints";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject";
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = Promise;
 
-// Defines the port the app will run on. Defaults to 8080
-// sync
-
 const port = process.env.PORT || 8080;
 const app = express();
 app.use(cors());
 
-// CONCEPT SCHEMA
+// Concept Schema
 const conceptSchema = new mongoose.Schema({
   concept: {
     type: String,
@@ -46,7 +44,7 @@ const descriptionSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 2,
-    maxlength:160,
+    maxlength: 160,
   },
   createdAt: {
     type: Date,
@@ -62,18 +60,13 @@ const descriptionSchema = new mongoose.Schema({
   },
 });
 
-// add username in description object
-// changes in schema, drop database everytime?
-// if username not unique, choose another username displayed in frontend
-// display currenct concept you are contributing to
-
-//USER SCHEMA
+//User Schema
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
   },
-  //email
+
   password: {
     type: String,
     required: true,
@@ -108,14 +101,13 @@ const authenticateUser = async (req, res, next) => {
 app.use(cors());
 app.use(express.json());
 
-// Start defining your routes here
+// Returns all endpoints
 app.get("/", (req, res) => {
-  res.send("Our backend");
+  res.send(listEndpoints(app));
 });
 
 //POST USER "/singup" and "/signin"
 app.post("/signup", async (req, res) => {
-  //lägg till email
   const { username, password } = req.body;
 
   try {
@@ -161,7 +153,6 @@ app.post("/signin", async (req, res) => {
 });
 
 //POST CONCEPTS
-// Gör så att bara vi har behörighet till denna endpoint
 app.post("/concepts", authenticateUser);
 app.post("/concepts", async (req, res) => {
   const { concept, description } = req.body;
@@ -173,13 +164,12 @@ app.post("/concepts", async (req, res) => {
     }).save();
 
     // check if concept already exist, case insensitive
-    const existingConcept = await Concept.find({concept: {'$regex':concept,$options:'i'}});
+    const existingConcept = await Concept.find({
+      concept: { $regex: concept, $options: "i" },
+    });
 
     if (existingConcept.length > 0) {
-
       console.log("concept already exists...lets reuse");
-      // console.log(existingConcept);
-      // console.log("id:" + existingConcept[0]._id)
       const updatedConcept = await Concept.findByIdAndUpdate(
         existingConcept[0]._id,
         {
@@ -196,10 +186,9 @@ app.post("/concepts", async (req, res) => {
       });
       res.json(updatedConcept);
       // console.log(updatedConcept);
-
     } else {
       // concept does not already exist. create it and add description
-      console.log("concept dont exist..lets create it")
+      console.log("concept dont exist..lets create it");
       const newConcept = await new Concept({
         concept,
         description: [newDescription],
@@ -208,7 +197,7 @@ app.post("/concepts", async (req, res) => {
       // console.log(newConcept);
     }
   } catch (error) {
-    console.log("Test;"+error)
+    console.log("Test;" + error);
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
@@ -217,7 +206,6 @@ app.post("/concepts", async (req, res) => {
 
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
-
 app.patch("/concepts", authenticateUser);
 app.patch("/concepts", async (req, res) => {
   const { idOfAConcept, description } = req.body;
@@ -250,7 +238,6 @@ app.patch("/concepts", async (req, res) => {
 });
 
 //POST
-
 app.post("/concepts/:descriptionId/likes", async (req, res) => {
   const { descriptionId } = req.params;
 
@@ -306,7 +293,6 @@ app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
 app.get("/concepts", async (req, res) => {
   try {
     let { page, size, searchText } = req.query;
-    //ska vi ha success här?
     // pagination items per page
 
     if (!page) {
@@ -322,7 +308,7 @@ app.get("/concepts", async (req, res) => {
       .sort({ concept: 1 })
       .skip(skip)
       .limit(limit)
-      .collation({locale: "en" });
+      .collation({ locale: "en" });
     //console.log(concept, "concept");
 
     res.json({ page, size, data: concept });
@@ -330,7 +316,6 @@ app.get("/concepts", async (req, res) => {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
-
 
 //sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
 //men vi hade inte tid att sätta upp elasticsearch
