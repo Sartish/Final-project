@@ -178,7 +178,9 @@ const useStyles = makeStyles((theme) => ({
         // justifyContent: "center",
         // alignItems: "center",
       },
-      ["@media (max-width:1024px)"]: {},
+      ["@media (max-width:1024px)"]: {
+        width: "90%",
+      },
     },
   },
   root: {
@@ -251,8 +253,9 @@ const SubHeadingContainer = styled.div`
   margin-top: 10px;
   padding: 30px;
   background-color: ${Yellow};
+
   @media (min-width: 768px) {
-    width: 1200px;
+    width: 900px;
     margin-top: 30px;
     justify-content: center;
     padding: 20px;

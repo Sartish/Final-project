@@ -66,7 +66,7 @@ export const ContainerForSearch = styled.section`
 
 export const Title = styled.h2`
   display: flex;
-  width: 300px;
+  width: 250px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

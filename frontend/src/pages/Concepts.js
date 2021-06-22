@@ -55,10 +55,10 @@ const Concepts = () => {
       <Navigation />
       <Container className={classes.container}>
         <ConceptHeader inputValue={searchText} handleOnChange={handleChange} />
+        <HeaderConcepts>
+          <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
+        </HeaderConcepts>
         <Grid container direction="row" justify="center" color="blue">
-          <HeaderConcepts>
-            <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
-          </HeaderConcepts>
           {conceptList.data?.map((item) => {
             return (
               <>
@@ -122,14 +122,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const HeaderConcepts = styled.div`
-  width: 300px;
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  align-items: center;
+  margin-top: 50px;
   align-items: center;
   @media (min-width: 768px) {
     margin-top: 30px;
-    width: 500px;
+    width: 1200px;
   }
 `;
 
