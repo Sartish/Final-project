@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { useSelector } from "react-redux";
 import SignOut from "./SignOut";
 import HamburgerMenu from "./HamburgerMenu";
@@ -87,7 +87,6 @@ export const NavigationBar = styled.div`
   border-bottom: ${DarkGray} solid 1.8px;
   @media (min-width: 768px) {
     justify-content: space-between;
-    width: 100%;
   }
 `;
 

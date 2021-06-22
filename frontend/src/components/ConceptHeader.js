@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, makeStyles, TextField } from "@material-ui/core";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const ConceptHeader = ({ inputValue, handleOnChange }) => {
   const classes = useStyles();

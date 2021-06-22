@@ -11,7 +11,7 @@ const TopSearches = () => {
 
   // sorting our mapped data in decsending order, then slice to get the first 20 popular searches
 
-  let size = 26;
+  let size = 21;
 
   const sortDesc = () => {
     return allConcepts.data
@@ -37,7 +37,7 @@ const TopSearches = () => {
         {sortDesc(allConcepts.data)?.map((item) => {
           console.log(item._id);
           return (
-            <li style={{ marginBottom: 6, fontSize: 16 }}>
+            <li style={{ marginBottom: 6, fontSize: 16, color: "black" }}>
               <Link className={classes.link} to={`/concepts/${item._id}`}>
                 {item.concept}
               </Link>
@@ -112,11 +112,10 @@ const List = styled.ol`
   flex-wrap: wrap;
   flex-direction: column;
   width: "300px";
-  height: 500px;
+  height: 520px;
   text-decoration: none;
-  border: black solid 2px;
   @media screen and (min-width: 768px) {
-    width: 500px;
+    width: 450px;
     height: 300px;
     margin-left: 0px;
     column-count: 2;
