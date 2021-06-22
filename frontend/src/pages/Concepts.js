@@ -122,11 +122,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const HeaderConcepts = styled.div`
-  width: 100%;
+  width: 300px;
   display: flex;
   justify-content: center;
-  margin-top: 70px;
+  margin-top: 30px;
   align-items: center;
+  @media (min-width: 768px) {
+    margin-top: 30px;
+    width: 500px;
+  }
 `;
 
 const ConceptsParagraph = styled.h3`
