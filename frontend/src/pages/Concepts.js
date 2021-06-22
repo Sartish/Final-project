@@ -120,11 +120,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const HeaderConcepts = styled.div`
-  width: 300px;
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 70px;
+  margin-top: 80px;
   align-items: center;
   @media (min-width: 768px) {
     margin-top: 30px;
@@ -135,7 +135,7 @@ const HeaderConcepts = styled.div`
 const ConceptsParagraph = styled.h3`
   display: flex;
   font-size: 24px;
-  margin: 0px;
+  margin-top: 5px;
   font-family: ${HeaderFont};
   border-bottom: 2px solid ${LightPink};
   color: ${DarkGray};

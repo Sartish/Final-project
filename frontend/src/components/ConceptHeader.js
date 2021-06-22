@@ -108,7 +108,7 @@ export const Wrapper = styled.div`
   height: 200px;
   width: 300px;
   margin-top: 0px;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
   padding: 20px;
   background-color: ${Yellow};
 
