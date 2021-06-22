@@ -105,9 +105,10 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: space-between;
   padding: 10px;
-  height: 300px;
+  height: 200px;
   width: 300px;
-  margin: 0px;
+  margin-top: 0px;
+  margin-bottom: 100px;
   padding: 20px;
   background-color: ${Yellow};
 
