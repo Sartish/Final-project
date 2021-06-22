@@ -16,16 +16,16 @@ export default function CircularIndeterminate() {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    width: "300px",
-    height: "300px",
+    width: "200px",
+    height: "200px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
   },
   root: {
     display: "flex",
-    width: "500px",
-    marginTop: "50px",
+    width: "100px",
+    marginTop: "10px",
     
     "& > * + *": {
       marginLeft: theme.spacing(2),
