@@ -5,18 +5,17 @@ import styled from "styled-components/macro";
 import Navigation from "../components/Navigation";
 import annsofiimg from "../assets/annsofi.profile.JPG";
 import saraimg from "../assets/profile-picture.jpg";
+import Footer from "../components/Footer";
 
 const About = () => {
   return (
     <>
       <Navigation />
-
       <Container>
         <Wrapper>
           <InfoText>
             <Title>ABOUT</Title>
             <Border></Border>
-
             <AboutTheSite>
               This site was created in Technigo Bootcamp as the final project.
               The idea came from our own experience, entering the tech-world and
@@ -71,6 +70,7 @@ const About = () => {
           </AboutUs>
         </Wrapper>
       </Container>
+      <Footer />
     </>
   );
 };
@@ -115,7 +115,6 @@ const Title = styled.h1`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // align-items: center;
   text-align: center;
   font-size: 24px;
   padding: 10px;
@@ -135,16 +134,6 @@ const Border = styled.div`
   border:  #ffcff1; 2px solid;
   background-color: #ffcff1;
   border-radius: 50px;
-
-  // @media (min-width: 768px) {
-  //   background-color: yellow;
-  //   width: 600px;
-  //   text-align: center;
-  // }
-
-  // @media (min-width: 768px) {
-  //   background-color: blue;
-  // }
 `;
 
 const AboutTheSite = styled.p`

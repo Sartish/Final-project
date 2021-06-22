@@ -3,10 +3,10 @@ import styled from "styled-components/macro";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
+import { TextField, makeStyles } from "@material-ui/core";
 
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
-import { TextField, makeStyles } from "@material-ui/core";
 
 const AddedDescription = () => {
   const classes = useStyles();
@@ -49,7 +49,6 @@ const AddedDescription = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log("test");
 
     const options = {
       method: "PATCH",
@@ -86,7 +85,7 @@ const AddedDescription = () => {
           <WriteHere>Contribute with your explanation</WriteHere>
           <ParagraphInstructions>
             <HiUser>
-              Nice <strong>{username}</strong>, you want to contribute
+              Nice {username}, you want to contribute
               <span>🖤</span>
             </HiUser>
             <HowToAddDescription>

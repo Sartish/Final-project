@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "../components/Navigation";
 import { Grid, makeStyles, Container } from "@material-ui/core";
 import styled from "styled-components/macro";
+
 import ConceptCard from "../components/ConceptCard";
 import ConceptHeader from "../components/ConceptHeader";
 import Footer from "../components/Footer";
 import { API_URL } from "../reusables/urls";
 import TopSearches from "../components/TopSearches";
+import Navigation from "../components/Navigation";
 
 const Concepts = () => {
   const classes = useStyles();
@@ -20,7 +21,6 @@ const Concepts = () => {
     console.log("hej");
   };
 
-  // add useEffect
   useEffect(() => {
     fetch(
       // `http://localhost:8080/concepts?page=${pageNumber}&searchText=${searchText}`
@@ -49,7 +49,7 @@ const Concepts = () => {
     setPageNumber(pageNumber - 1);
     console.log("previous");
   };
-  // lagt till key på id, men hjälper inte för att få bort varning om key i consolen
+
   return (
     <>
       <Navigation />
@@ -116,9 +116,9 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     marginTop: "50px",
     marginBottom: "0px",
-    ["@media (min-width:780px)"]: {
-      marginTop: "60px",
-    },
+    // ["@media (min-width:780px)"]: {
+    //   marginTop: "60px",
+    // },
   },
 }));
 

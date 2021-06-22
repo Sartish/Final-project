@@ -38,7 +38,7 @@ export const Title = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: solid 4px ${LightPink};
-  font-size: 24px;
+  font-size: 35px;
   margin: 0px;
   font-family: ${HeaderFont};
   color: ${DarkGray};

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "column",
-    width: "85% ",
+    width: "300px ",
     height: "200px",
     marginTop: "35px",
   },

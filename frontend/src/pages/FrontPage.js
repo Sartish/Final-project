@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
-import Navigation from "../components/Navigation";
 import CountUp from "react-countup";
+
+import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
 const FrontPage = () => {

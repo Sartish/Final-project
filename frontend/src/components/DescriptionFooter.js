@@ -10,7 +10,7 @@ const DescriptionFooter = () => {
   return (
     <Container className={classes.container}>
       <Wrapper>
-        <ContainerHeader role="main">
+        <ContainerHeader>
           <ContributeButtonContainer>
             <div className={classes.filter}>
               <Paragraph>

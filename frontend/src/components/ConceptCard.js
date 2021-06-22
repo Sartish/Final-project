@@ -39,7 +39,6 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    display: "flex",
     width: "300px",
     marginTop: "20px",
     marginRight: "5px",
@@ -50,7 +49,6 @@ const useStyles = makeStyles({
     },
   },
   concept: {
-    color: "black",
     textAlign: "center",
     fontSize: "16px",
     fontFamily: "'Roboto', sans-serif;",

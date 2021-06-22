@@ -73,10 +73,10 @@ export default function Descriptions() {
   return (
     <>
       <Navigation />
-      <DescriptionHeader heading={concept} />
-      <Container className={classes.container}>
-        <WrapperFilter>
-          <ButtonContainer>
+      <Container maxWidth="sm">
+        <DescriptionHeader heading={concept} />
+        <SubHeadingWrapper>
+          <SubHeadingContainer>
             <SubHeading>All explanations</SubHeading>
             <FilterButtons>
               <LikesButton
@@ -100,8 +100,8 @@ export default function Descriptions() {
                 </span>
               </LikesButton>
             </FilterButtons>
-          </ButtonContainer>
-        </WrapperFilter>
+          </SubHeadingContainer>
+        </SubHeadingWrapper>
         <Grid container direction="row" justify="center" color="blue">
           {sortDesc(description)?.map((item) => {
             //console.log(item);
@@ -166,12 +166,19 @@ const useStyles = makeStyles((theme) => ({
   container: {
     container: {
       width: "100%",
-      marginTop: "200px",
+      height: "100%",
+      marginTop: "50px",
+      marginBottom: "0px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       ["@media (min-width:780px)"]: {
-        marginTop: "60px",
-        display: "flex",
-        justifyContent: "center",
+        // marginTop: "60px",
+        // display: "flex",
+        // justifyContent: "center",
+        // alignItems: "center",
       },
+      ["@media (max-width:1024px)"]: {},
     },
   },
   root: {
@@ -187,9 +194,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: "10px",
-    marginLeft: "10px",
-    marginRight: "8px",
+    // marginTop: "10px",
+    // marginLeft: "10px",
+    // marginRight: "8px",
     fontFamily: "'Manrope', sans-serif",
     color: "#282828",
   },
@@ -227,7 +234,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonContainer = styled.div`
+const SubHeadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @media (min-width: 768px) {
+  }
+`;
+
+const SubHeadingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -235,31 +251,14 @@ const ButtonContainer = styled.div`
   margin-top: 10px;
   padding: 30px;
   background-color: ${Yellow};
-
   @media (min-width: 768px) {
-    width: 800px;
-    margin-top: 30px;
-    justify-content: space-between;
-    // margin: 10px 80px 5px 80px;
-    padding: 20px;
-  }
-`;
-
-const WrapperFilter = styled.div`
-  width: 90%;
-
-  @media (min-width: 768px) {
-    display: flex;
-
-    margin-top: 30px;
-    justify-content: space-between;
-    margin: 10px 80px 5px 80px;
-    padding: 20px;
-  }
-  @media (min-width: 1024px) {
     width: 1200px;
+    margin-top: 30px;
+    justify-content: center;
+    padding: 20px;
   }
 `;
+
 const FilterButtons = styled.div`
   display: flex;
 `;

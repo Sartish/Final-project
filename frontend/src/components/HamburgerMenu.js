@@ -42,7 +42,7 @@ const HamburgerMenu = () => {
             <SignOut />
           ) : (
             <NavLink
-              style={{ marginLeft: 5, paddingLeft: 13, textDecoration: "none" }}
+              style={{ paddingLeft: 13, textDecoration: "none" }}
               to="/signin"
             >
               <Link>Signin</Link>

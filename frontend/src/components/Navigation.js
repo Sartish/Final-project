@@ -2,9 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
 import { useSelector } from "react-redux";
+import "@lottiefiles/lottie-player";
+
 import SignOut from "./SignOut";
 import HamburgerMenu from "./HamburgerMenu";
-import "@lottiefiles/lottie-player";
 
 const Navigation = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
@@ -106,6 +107,7 @@ export const Bar = styled.div`
   background-color: #333;
   margin: 6px 0;
 `;
+
 export const RightNav = styled.div`
   display: none;
   @media (min-width: 1025px) {
@@ -120,6 +122,7 @@ export const Logo = styled.div`
     margin-left: 0px;
   }
 `;
+
 export const Link = styled.div`
   text-decoration: none;
   font-size: 17px;

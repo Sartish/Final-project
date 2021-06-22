@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Alert } from "@material-ui/lab";
-import user from "../reducers/user";
 import styled from "styled-components/macro";
 
+import user from "../reducers/user";
 import { API_URL } from "../reusables/urls";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -22,7 +21,6 @@ const Signin = () => {
   const [mode, setMode] = useState(null);
 
   const error = useSelector((store) => store.user.errors);
-  console.log(error);
 
   const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch();
@@ -37,10 +35,7 @@ const Signin = () => {
   }, [accessToken, history]);
 
   const onFormSubmit = (e) => {
-    console.log("onFormSubmit1");
-
     e.preventDefault();
-    console.log("onFormSubmit2");
 
     const options = {
       method: "POST",
@@ -49,32 +44,7 @@ const Signin = () => {
       },
       body: JSON.stringify({ username, password }),
     };
-    //version 1, funkar
-    // fetch(API_URL(mode), options)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.success) {
-    //       console.log("Success");
-    //       batch(() => {
-    //         dispatch(user.actions.setUsername(data.username));
-    //         dispatch(user.actions.setAccessToken(data.accessToken));
-    //         dispatch(user.actions.setErrors(null));
 
-    //         localStorage.setItem(
-    //           "user",
-    //           JSON.stringify({
-    //             username: data.username,
-    //             accessToken: data.accessToken,
-    //           })
-    //         );
-    //       });
-    //     } else {
-    //       console.log("Failed");
-    //       dispatch(user.actions.setErrors(data));
-    //     }
-    //   });
-
-    //version 3,
     fetch(API_URL(mode), options)
       .then((res) => {
         if (!res.ok) {
@@ -86,7 +56,6 @@ const Signin = () => {
       })
       .then((data) => {
         if (data.success) {
-          console.log("Success");
           batch(() => {
             dispatch(user.actions.setUsername(data.username));
             dispatch(user.actions.setAccessToken(data.accessToken));
@@ -101,18 +70,14 @@ const Signin = () => {
             );
           });
         } else {
-          console.log("Failed");
           dispatch(user.actions.setErrors(data));
         }
       })
       // eslint-disable-next-line no-shadow
       .catch((error) => {
-        console.log("Catch error:" + error);
-        // dispatch(user.actions.setErrors({ errorMessage: error.toString() }));
         dispatch(user.actions.setErrors(error.message));
       });
   };
-  console.log(mode);
 
   return (
     <>
@@ -126,9 +91,6 @@ const Signin = () => {
               description.
             </HiUser>
           </ParagraphInstructions>
-          <Avatar className={classes.avatar}>
-            {/* <LockOutlinedIcon /> */}
-          </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>

@@ -188,7 +188,6 @@ app.post("/concepts", async (req, res) => {
         },
       });
       res.json(updatedConcept);
-      // console.log(updatedConcept);
     } else {
       // concept does not already exist. create it and add description
       console.log("concept dont exist..lets create it");
@@ -292,7 +291,7 @@ app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
 });
 
 //http://localhost:8080/concepts?page=1&size=20
-//GET CONCEPTS V1 WORKING
+//GET CONCEPTS
 app.get("/concepts", async (req, res) => {
   try {
     let { page, size, searchText } = req.query;

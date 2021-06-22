@@ -3,10 +3,11 @@ import styled from "styled-components/macro";
 import { useHistory, Link } from "react-router-dom";
 import { TextField, makeStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
+import swal from "sweetalert";
+
 import Navigation from "../components/Navigation";
 import { API_URL } from "../reusables/urls";
 import Signin from "../pages/Signin";
-import swal from "sweetalert";
 
 const ContributeConcept = () => {
   const classes = useStyles();
@@ -128,9 +129,6 @@ const ContributeConcept = () => {
                 value={concept}
                 onChange={(e) => setConcept(e.target.value)}
               />
-              {/* {checkIfConceptExist()
-                ? "Concept already exist, but feel free to add a description"
-                : ""} */}
               <TextField
                 className={classes.input}
                 id="outlined-multiline-static"

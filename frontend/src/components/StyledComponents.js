@@ -69,6 +69,7 @@ export const Link = styled.a`
 `;
 
 ///Buttons
+// ha kvar denna button!
 
 export const SigninButton = styled.div`
   display: inline-block;
