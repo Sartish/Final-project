@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import user from "./reducers/user";
 import concepts from "./reducers/concepts";
+import { ui } from "./reducers/ui";
 import Signin from "./pages/Signin";
 import Concepts from "./pages/Concepts";
 import About from "./pages/About";
@@ -13,12 +14,13 @@ import FrontPage from "./pages/FrontPage";
 import Descriptions from "./pages/Descriptions";
 import TopSearches from "./components/TopSearches";
 import ContributeConcept from "./components/ContributeConcept";
+import Loader from "./components/Loader"
 
 
 const reducer = combineReducers({
   user: user.reducer,
   concepts: concepts.reducer,
-
+  ui: ui.reducer
 });
 
 const store = configureStore({ reducer });
@@ -42,6 +44,7 @@ export const App = () => {
           <Route path="/contribute" component={AddedDescription} />
           <Route path="/descriptions" component={Descriptions} />
           <Route path="/search" component={TopSearches} />
+          <Route path="/loader" component={Loader} />
           <div>hej appen</div>
         </Switch>
       </Provider>

@@ -16,7 +16,7 @@ const Concepts = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const isLoading = useSelector((store) => store.ui);
+  const isLoading = useSelector((store) => store.ui.isLoading);
 
   const [conceptList, setConceptList] = useState({});
   const [searchText, setSearchText] = useState("");
@@ -125,9 +125,6 @@ const DarkGray = "#282828";
 const useStyles = makeStyles(() => ({
   container: {
     width: "100%",
-    // ["@media (min-width:780px)"]: {
-    //   marginTop: "60px",
-    // },
   },
 }));
 
