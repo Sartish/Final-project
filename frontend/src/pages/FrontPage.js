@@ -35,7 +35,7 @@ const FrontPage = () => {
               </CountText>
               <CountText>Concepts</CountText>
             </CountingConceptHeader>
-            <Title>TECHTIONARY.</Title>
+            <Title>TECHTIONARY</Title>
             <Border></Border>
             <Paragraph>
               An open source <Span>tech-concept dictionary</Span>, with the aim

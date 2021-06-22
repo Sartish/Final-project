@@ -101,8 +101,8 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: space-between;
   padding: 10px;
-  height: 400px;
-  width: 320px;
+  height: 300px;
+  width: 300px;
   margin: 0px;
   padding: 20px;
   background-color: ${Yellow};
@@ -116,4 +116,6 @@ export const Wrapper = styled.div`
 
 const SearchField = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
