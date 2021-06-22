@@ -113,8 +113,6 @@ const DarkGray = "#282828";
 const useStyles = makeStyles(() => ({
   container: {
     width: "100%",
-    marginTop: "50px",
-    marginBottom: "0px",
     // ["@media (min-width:780px)"]: {
     //   marginTop: "60px",
     // },
@@ -122,11 +120,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const HeaderConcepts = styled.div`
-  width: 100%;
+  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 70px;
   align-items: center;
   @media (min-width: 768px) {
     margin-top: 30px;
