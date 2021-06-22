@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SignOut from "./SignOut";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const HamburgerMenu = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
@@ -42,7 +42,7 @@ const HamburgerMenu = () => {
             <SignOut />
           ) : (
             <NavLink
-              style={{ paddingLeft: 13, textDecoration: "none" }}
+              style={{ marginLeft: 5, paddingLeft: 13, textDecoration: "none" }}
               to="/signin"
             >
               <Link>Signin</Link>
@@ -89,13 +89,13 @@ export const MenuContainer = styled.div`
   background-color: ${LightPink};
   position: absolute;
   top: 30px;
-  width: 300px;
-  height: 400px;
+  width: 200px;
+  height: 280px;
   z-index: 1;
 `;
 
 export const Link = styled.div`
-  font-size: 25px;
+  font-size: 16px;
   font-family: ${ParagraphFont}
   text-decoration: none;
   margin: 10px;

@@ -39,7 +39,9 @@ const TopSearches = () => {
           return (
             <Link className={classes.link} to={`/concepts/${item._id}`}>
               <Numbers style={{ textDecoration: "none" }}>
-                <li style={{ textDecoration: "none" }}>{item.concept}</li>
+                <li style={{ textDecoration: "none", width: "20px" }}>
+                  {item.concept}
+                </li>
               </Numbers>
             </Link>
           );
@@ -62,14 +64,14 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
     flexDirection: "column",
     backgroundColor: "#fff5d1",
     ["@media (min-width:780px)"]: {
       marginTop: "60px",
       marginBottom: "60px",
       padding: "20px",
-      alignItems: "center",
+      alignItems: "flex-end",
     },
   },
   link: {
@@ -121,7 +123,7 @@ const List = styled.ol`
   text-decoration: none;
   @media screen and (min-width: 768px) {
     width: 1000px;
-    height: 400px;
+    height: 200px;
     margin-left: 0px;
   }
 `;
@@ -143,9 +145,8 @@ const Numbers = styled.p`
   color: ${Gray};
   @media screen and (min-width: 768px) {
     font-size: 16px;
-    padding-bottom: 20px;
-    // line-height: 30px;
     align-items: center;
-    margin: 0px;
+    margin: 0px; 
+    max-width: 0;
   }
 `;
