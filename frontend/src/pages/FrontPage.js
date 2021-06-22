@@ -19,34 +19,34 @@ const FrontPage = () => {
       <Navigation />
       <BackgroundContainer>
         <FrontPageContainer>
-          <CountingConceptHeader>
-            <CountText>Currently</CountText>
-            <CountText>
-              <CountUp
-                style={{
-                  marginBottom: 0,
-                  display: "flex",
-                }}
-                duration={10}
-                end={allConcepts.data.length}
-              />
-            </CountText>
-            <CountText>Concepts</CountText>
-          </CountingConceptHeader>
           <TitleContainer>
-            <Title>TECHTIONARY</Title>
+            <CountingConceptHeader>
+              <CountText>Currently</CountText>
+              <CountText>
+                <CountUp
+                  style={{
+                    marginBottom: 0,
+                    display: "flex",
+                  }}
+                  duration={10}
+                  end={allConcepts.data.length}
+                />
+              </CountText>
+              <CountText>Concepts</CountText>
+            </CountingConceptHeader>
+            <Title>TECHTIONARY.</Title>
             <Border></Border>
             <Paragraph>
-              An open source <Span>tech-concept library</Span>, with the aim to
-              understand tech concepts in an easier and fun way!
+              An open source <Span>tech-concept dictionary</Span>, with the aim
+              to understand tech concepts in an easier and fun way.
             </Paragraph>
+            <ButtonSection>
+              <ShowMe>Show me!</ShowMe>
+              <Link to="/concepts">
+                <FrontPageButton>Concepts</FrontPageButton>
+              </Link>
+            </ButtonSection>
           </TitleContainer>
-          <ButtonSection>
-            <ShowMe>Show me!</ShowMe>
-            <Link to="/concepts">
-              <FrontPageButton>Concepts</FrontPageButton>
-            </Link>
-          </ButtonSection>
         </FrontPageContainer>
       </BackgroundContainer>
       <Footer />
@@ -79,15 +79,13 @@ const FrontPageContainer = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   margin-top: 50px;
   margin-bottom: 50px;
   @media (min-width: 768px) {
     justify-content: space-around;
     flex-direction: row;
-    width: 100%;
     margin: 0px;
-    height: 500px;
   }
 `;
 
@@ -96,26 +94,48 @@ export const CountingConceptHeader = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0px;
-  width: 200px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  width: 130px;
   font-family: ${HeaderFont};
   padding: 0px;
   color: ${Gray};
+  border: ${LightPink} 1px solid;
+
   @media (min-width: 768px) {
-    margin-top: 200px;
+    margin: 0px;
+    width: 400px;
+    flex-direction: row;
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    padding: 8px;
+    margin-bottom: 0px;
+    width: 170px;
+    flex-direction: column;
   }
 `;
 
-export const CountText = styled.h3`
+export const CountText = styled.h2`
   display: flex;
   margin: 12px;
-  font-size: 30px;
+  font-size: 16px;
   font-family: ${HeaderFont};
   margin: 0px;
-  padding: 10px;
+  padding: 0px;
+  @media (min-width: 768px) {
+    font-size: 25px;
+    padding: 5px;
+  }
+  @media (min-width: 1024px) {
+    padding: 0px;
+  }
 `;
 
-export const TitleContainer = styled.h1`
+export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,9 +144,10 @@ export const TitleContainer = styled.h1`
   padding: 5px;
   margin: 0px;
   @media (min-width: 768px) {
-    width: 300px;
+    width: 1300px;
     margin-bottom: 80px;
-    margin-top: 0px;
+    margin-top: 100px;
+    position: relative;
   }
 `;
 
@@ -134,35 +155,42 @@ export const Title = styled.h1`
   display: flex;
   font-size: 40px;
   font-family: ${HeaderFont};
-  margin-bottom: 10px;
+  margin: 0px;
+  font-weight: 200;
   color: ${DarkGray};
-  line-height: 150%;
+  line-height: 100%;
   @media (min-width: 768px) {
-    font-size: 120px;
-    margin: 0px;
+    font-size: 110px;
+    margin-top: 50px;
   }
 `;
 
 export const Border = styled.div`
-  width: 200px;
-  height: 20px;
+  width: 250px;
+  height: 10px;
   border: ${LightPink} 2px solid;
   background-color: ${LightPink};
+  margin: 0px;
   border-radius: 50px;
   margin-bottom: 15px;
   @media (min-width: 768px) {
-    width: 800px;
+    width: 720px;
+    margin: 0px;
   }
 `;
 export const Paragraph = styled.p`
-  font-size: 22px;
+  font-size: 16px;
   font-family: ${HeaderFont};
   line-height: 150%;
   padding: 10px;
   color: #404040;
+  width: 200px;
   background-color: ${Yellow};
   @media (min-width: 768px) {
-    width: 600px;
+    width: 580px;
+    text-align: start;
+    margin-top: 10px;
+    font-size: 22px;
   }
 `;
 
@@ -175,22 +203,28 @@ const ButtonSection = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
-  width: 200px;
+  padding: 5px;
+  width: 150px;
   margin-top: 10px;
+  border: ${LightPink} 1px solid;
   @media (min-width: 768px) {
-    margin-top: 200px;
+    padding: 14px;
+    width: 300px;
+    flex-direction: row;
+    margin-top: 0px;
   }
 `;
 
-const ShowMe = styled.h3`
+const ShowMe = styled.h2`
   font-size: 24px;
   font-family: ${ParagraphFont};
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
   color: ${Gray};
   @media (min-width: 768px) {
-    font-size: 40px;
-    padding-bottom: 20px;
+    font-size: 24px;
+    padding-bottom: 3px;
+    margin-right: 20px;
   }
 `;
 
@@ -199,6 +233,7 @@ export const FrontPageButton = styled.button`
   color: white;
   background-color: ${HotPink};
   width: 100px;
+  margin: 0px;
   border: 4px solid ${HotPink};;
   text-align: center;
   font-weight: bold;

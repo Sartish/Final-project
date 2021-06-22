@@ -84,7 +84,7 @@ export const NavigationBar = styled.div`
   justify-content: space-between;
   margin: 2px 3%;
   align-items: center;
-  border-bottom: ${DarkGray} solid 1.5px;
+  border-bottom: ${DarkGray} solid 1.8px;
   @media (min-width: 768px) {
     justify-content: space-between;
   }

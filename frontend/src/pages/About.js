@@ -21,17 +21,19 @@ const About = () => {
               This site was created in Technigo Bootcamp as the final project.
               The idea came from our own experience, entering the tech-world and
               being exposed to A LOT of new words. If you are lucky are they
-              quite self-explanatory for example "code review". But many of
-              them are short for something such as "API", but and a lot of
-              word might as well be greek!
+              quite self-explanatory for example "code review". But many of them
+              are short for something such as "API", but and a lot of word might
+              as well be greek!
             </AboutTheSite>
             <AboutTheSite>
               The purpose of this site is to be a friend in need when there is
-              something you heard somewhere and are curious about. Or maybe something you just forgot and
-              doesn't want to ask for the 47th time. And if you feel like you have a good explanation for
-              something, be a start and add it! <span role="img" aria-label="star">
-                  {"🌟"}
-                </span>
+              something you heard somewhere and are curious about. Or maybe
+              something you just forgot and doesn't want to ask for the 47th
+              time. And if you feel like you have a good explanation for
+              something, be a start and add it!{" "}
+              <span role="img" aria-label="star">
+                {"🌟"}
+              </span>
             </AboutTheSite>
           </InfoText>
 
@@ -39,29 +41,31 @@ const About = () => {
             <AboutUsCard>
               <Name>Sara Carlstein</Name>
               <ImgAndLinks>
-              <SaraImg src={saraimg} alt="Sara Carlstein" />
-              <LinksDiv>
-                <Links href="https://www.linkedin.com/in/sara-carlstein-532b2737/">
-                  LinkedIn
-                </Links>
-                <Links href="https://sara-carlstein-portfolio.netlify.app/">
-                  Portfolio
-                </Links>
-              </LinksDiv>
+                <SaraImg src={saraimg} alt="Sara Carlstein" />
+                <LinksDiv>
+                  <Links href="https://www.linkedin.com/in/sara-carlstein-532b2737/">
+                    LinkedIn
+                  </Links>
+                  <Links href="https://sara-carlstein-portfolio.netlify.app/">
+                    Portfolio
+                  </Links>
+                  <Links href="https://github.com/Sartish">Github</Links>
+                </LinksDiv>
               </ImgAndLinks>
             </AboutUsCard>
             <AboutUsCard>
               <Name2>Ann-Sofi Jönsson</Name2>
               <ImgAndLinks>
-              <AnnSofiImg src={annsofiimg} alt="Ann-Sofi Jönsson" />
-              <LinksDiv>
-                <Links href="https://www.linkedin.com/in/annsofijonsson/">
-                  LinkedIn
-                </Links>
-                <Links href="https://annsofi-jonsson-portfolio.netlify.app/">
-                  Portfolio
-                </Links>
-              </LinksDiv>
+                <AnnSofiImg src={annsofiimg} alt="Ann-Sofi Jönsson" />
+                <LinksDiv>
+                  <Links href="https://www.linkedin.com/in/annsofijonsson/">
+                    LinkedIn
+                  </Links>
+                  <Links href="https://annsofi-jonsson-portfolio.netlify.app/">
+                    Portfolio
+                  </Links>
+                  <Links href="https://github.com/Ann-Sofi">Github</Links>
+                </LinksDiv>
               </ImgAndLinks>
             </AboutUsCard>
           </AboutUs>
@@ -94,7 +98,11 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   @media (min-width: 768px) {
-    max-width: 800px;
+    max-width: 700px;
+  }
+
+  @media (min-width: 1024px) {
+    maxwidth: 800px;
   }
 `;
 
@@ -128,9 +136,15 @@ const Border = styled.div`
   background-color: #ffcff1;
   border-radius: 50px;
 
-  @media (min-width: 768px) {
-    width: 800px;
-  }
+  // @media (min-width: 768px) {
+  //   background-color: yellow;
+  //   width: 600px;
+  //   text-align: center;
+  // }
+
+  // @media (min-width: 768px) {
+  //   background-color: blue;
+  // }
 `;
 
 const AboutTheSite = styled.p`
@@ -178,7 +192,7 @@ const Name2 = styled.h1`
   margin-bottom: 15px;
   text-align: center;
 
-    @media (min-width: 768px) {
+  @media (min-width: 768px) {
     margin-bottom: 7px;
   }
 `;
@@ -212,7 +226,7 @@ const Links = styled.a`
   font-family: ${ParagraphFont};
   color: ${Gray};
   :hover {
-    color: ${HotPink} ;
+    color: ${HotPink};
   }
 `;
 
@@ -230,19 +244,3 @@ const AnnSofiImg = styled.img`
   border-radius: 20%;
   margin-left: 10px;
 `;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

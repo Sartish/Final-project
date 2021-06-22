@@ -30,7 +30,7 @@ export const FooterWrapper = styled.div`
   padding: 0;
   font-size: 16px;
   background-color: white;
-  border-top: 1.5px solid ${DarkGray};
+  border-top: 1.8px solid ${DarkGray};
   color: ${Gray};
   height: 20px;
   @media (min-width: 767px) {
