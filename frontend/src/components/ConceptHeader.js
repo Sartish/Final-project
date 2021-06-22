@@ -68,6 +68,7 @@ export const Title = styled.h2`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-family: ${HeaderFont};
   padding: 0px;
   font-size: 24px;

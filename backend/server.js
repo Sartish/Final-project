@@ -312,7 +312,6 @@ app.get("/concepts", async (req, res) => {
       .skip(skip)
       .limit(limit)
       .collation({ locale: "en" });
-    //console.log(concept, "concept");
 
     res.json({ page, size, data: concept });
   } catch (error) {
@@ -386,13 +385,12 @@ app.get("/concepts/:conceptId", async (req, res) => {
       .skip(skip)
       .limit(limit);
     if (oneConcept) {
-      //console.log(oneConcept);
       res.json(oneConcept);
     } else {
       // Error when the id format is valid, but no concept is found with that id
       res.status(400).json({ error: "no concept found with that id" });
     }
-    // Error when format id os wrong and invalid dong id entered
+    // Error when format id is wrong and invalid id entered
   } catch (err) {
     res.status(404).json({ error: "Invalid request" });
   }

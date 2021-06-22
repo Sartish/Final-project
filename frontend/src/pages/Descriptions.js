@@ -240,20 +240,25 @@ const ButtonContainer = styled.div`
     width: 800px;
     margin-top: 30px;
     justify-content: space-between;
-    margin: 10px 80px 5px 80px;
+    // margin: 10px 80px 5px 80px;
     padding: 20px;
   }
 `;
 
 const WrapperFilter = styled.div`
   width: 90%;
+
   @media (min-width: 768px) {
     display: flex;
-    width: 1200px;
+
     margin-top: 30px;
     justify-content: space-between;
     margin: 10px 80px 5px 80px;
-    padding: 20px
+    padding: 20px;
+  }
+  @media (min-width: 1024px) {
+    width: 1200px;
+  }
 `;
 const FilterButtons = styled.div`
   display: flex;

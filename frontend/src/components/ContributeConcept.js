@@ -128,9 +128,9 @@ const ContributeConcept = () => {
                 value={concept}
                 onChange={(e) => setConcept(e.target.value)}
               />
-              {checkIfConceptExist()
+              {/* {checkIfConceptExist()
                 ? "Concept already exist, but feel free to add a description"
-                : ""}
+                : ""} */}
               <TextField
                 className={classes.input}
                 id="outlined-multiline-static"
@@ -148,7 +148,11 @@ const ContributeConcept = () => {
                 <Link to="/concepts">
                   <CustomButton>Back</CustomButton>
                 </Link>
-                <CustomButton type="submit" value="description">
+                <CustomButton
+                  type="submit"
+                  value="description"
+                  disabled={description.length === 0 || concept.length === 0}
+                >
                   Done!
                 </CustomButton>
               </ButtonSection>

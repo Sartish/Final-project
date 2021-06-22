@@ -11,7 +11,7 @@ const TopSearches = () => {
 
   // sorting our mapped data in decsending order, then slice to get the first 20 popular searches
 
-  let size = 21;
+  let size = 26;
 
   const sortDesc = () => {
     return allConcepts.data
@@ -37,13 +37,11 @@ const TopSearches = () => {
         {sortDesc(allConcepts.data)?.map((item) => {
           console.log(item._id);
           return (
-            <Link className={classes.link} to={`/concepts/${item._id}`}>
-              <Numbers style={{ textDecoration: "none" }}>
-                <li style={{ textDecoration: "none", width: "20px" }}>
-                  {item.concept}
-                </li>
-              </Numbers>
-            </Link>
+            <li style={{ marginBottom: 6, fontSize: 16 }}>
+              <Link className={classes.link} to={`/concepts/${item._id}`}>
+                {item.concept}
+              </Link>
+            </li>
           );
         })}
       </List>
@@ -53,10 +51,8 @@ const TopSearches = () => {
 export default TopSearches;
 
 const HeaderFont = "'Manrope', sans-serif";
-const ParagraphFont = "'Roboto', sans-serif;";
 const LightPink = "#FFCFF1";
 
-const Gray = "#404040;";
 const DarkGray = "#282828";
 
 const useStyles = makeStyles(() => ({
@@ -71,12 +67,13 @@ const useStyles = makeStyles(() => ({
       marginTop: "60px",
       marginBottom: "60px",
       padding: "20px",
-      alignItems: "flex-end",
+      alignItems: "center",
     },
   },
   link: {
     color: "black",
     textDecoration: "none",
+    display: "flex",
     "&:hover": {
       textDecoration: "underline",
       textDecorationColor: "#ff69b4;",
@@ -100,7 +97,6 @@ const Header = styled.h3`
   font-size: 24px;
   justify-content: center;
   align-items: center;
-  margin-left: 50px;
   text-align: center;
   border-bottom: 2px solid ${LightPink};
   font-family: ${HeaderFont};
@@ -115,38 +111,37 @@ const List = styled.ol`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  align-items: flex-start;
-  width: 200px;
-  padding: 0px;
-  height: 900px;
-  margin-left: 50px;
+  width: "300px";
+  height: 500px;
   text-decoration: none;
+  border: black solid 2px;
   @media screen and (min-width: 768px) {
-    width: 1000px;
-    height: 200px;
+    width: 500px;
+    height: 300px;
+    margin-left: 0px;
+    column-count: 2;
     margin-left: 0px;
   }
 `;
 
-const Numbers = styled.p`
-  display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 0px;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-bottom: 30px;
-  font-size: 16px;
-  font-family: ${ParagraphFont}
-  cursor: pointer;
-  text-decoration: none;
-  height: 50px;
-  box-sizing: border-box;
-  max-width: 50%;
-  color: ${Gray};
-  @media screen and (min-width: 768px) {
-    font-size: 16px;
-    align-items: center;
-    margin: 0px; 
-    max-width: 0;
-  }
-`;
+// const Numbers = styled.p`
+//   display: flex;
+//   flex-wrap: wrap;
+//   padding-bottom: 0px;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   padding-bottom: 30px;
+//   font-size: 16px;
+//   font-family: ${ParagraphFont}
+//   cursor: pointer;
+//   text-decoration: none;
+//   height: 50px;
+//   box-sizing: border-box;
+//   max-width: 50%;
+//   color: ${Gray};
+//   @media screen and (min-width: 768px) {
+//     font-size: 16px;
+//     align-items: center;
+//     margin: 0px;
+//     max-width: 0;
+//   }
