@@ -53,13 +53,12 @@ const Concepts = () => {
   return (
     <>
       <Navigation />
-      <ConceptHeader inputValue={searchText} handleOnChange={handleChange} />
       <Container className={classes.container}>
-        <HeaderConcepts>
-          {" "}
-          <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
-        </HeaderConcepts>
+        <ConceptHeader inputValue={searchText} handleOnChange={handleChange} />
         <Grid container direction="row" justify="center" color="blue">
+          <HeaderConcepts>
+            <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
+          </HeaderConcepts>
           {conceptList.data?.map((item) => {
             return (
               <>
@@ -126,7 +125,7 @@ const HeaderConcepts = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 0px;
+  margin-top: 70px;
   align-items: center;
 `;
 

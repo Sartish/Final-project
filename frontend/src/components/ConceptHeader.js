@@ -66,6 +66,7 @@ export const ContainerForSearch = styled.section`
 
 export const Title = styled.h2`
   display: flex;
+  width: 300px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -78,6 +79,7 @@ export const Title = styled.h2`
   color: ${DarkGray};
   @media (min-width: 768px) {
     font-size: 35px;
+    width: 500px;
   }
 `;
 const Border = styled.div`
