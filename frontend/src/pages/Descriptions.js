@@ -73,7 +73,7 @@ export default function Descriptions() {
   return (
     <>
       <Navigation />
-      <Container maxWidth="sm">
+      <Container>
         <DescriptionHeader heading={concept} />
         <SubHeadingWrapper>
           <SubHeadingContainer>
@@ -236,7 +236,6 @@ const SubHeadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   @media (min-width: 768px) {
   }
 `;
@@ -248,10 +247,11 @@ const SubHeadingContainer = styled.div`
   flex-direction: column;
   margin-top: 10px;
   padding: 30px;
+  width: 100%;
   background-color: ${Yellow};
 
   @media (min-width: 768px) {
-    width: 900px;
+    width: 80%;
     margin-top: 30px;
     justify-content: center;
     padding: 20px;

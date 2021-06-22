@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Grid, makeStyles, Container } from "@material-ui/core";
 import styled from "styled-components/macro";
 
@@ -8,9 +9,15 @@ import Footer from "../components/Footer";
 import { API_URL } from "../reusables/urls";
 import TopSearches from "../components/TopSearches";
 import Navigation from "../components/Navigation";
+import Loader from "../components/Loader"
+import { ui } from "../reducers/ui";
 
 const Concepts = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector((store) => store.ui);
+
   const [conceptList, setConceptList] = useState({});
   const [searchText, setSearchText] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
@@ -18,16 +25,19 @@ const Concepts = () => {
   const handleChange = (event) => {
     event.preventDefault();
     setSearchText(event.target.value);
-    console.log("hej");
   };
 
   useEffect(() => {
+    dispatch(ui.actions.setLoading(true));
     fetch(
       // `http://localhost:8080/concepts?page=${pageNumber}&searchText=${searchText}`
       `https://techtionary-project.herokuapp.com/concepts?page=${pageNumber}&searchText=${searchText}`
     )
       .then((res) => res.json())
-      .then((data) => setConceptList(data));
+      .then((data) => {
+        setConceptList(data);
+        dispatch(ui.actions.setLoading(false));
+      });
   }, [pageNumber, searchText]);
 
   const postClickToBackend = (conceptId) => {
@@ -58,6 +68,7 @@ const Concepts = () => {
         <HeaderConcepts>
           <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
         </HeaderConcepts>
+        {isLoading ? <Loader /> : 
         <Grid container direction="row" justify="center" color="blue">
           {conceptList.data?.map((item) => {
             return (
@@ -74,6 +85,7 @@ const Concepts = () => {
             );
           })}
         </Grid>
+      }
         <ConceptButtonWrapper>
           <CustomButton
             variant="contained"
@@ -126,9 +138,14 @@ const HeaderConcepts = styled.div`
   align-items: center;
   margin-top: 80px;
   align-items: center;
+  @media (min-width: 1024px) {
+    width: 1200px;
+    margin-top: 30px;
+  }
   @media (min-width: 768px) {
     margin-top: 30px;
-    width: 1200px;
+    width: 100%;
+   
   }
 `;
 

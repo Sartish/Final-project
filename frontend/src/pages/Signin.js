@@ -91,9 +91,9 @@ const Signin = () => {
               description.
             </HiUser>
           </ParagraphInstructions>
-          <Typography component="h1" variant="h5">
+          {/* <Typography component="h1" variant="h5">
             Sign in
-          </Typography>
+          </Typography> */}
           <form onSubmit={onFormSubmit}>
             <WrapperForInput>
               <TextField

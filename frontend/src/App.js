@@ -10,14 +10,15 @@ import Concepts from "./pages/Concepts";
 import About from "./pages/About";
 import AddedDescription from "./components/AddedDescription";
 import FrontPage from "./pages/FrontPage";
-
 import Descriptions from "./pages/Descriptions";
 import TopSearches from "./components/TopSearches";
 import ContributeConcept from "./components/ContributeConcept";
 
+
 const reducer = combineReducers({
   user: user.reducer,
   concepts: concepts.reducer,
+
 });
 
 const store = configureStore({ reducer });
@@ -28,9 +29,8 @@ export const App = () => {
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={FrontPage} />
-          <Route exact path="/concepts" component={Concepts} />
+          <Route exact path="/concepts" component={Concepts}/>
           <Route path="/newconcept" component={ContributeConcept} />
-
           <Route path="/signin" component={Signin} />
           <Route path="/concepts/:conceptId" component={Descriptions} />
           <Route
@@ -40,10 +40,7 @@ export const App = () => {
           />
           <Route path="/about" component={About} />
           <Route path="/contribute" component={AddedDescription} />
-
-
           <Route path="/descriptions" component={Descriptions} />
-
           <Route path="/search" component={TopSearches} />
           <div>hej appen</div>
         </Switch>
