@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     width: "300px ",
     height: "200px",
     marginTop: "35px",
+    marginBottom: "10px",
   },
 }));
 
