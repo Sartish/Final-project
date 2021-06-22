@@ -30,7 +30,7 @@ const FrontPage = () => {
                     marginBottom: 0,
                     display: "flex",
                   }}
-                  duration={10}
+                  duration={9}
                   end={allConcepts.data.length}
                 />
               </CountText>
@@ -93,12 +93,12 @@ const FrontPageContainer = styled.section`
 
 export const CountingConceptHeader = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
   margin-top: 0px;
-  width: 130px;
+  width: 180px;
   font-family: ${HeaderFont};
   padding: 0px;
   color: ${Gray};
@@ -111,13 +111,10 @@ export const CountingConceptHeader = styled.div`
     justify-content: center;
   }
   @media (min-width: 1024px) {
-    position: absolute;
-    top: 1%;
-    left: 5%;
-    padding: 8px;
-    margin-bottom: 0px;
-    width: 170px;
-    flex-direction: column;
+    margin: 0px;
+    width: 300 px;
+    flex-direction: row;
+    justify-content: center;
   }
 `;
 
@@ -127,13 +124,12 @@ export const CountText = styled.h2`
   font-size: 16px;
   font-family: ${HeaderFont};
   margin: 0px;
-  padding: 0px;
+  padding: 2px;
   @media (min-width: 768px) {
     font-size: 25px;
-    padding: 5px;
   }
   @media (min-width: 1024px) {
-    padding: 0px;
+    font-size: 25px;
   }
 `;
 
