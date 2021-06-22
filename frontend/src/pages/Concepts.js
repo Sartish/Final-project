@@ -23,7 +23,8 @@ const Concepts = () => {
   // add useEffect
   useEffect(() => {
     fetch(
-      `http://localhost:8080/concepts?page=${pageNumber}&searchText=${searchText}`
+      // `http://localhost:8080/concepts?page=${pageNumber}&searchText=${searchText}`
+      `https://techtionary-project.herokuapp.com/concepts?page=${pageNumber}&searchText=${searchText}`
     )
       .then((res) => res.json())
       .then((data) => setConceptList(data));

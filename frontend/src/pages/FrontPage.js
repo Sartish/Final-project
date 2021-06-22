@@ -9,7 +9,8 @@ const FrontPage = () => {
   const [allConcepts, setAllConcepts] = useState({ data: [] });
 
   useEffect(() => {
-    fetch(`http://localhost:8080/concepts`)
+    // fetch(`http://localhost:8080/concepts`)
+    fetch(`https://techtionary-project.herokuapp.com/concepts`)
       .then((res) => res.json())
       .then((data) => setAllConcepts(data));
   }, []);

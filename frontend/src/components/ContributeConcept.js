@@ -53,7 +53,10 @@ const ContributeConcept = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8080/concepts?searchText=${concept}`)
+    // fetch(`http://localhost:8080/concepts?searchText=${concept}`)
+    fetch(
+      `https://techtionary-project.herokuapp.com/concepts?searchText=${concept}`
+    )
       .then((res) => res.json())
       .then((data) => setConceptList(data));
   }, [concept]);
