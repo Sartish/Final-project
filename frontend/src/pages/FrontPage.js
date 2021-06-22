@@ -5,13 +5,14 @@ import CountUp from "react-countup";
 
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { BASE_URL } from "../reusables/urls";
+
 
 const FrontPage = () => {
   const [allConcepts, setAllConcepts] = useState({ data: [] });
 
   useEffect(() => {
-    // fetch(`http://localhost:8080/concepts`)
-    fetch(`https://techtionary-project.herokuapp.com/concepts`)
+    fetch(`${BASE_URL}/concepts`)
       .then((res) => res.json())
       .then((data) => setAllConcepts(data));
   }, []);

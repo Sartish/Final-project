@@ -301,7 +301,7 @@ app.get("/concepts", async (req, res) => {
       page = 1;
     }
     if (!size) {
-      size = 20;
+      size = 21;
     }
     const limit = parseInt(size);
     const skip = (page - 1) * size;
@@ -312,7 +312,8 @@ app.get("/concepts", async (req, res) => {
       .limit(limit)
       .collation({ locale: "en" });
 
-    res.json({ page, size, data: concept });
+      const count = await Concept.countDocuments();
+    res.json({ page, size, totalPages: Math.ceil(count / limit), data: concept });
   } catch (error) {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }

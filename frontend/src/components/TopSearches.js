@@ -35,9 +35,9 @@ const TopSearches = () => {
       </TopSearchesHeaderContainer>
       <List>
         {sortDesc(allConcepts.data)?.map((item) => {
-          console.log(item._id);
+          // console.log(item._id);
           return (
-            <li style={{ marginBottom: 6, fontSize: 16, color: "black" }}>
+            <li key={item._id} style={{ marginBottom: 6, fontSize: 16, color: "black" }}>
               <Link className={classes.link} to={`/concepts/${item._id}`}>
                 {item.concept}
               </Link>

@@ -6,7 +6,7 @@ import styled from "styled-components/macro";
 import ConceptCard from "../components/ConceptCard";
 import ConceptHeader from "../components/ConceptHeader";
 import Footer from "../components/Footer";
-import { API_URL } from "../reusables/urls";
+import { API_URL, BASE_URL } from "../reusables/urls";
 import TopSearches from "../components/TopSearches";
 import Navigation from "../components/Navigation";
 import Loader from "../components/Loader"
@@ -21,6 +21,7 @@ const Concepts = () => {
   const [conceptList, setConceptList] = useState({});
   const [searchText, setSearchText] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
+  const [totalPages, setTotalPages ] = useState(1);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -30,14 +31,17 @@ const Concepts = () => {
   useEffect(() => {
     dispatch(ui.actions.setLoading(true));
     fetch(
-      // `http://localhost:8080/concepts?page=${pageNumber}&searchText=${searchText}`
-      `https://techtionary-project.herokuapp.com/concepts?page=${pageNumber}&searchText=${searchText}`
+      `${BASE_URL}/concepts?page=${pageNumber}&searchText=${searchText}`
     )
       .then((res) => res.json())
       .then((data) => {
         setConceptList(data);
+        const pages = data.totalPages;
+        setTotalPages(pages);
         dispatch(ui.actions.setLoading(false));
-      });
+      })
+
+
   }, [pageNumber, searchText]);
 
   const postClickToBackend = (conceptId) => {
@@ -59,7 +63,6 @@ const Concepts = () => {
     setPageNumber(pageNumber - 1);
     console.log("previous");
   };
-
   return (
     <>
       <Navigation />
@@ -68,12 +71,13 @@ const Concepts = () => {
         <HeaderConcepts>
           <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
         </HeaderConcepts>
-        {isLoading ? <Loader /> : 
+        {isLoading ? <Loader /> :
         <Grid container direction="row" justify="center" color="blue">
           {conceptList.data?.map((item) => {
             return (
               <>
                 <ConceptCard
+                    key={item._id}
                   postClickToBackend={() => {
                     postClickToBackend(item._id);
                   }}
@@ -92,17 +96,17 @@ const Concepts = () => {
             color="primary"
             href="#contained-buttons"
             onClick={movePreviousPage}
-            disabled={pageNumber === 1}
+            disabled={ parseInt(pageNumber) === 1}
           >
             Back
           </CustomButton>
-          <PageNumber>{pageNumber}</PageNumber>
+          <PageNumber>{pageNumber} / {totalPages}</PageNumber>
           <CustomButton
             variant="contained"
             color="primary"
             href="#contained-buttons"
             onClick={moveNextPage}
-            disabled={pageNumber === 10}
+            disabled={parseInt(pageNumber) === parseInt(totalPages)}
           >
             Next
           </CustomButton>
@@ -142,7 +146,7 @@ const HeaderConcepts = styled.div`
   @media (min-width: 768px) {
     margin-top: 30px;
     width: 100%;
-   
+
   }
 `;
 
@@ -187,4 +191,8 @@ const CustomButton = styled.button`
     background-color: black;
     border:4px solid white;
     transition: background-color 0.5s ease-out, color 0.5s ease-out;
+  }
+  :disabled {
+    background-color: black;
+  }
 `;
