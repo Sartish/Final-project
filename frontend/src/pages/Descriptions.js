@@ -109,7 +109,10 @@ export default function Descriptions() {
               <Card className={classes.root} key={item._id}>
                 <div className={classes.heading}>
                   <Typography className={classes.user}>
-                    {item.user ? item.user.username : "no user"}
+                    {" "}
+                    <strong>
+                      {item.user ? item.user.username : "no user"}{" "}
+                    </strong>
                     <span className={classes.span}> added a explanation</span>
                   </Typography>
                   <CardActions disableSpacing>
@@ -124,27 +127,32 @@ export default function Descriptions() {
                   <Typography className={classes.concept}>
                     {item.text}
                   </Typography>
-                  <div className={classes.heading}>
-                    <Typography className={classes.user}>
-                      Created at: {moment(item.createdAt).format("MMM Do YYYY")}
-                    </Typography>
-                    <CardActions disableSpacing>
-                      <IconButton
-                        aria-label="add to favorites"
-                        onClick={() => postLikeToBackend(item._id)}
-                      >
-                        <FavoriteIcon className={classes.heart} />
-                        <Typography
-                          variant="body1"
-                          color="textPrimary"
-                          component="p"
-                        >
-                          x {item.likes}
-                        </Typography>
-                      </IconButton>
-                    </CardActions>
-                  </div>
                 </CardContent>
+                <div className={classes.heading}>
+                  <Typography className={classes.created}>
+                    {" "}
+                    Created at:
+                    <strong>
+                      {" "}
+                      {moment(item.createdAt).format("MMM Do YYYY")}
+                    </strong>
+                  </Typography>
+                  <CardActions disableSpacing>
+                    <IconButton
+                      aria-label="add to favorites"
+                      onClick={() => postLikeToBackend(item._id)}
+                    >
+                      <FavoriteIcon className={classes.heart} />
+                      <Typography
+                        variant="body1"
+                        color="textPrimary"
+                        component="p"
+                      >
+                        <strong>x {item.likes}</strong>
+                      </Typography>
+                    </IconButton>
+                  </CardActions>
+                </div>
               </Card>
             );
           })}
@@ -196,9 +204,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    // marginTop: "10px",
-    // marginLeft: "10px",
-    // marginRight: "8px",
+    marginLeft: "20px",
     fontFamily: "'Manrope', sans-serif",
     color: "#282828",
   },
@@ -223,16 +229,6 @@ const useStyles = makeStyles((theme) => ({
   share: {
     fontSize: "40px",
     display: "flex",
-  },
-
-  header: {
-    textAlign: "center",
-    padding: "5px",
-    fontSize: "40px",
-  },
-  secondheader: {
-    fontSize: "16px",
-    textAlign: "center",
   },
 }));
 
