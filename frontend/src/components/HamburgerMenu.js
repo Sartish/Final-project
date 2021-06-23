@@ -88,7 +88,7 @@ export const MenuContainer = styled.div`
   align-items: flex-start;
   background-color: ${LightPink};
   position: absolute;
-  top: 30px;
+  top: 20px;
   width: 200px;
   height: 280px;
   z-index: 1;

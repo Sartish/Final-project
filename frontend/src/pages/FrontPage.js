@@ -112,7 +112,7 @@ export const CountingConceptHeader = styled.div`
 
   @media (min-width: 768px) {
     margin: 0px;
-    width: 300px;
+    width: 320px;
     padding: 14px;
     flex-direction: row;
     justify-content: center;
