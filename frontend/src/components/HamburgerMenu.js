@@ -60,7 +60,7 @@ const ParagraphFont = "'Roboto', sans-serif;";
 const LightPink = "#FFCFF1";
 const DarkGray = "#282828";
 
-export const HamburgerButton = styled.button`
+const HamburgerButton = styled.button`
   position: absolute;
   top: 10px;
   background-color: transparent;
@@ -81,7 +81,7 @@ export const HamburgerButton = styled.button`
   }
 `;
 
-export const MenuContainer = styled.div`
+const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +94,7 @@ export const MenuContainer = styled.div`
   z-index: 1;
 `;
 
-export const Link = styled.div`
+const Link = styled.div`
   font-size: 16px;
   font-family: ${ParagraphFont}
   text-decoration: none;

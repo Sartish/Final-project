@@ -97,7 +97,7 @@ const FrontPageContainer = styled.section`
   }
 `;
 
-export const CountingConceptHeader = styled.div`
+const CountingConceptHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -112,14 +112,14 @@ export const CountingConceptHeader = styled.div`
 
   @media (min-width: 768px) {
     margin: 0px;
-    width: 320px;
+    width: 350px;
     padding: 14px;
     flex-direction: row;
     justify-content: center;
   }
 `;
 
-export const CountText = styled.h2`
+const CountText = styled.h2`
   display: flex;
   margin: 12px;
   font-size: 16px;
@@ -132,7 +132,7 @@ export const CountText = styled.h2`
   }
 `;
 
-export const TitleContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,7 +148,7 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const Title = styled.h1`
+const Title = styled.h1`
   display: flex;
   font-size: 40px;
   font-family: ${HeaderFont};
@@ -162,7 +162,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const Border = styled.div`
+const Border = styled.div`
   width: 250px;
   height: 10px;
   border: ${LightPink} 2px solid;
@@ -175,7 +175,7 @@ export const Border = styled.div`
     margin: 0px;
   }
 `;
-export const Paragraph = styled.p`
+const Paragraph = styled.p`
   font-size: 16px;
   font-family: ${HeaderFont};
   line-height: 150%;
@@ -191,7 +191,7 @@ export const Paragraph = styled.p`
   }
 `;
 
-export const Span = styled.span`
+const Span = styled.span`
   border-bottom: #ff69b4 solid 2px;
 `;
 
@@ -225,7 +225,7 @@ const ShowMe = styled.h2`
   }
 `;
 
-export const FrontPageButton = styled.button`
+const FrontPageButton = styled.button`
   display: inline-block;
   color: white;
   background-color: ${HotPink};

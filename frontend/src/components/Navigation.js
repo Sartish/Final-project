@@ -78,10 +78,9 @@ export default Navigation;
 
 const ParagraphFont = "'Roboto', sans-serif;";
 const HotPink = "#FF69B4";
-const Gray = "#404040;";
 const DarkGray = "#282828";
 
-export const NavigationBar = styled.div`
+const NavigationBar = styled.div`
   display: flex;
   padding: 0px 15px;
   justify-content: space-between;
@@ -102,14 +101,14 @@ const Hamburger = styled.div`
   }
 `;
 
-export const RightNav = styled.div`
+const RightNav = styled.div`
   display: none;
   @media (min-width: 1025px) {
     display: flex;
   }
 `;
 
-export const Logo = styled.div`
+const Logo = styled.div`
   justify-content: flex-end;
   @media (min-width: 768px) {
     justify-content: space-between;
@@ -117,7 +116,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const Link = styled.div`
+const Link = styled.div`
   text-decoration: none;
   font-size: 17px;
   font-family: ${ParagraphFont}
@@ -132,7 +131,7 @@ export const Link = styled.div`
   }
 `;
 
-export const SigninButton = styled.button`
+const SigninButton = styled.button`
   display: inline-block;
   color: white;
   background-color: ${HotPink};

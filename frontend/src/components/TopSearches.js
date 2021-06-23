@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import { makeStyles, Container } from "@material-ui/core";
 
+import { BASE_URL } from "../reusables/urls";
+
 const TopSearches = () => {
   const classes = useStyles();
-  // Vad den får tillbaka från första fetchen ({ data: [] }); så när vi sen ska hämta den på nytt
-  // i våran funktion så måste vi nå den på rätt sätt
   const [allConcepts, setAllConcepts] = useState({ data: [] });
 
   // sorting our mapped data in decsending order, then slice to get the first 20 popular searches
@@ -20,8 +20,7 @@ const TopSearches = () => {
   };
 
   useEffect(() => {
-    // fetch(`http://localhost:8080/concepts`)
-    fetch(`https://techtionary-project.herokuapp.com/concepts`)
+    fetch(`${BASE_URL}/concepts`)
       .then((res) => res.json())
       .then((data) => setAllConcepts(data));
   }, []);

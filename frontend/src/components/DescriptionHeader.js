@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Title = styled.div`
+const Title = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

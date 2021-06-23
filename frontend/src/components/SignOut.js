@@ -28,7 +28,7 @@ const SignOut = () => {
 
 export default SignOut;
 
-export const SignoutButton = styled.div`
+const SignoutButton = styled.div`
   display: inline-block;
   color: white;
   background-color: #ff69b4;

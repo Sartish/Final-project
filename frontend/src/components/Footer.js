@@ -46,6 +46,9 @@ const FooterContainer = styled.div`
   margin-bottom: 10px;
   padding: 0px;
   width: 300px;
+  @media (min-width: 767px) {
+    width: 500px;
+  }
 `;
 export const FooterParagraphs = styled.div`
   display: flex;

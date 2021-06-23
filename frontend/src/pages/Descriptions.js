@@ -264,7 +264,7 @@ const SubHeading = styled.p`
   }
 `;
 
-export const LikesButton = styled.button`
+const LikesButton = styled.button`
 display: inline-block;
 color: ${DarkGray};
 background-color: ${LightPink};

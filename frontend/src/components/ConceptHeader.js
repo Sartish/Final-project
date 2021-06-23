@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ContainerForSearch = styled.section`
+const ContainerForSearch = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,7 +64,7 @@ export const ContainerForSearch = styled.section`
   }
 `;
 
-export const Title = styled.h2`
+const Title = styled.h2`
   display: flex;
   width: 250px;
   flex-direction: column;
@@ -99,7 +99,7 @@ const Border = styled.div`
   }
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

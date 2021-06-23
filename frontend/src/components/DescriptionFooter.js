@@ -96,7 +96,7 @@ const ContributeButtonContainer = styled.div`
     width: 800px;
   }
 `;
-export const ContainerHeader = styled.section`
+const ContainerHeader = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,7 +111,7 @@ export const ContainerHeader = styled.section`
   }
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -120,7 +120,7 @@ export const Wrapper = styled.div`
   height: 400px;
 `;
 
-export const Title = styled.div`
+const Title = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -130,7 +130,7 @@ export const Title = styled.div`
   font-size: 50px;
 `;
 
-export const CustomButton = styled.button`
+const CustomButton = styled.button`
 display: inline-block;
   color: white;
   background-color: #ff69b4;

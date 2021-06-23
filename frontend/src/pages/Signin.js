@@ -257,7 +257,7 @@ const WrapperForInput = styled.div`
   flex-direction: column;
 `;
 
-export const FormButton = styled.button`
+const FormButton = styled.button`
   border-radius: 4px;
   background-color: #ffcff1;
   border: none;
