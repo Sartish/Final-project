@@ -172,7 +172,6 @@ app.post("/concepts", async (req, res) => {
     });
 
     if (existingConcept.length > 0) {
-      console.log("concept already exists...lets reuse");
       const updatedConcept = await Concept.findByIdAndUpdate(
         existingConcept[0]._id,
         {
@@ -190,21 +189,16 @@ app.post("/concepts", async (req, res) => {
       res.json(updatedConcept);
     } else {
       // concept does not already exist. create it and add description
-      console.log("concept dont exist..lets create it");
       const newConcept = await new Concept({
         concept,
         description: [newDescription],
       }).save();
       res.json(newConcept);
-      // console.log(newConcept);
     }
   } catch (error) {
-    console.log("Test;" + error);
     res.status(400).json({ success: false, message: "Invalid request", error });
   }
 });
-
-//ADD Delete concepts also
 
 //POST for the user to add explanation of the concept
 //Authenticate user, to promot login
@@ -290,7 +284,6 @@ app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
   }
 });
 
-//http://localhost:8080/concepts?page=1&size=20
 //GET CONCEPTS
 app.get("/concepts", async (req, res) => {
   try {
@@ -335,48 +328,8 @@ app.get("/concepts/count", async (req, res) => {
   }
 });
 
-//sen om ni har någon redovisning så kan ni ju säga ni vet den var långsam
-//men vi hade inte tid att sätta upp elasticsearch
-//elasticsearch == verktyg för att söka optimalt med text
-
-// WORKING ON THIS. SHOULD BE ABLE TO SEARCH
-
-// app.get("/concepts", async (req, res) => {
-//   try {
-
-//     const { concept } = req.query;
-//     const page = parseInt(req.query.page)
-//     const size = parseInt(req.query.size)
-//     const conceptRegex = new RegExp(concept, 'i');
-
-//     console.log(size)
-//     console.log(concept)
-
-//     const filteredConcepts = await Concept.aggregate([
-//       {
-//         $match: {
-//           concept: conceptRegex
-//         },
-//       },
-//       {
-//         $skip: (page -1) * size + 1
-//       },
-//       {
-//         $limit: size
-//       }
-//     ]);
-//     res.json(filteredConcepts);
-//     console.log(error)
-//   } catch (error) {
-//     res.status(400).json({ success: false, message: "Invalid request", error });
-//   }
-// });
-
 // One concept with all the desciptions through concept id
-// add pagination
 // query page size and sort
-
-//http://localhost:8080/concepts/conceptId?/page=1
 app.get("/concepts/:conceptId", async (req, res) => {
   const { conceptId } = req.params;
   let { page, size } = req.query;

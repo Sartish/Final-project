@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Alert } from "@material-ui/lab";
@@ -73,7 +72,6 @@ const Signin = () => {
           dispatch(user.actions.setErrors(data));
         }
       })
-      // eslint-disable-next-line no-shadow
       .catch((error) => {
         dispatch(user.actions.setErrors(error.message));
       });
@@ -87,13 +85,10 @@ const Signin = () => {
           <WriteHere>Sign in or Sign up</WriteHere>
           <ParagraphInstructions>
             <HiUser>
-              Sign in or Sing up to to contribute with a concept and your unique
+              Sign in or Sign up to to contribute with a concept and your unique
               description.
             </HiUser>
           </ParagraphInstructions>
-          {/* <Typography component="h1" variant="h5">
-            Sign in
-          </Typography> */}
           <form onSubmit={onFormSubmit}>
             <WrapperForInput>
               <TextField
@@ -168,9 +163,7 @@ export default Signin;
 
 const HeaderFont = "'Manrope', sans-serif";
 const ParagraphFont = "'Roboto', sans-serif";
-const HotPink = "#FF69B4";
 const LightPink = "#FFCFF1";
-const Yellow = "#FFF5D1";
 const Gray = "#404040;";
 const DarkGray = "#282828";
 
@@ -191,9 +184,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
   },
-
   paper: {
-    //   marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

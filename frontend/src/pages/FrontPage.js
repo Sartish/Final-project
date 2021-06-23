@@ -65,8 +65,6 @@ const FrontPage = () => {
 
 export default FrontPage;
 
-// Frontpage
-
 const HeaderFont = "'Manrope', sans-serif";
 const ParagraphFont = "'Roboto', sans-serif";
 const HotPink = "#FF69B4";
@@ -113,13 +111,8 @@ export const CountingConceptHeader = styled.div`
 
   @media (min-width: 768px) {
     margin: 0px;
-    width: 400px;
-    flex-direction: row;
-    justify-content: center;
-  }
-  @media (min-width: 1024px) {
-    margin: 0px;
-    width: 300 px;
+    width: 300px;
+    padding: 14px;
     flex-direction: row;
     justify-content: center;
   }
@@ -134,9 +127,7 @@ export const CountText = styled.h2`
   padding: 2px;
   @media (min-width: 768px) {
     font-size: 25px;
-  }
-  @media (min-width: 1024px) {
-    font-size: 25px;
+    padding: 5px;
   }
 `;
 
@@ -151,7 +142,7 @@ export const TitleContainer = styled.div`
   @media (min-width: 768px) {
     width: 1300px;
     margin-bottom: 80px;
-    margin-top: 100px;
+    margin-top: 90px;
     position: relative;
   }
 `;

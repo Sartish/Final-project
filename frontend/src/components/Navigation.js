@@ -18,19 +18,21 @@ const Navigation = () => {
         </Hamburger>
         <Logo>
           <NavLink style={{ textDecoration: "none" }} to="/">
-            <lottie-player
-              autoplay
-              loop
-              mode="normal"
-              src="https://assets10.lottiefiles.com/private_files/lf30_pcBP5A.json"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                width: 200,
-                height: 100,
-                marginLeft: 0,
-              }}
-            ></lottie-player>
+            <LottieWrapper>
+              <lottie-player
+                autoplay
+                loop
+                mode="normal"
+                src="https://assets10.lottiefiles.com/private_files/lf30_pcBP5A.json"
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  margin: 0,
+                  padding: 0,
+                  resizeMode: "contain",
+                }}
+              ></lottie-player>
+            </LottieWrapper>
           </NavLink>
         </Logo>
         <RightNav>
@@ -116,7 +118,8 @@ export const RightNav = styled.div`
 `;
 
 export const Logo = styled.div`
-  margin-left: 120px;
+  justify-content: flex-end;
+  border: black solid 2px;
   @media (min-width: 768px) {
     justify-content: space-between;
     margin-left: 0px;
@@ -158,4 +161,16 @@ export const SigninButton = styled.button`
     background-color: black;
     border:4px solid white;
     transition: background-color 0.5s ease-out, color 0.5s ease-out;
+`;
+
+const LottieWrapper = styled.div`
+  display: flex;
+  width: 150px;
+  justify-content: "flex-end";
+  margin-right: -40px;
+
+  @media (min-width: 768px) {
+    width: 200px;
+    margin-right: 0px;
+  }
 `;

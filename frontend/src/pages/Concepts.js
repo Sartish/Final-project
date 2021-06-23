@@ -52,12 +52,10 @@ const Concepts = () => {
 
   const moveNextPage = () => {
     setPageNumber(pageNumber + 1);
-    console.log("next");
   };
 
   const movePreviousPage = () => {
     setPageNumber(pageNumber - 1);
-    console.log("previous");
   };
   return (
     <>
@@ -162,6 +160,7 @@ const PageNumber = styled.p`
   font-family: ${ParagraphFont};
   font-size: 16px;
 `;
+
 const ConceptButtonWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;

@@ -104,7 +104,6 @@ export default function Descriptions() {
         </SubHeadingWrapper>
         <Grid container direction="row" justify="center" color="blue">
           {sortDesc(description)?.map((item) => {
-            //console.log(item);
             return (
               <Card className={classes.root} key={item._id}>
                 <div className={classes.heading}>
@@ -180,12 +179,7 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      ["@media (min-width:780px)"]: {
-        // marginTop: "60px",
-        // display: "flex",
-        // justifyContent: "center",
-        // alignItems: "center",
-      },
+
       ["@media (max-width:1024px)"]: {
         width: "90%",
       },
@@ -196,9 +190,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     marginRight: "5px",
     marginLeft: "5px",
-    // "&:hover": {
-    //   backgroundColor: "#FFF5D1",
-    // },
   },
   heading: {
     display: "flex",

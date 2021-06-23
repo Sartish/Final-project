@@ -4,7 +4,6 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import user from "./reducers/user";
-import concepts from "./reducers/concepts";
 import { ui } from "./reducers/ui";
 import Signin from "./pages/Signin";
 import Concepts from "./pages/Concepts";
@@ -14,12 +13,11 @@ import FrontPage from "./pages/FrontPage";
 import Descriptions from "./pages/Descriptions";
 import TopSearches from "./components/TopSearches";
 import ContributeConcept from "./components/ContributeConcept";
-import Loader from "./components/Loader"
-
+import Loader from "./components/Loader";
 
 const reducer = combineReducers({
   user: user.reducer,
-  ui: ui.reducer
+  ui: ui.reducer,
 });
 
 const store = configureStore({ reducer });
@@ -30,7 +28,7 @@ export const App = () => {
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={FrontPage} />
-          <Route exact path="/concepts" component={Concepts}/>
+          <Route exact path="/concepts" component={Concepts} />
           <Route path="/newconcept" component={ContributeConcept} />
           <Route path="/signin" component={Signin} />
           <Route path="/concepts/:conceptId" component={Descriptions} />

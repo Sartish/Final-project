@@ -67,7 +67,6 @@ const AddedDescription = () => {
       })
       .catch((error) => {
         // post failed, show error message to let user know
-        console.log("Catch error:" + error);
         swal({
           title: "Failed to add concept",
           text: error.message,
@@ -130,9 +129,7 @@ export default AddedDescription;
 
 const HeaderFont = "'Manrope', sans-serif";
 const ParagraphFont = "'Roboto', sans-serif";
-const HotPink = "#FF69B4";
 const LightPink = "#FFCFF1";
-const Yellow = "#FFF5D1";
 const Gray = "#404040;";
 const DarkGray = "#282828";
 
@@ -197,13 +194,8 @@ const Wrapper = styled.div`
   max-width: 370px;
 
   @media (min-width: 767px) {
-    // width: 50%;
     max-width: 500px;
   }
-
-  // @media (min-width: 1025px) {
-  //   width: 20%;
-  // }
 `;
 
 const TextCounter = styled.p`

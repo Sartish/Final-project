@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import swal from "sweetalert";
 
 import Navigation from "../components/Navigation";
-import { API_URL } from "../reusables/urls";
+import { API_URL, BASE_URL } from "../reusables/urls";
 import Signin from "../pages/Signin";
 
 const ContributeConcept = () => {
@@ -54,10 +54,7 @@ const ContributeConcept = () => {
   };
 
   useEffect(() => {
-    // fetch(`http://localhost:8080/concepts?searchText=${concept}`)
-    fetch(
-      `https://techtionary-project.herokuapp.com/concepts?searchText=${concept}`
-    )
+    fetch(`${BASE_URL}/concepts?searchText=${concept}`)
       .then((res) => res.json())
       .then((data) => setConceptList(data));
   }, [concept]);
@@ -81,7 +78,6 @@ const ContributeConcept = () => {
       })
       .catch((error) => {
         // post failed, show error message to let user know
-        console.log("Catch error:" + error);
         swal({
           title: "Failed to add concept",
           text: error.message,
@@ -124,7 +120,6 @@ const ContributeConcept = () => {
                 multiline
                 rows={1}
                 columns={2}
-                // defaultValue="Type here"
                 variant="outlined"
                 value={concept}
                 onChange={(e) => setConcept(e.target.value)}
@@ -136,7 +131,6 @@ const ContributeConcept = () => {
                 multiline
                 rows={4}
                 columns={8}
-                // defaultValue="Type here.."
                 variant="outlined"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -166,9 +160,6 @@ export default ContributeConcept;
 
 const HeaderFont = "'Manrope', sans-serif";
 const ParagraphFont = "'Roboto', sans-serif";
-const HotPink = "#FF69B4";
-const LightPink = "#FFCFF1";
-const Yellow = "#FFF5D1";
 const Gray = "#404040;";
 const DarkGray = "#282828";
 
@@ -271,9 +262,7 @@ const CustomButton = styled.button`
 const Border = styled.div`
   display: flex;
   text-align: center;
-  // width: 210px;
   width: 335px;
-  // height: 60px;
   height: 10px;
   color: #ffcff1;
   border:  #ffcff1; 2px solid;

@@ -27,7 +27,6 @@ const TopSearches = () => {
   }, []);
 
   // in the fetch we collect all data rendered from the API
-
   return (
     <Container className={classes.container}>
       <TopSearchesHeaderContainer>
@@ -35,9 +34,11 @@ const TopSearches = () => {
       </TopSearchesHeaderContainer>
       <List>
         {sortDesc(allConcepts.data)?.map((item) => {
-          // console.log(item._id);
           return (
-            <li key={item._id} style={{ marginBottom: 6, fontSize: 16, color: "black" }}>
+            <li
+              key={item._id}
+              style={{ marginBottom: 6, fontSize: 16, color: "black" }}
+            >
               <Link className={classes.link} to={`/concepts/${item._id}`}>
                 {item.concept}
               </Link>
@@ -67,7 +68,6 @@ const useStyles = makeStyles(() => ({
       marginTop: "60px",
       marginBottom: "60px",
       padding: "20px",
-      alignItems: "center",
     },
   },
   link: {
@@ -115,32 +115,14 @@ const List = styled.ol`
   height: 520px;
   text-decoration: none;
   @media screen and (min-width: 768px) {
-    width: 450px;
+    width: 600px;
     height: 300px;
-    margin-left: 0px;
-    column-count: 2;
-    margin-left: 0px;
+    padding-left: 30px;
+    align-items: "flex-end";
+    margin-left: 70px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 800px;
+    height: 200px;
   }
 `;
-
-// const Numbers = styled.p`
-//   display: flex;
-//   flex-wrap: wrap;
-//   padding-bottom: 0px;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   padding-bottom: 30px;
-//   font-size: 16px;
-//   font-family: ${ParagraphFont}
-//   cursor: pointer;
-//   text-decoration: none;
-//   height: 50px;
-//   box-sizing: border-box;
-//   max-width: 50%;
-//   color: ${Gray};
-//   @media screen and (min-width: 768px) {
-//     font-size: 16px;
-//     align-items: center;
-//     margin: 0px;
-//     max-width: 0;
-//   }
