@@ -104,7 +104,7 @@ const CountingConceptHeader = styled.div`
   align-items: center;
   margin-bottom: 20px;
   margin-top: 0px;
-  width: 180px;
+  width: 210px;
   font-family: ${HeaderFont};
   padding: 0px;
   color: ${Gray};
@@ -112,7 +112,7 @@ const CountingConceptHeader = styled.div`
 
   @media (min-width: 768px) {
     margin: 0px;
-    width: 350px;
+    width: 340px;
     padding: 14px;
     flex-direction: row;
     justify-content: center;
