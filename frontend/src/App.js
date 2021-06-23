@@ -19,7 +19,6 @@ import Loader from "./components/Loader"
 
 const reducer = combineReducers({
   user: user.reducer,
-  concepts: concepts.reducer,
   ui: ui.reducer
 });
 

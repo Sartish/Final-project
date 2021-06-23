@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import { API_URL, BASE_URL } from "../reusables/urls";
 import TopSearches from "../components/TopSearches";
 import Navigation from "../components/Navigation";
-import Loader from "../components/Loader"
+import Loader from "../components/Loader";
 import { ui } from "../reducers/ui";
 
 const Concepts = () => {
@@ -21,7 +21,7 @@ const Concepts = () => {
   const [conceptList, setConceptList] = useState({});
   const [searchText, setSearchText] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages ] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -30,18 +30,14 @@ const Concepts = () => {
 
   useEffect(() => {
     dispatch(ui.actions.setLoading(true));
-    fetch(
-      `${BASE_URL}/concepts?page=${pageNumber}&searchText=${searchText}`
-    )
+    fetch(`${BASE_URL}/concepts?page=${pageNumber}&searchText=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setConceptList(data);
         const pages = data.totalPages;
         setTotalPages(pages);
         dispatch(ui.actions.setLoading(false));
-      })
-
-
+      });
   }, [pageNumber, searchText]);
 
   const postClickToBackend = (conceptId) => {
@@ -71,36 +67,40 @@ const Concepts = () => {
         <HeaderConcepts>
           <ConceptsParagraph>All Concepts A-Z </ConceptsParagraph>
         </HeaderConcepts>
-        {isLoading ? <Loader /> :
-        <Grid container direction="row" justify="center" color="blue">
-          {conceptList.data?.map((item) => {
-            return (
-              <>
-                <ConceptCard
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Grid container direction="row" justify="center" color="blue">
+            {conceptList.data?.map((item) => {
+              return (
+                <>
+                  <ConceptCard
                     key={item._id}
-                  postClickToBackend={() => {
-                    postClickToBackend(item._id);
-                  }}
-                  link={`/concepts/${item._id}`}
-                  itemId={item._id}
-                  concept={item.concept}
-                />
-              </>
-            );
-          })}
-        </Grid>
-      }
+                    postClickToBackend={() => {
+                      postClickToBackend(item._id);
+                    }}
+                    link={`/concepts/${item._id}`}
+                    itemId={item._id}
+                    concept={item.concept}
+                  />
+                </>
+              );
+            })}
+          </Grid>
+        )}
         <ConceptButtonWrapper>
           <CustomButton
             variant="contained"
             color="primary"
             href="#contained-buttons"
             onClick={movePreviousPage}
-            disabled={ parseInt(pageNumber) === 1}
+            disabled={parseInt(pageNumber) === 1}
           >
             Back
           </CustomButton>
-          <PageNumber>{pageNumber} / {totalPages}</PageNumber>
+          <PageNumber>
+            {pageNumber} / {totalPages}
+          </PageNumber>
           <CustomButton
             variant="contained"
             color="primary"
@@ -146,7 +146,6 @@ const HeaderConcepts = styled.div`
   @media (min-width: 768px) {
     margin-top: 30px;
     width: 100%;
-
   }
 `;
 
@@ -189,10 +188,11 @@ const CustomButton = styled.button`
   :hover {
     color: white;
     background-color: black;
-    border:4px solid white;
+    border: 4px solid white;
     transition: background-color 0.5s ease-out, color 0.5s ease-out;
   }
   :disabled {
-    background-color: black;
+    background-color: grey;
+    border: grey;
   }
 `;

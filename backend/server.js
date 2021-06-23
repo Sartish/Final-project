@@ -312,8 +312,24 @@ app.get("/concepts", async (req, res) => {
       .limit(limit)
       .collation({ locale: "en" });
 
-      const count = await Concept.countDocuments();
-    res.json({ page, size, totalPages: Math.ceil(count / limit), data: concept });
+    const count = await Concept.countDocuments();
+    res.json({
+      page,
+      size,
+      totalPages: Math.ceil(count / limit),
+      data: concept,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, message: "Invalid request", error });
+  }
+});
+
+//GET
+// counting nr of concepts
+app.get("/concepts/count", async (req, res) => {
+  try {
+    const count = await Concept.countDocuments({});
+    res.json(count);
   } catch (error) {
     res.status(400).json({ success: false, message: "Invalid request", error });
   }

@@ -7,12 +7,11 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { BASE_URL } from "../reusables/urls";
 
-
 const FrontPage = () => {
   const [allConcepts, setAllConcepts] = useState({ data: [] });
 
   useEffect(() => {
-    fetch(`${BASE_URL}/concepts`)
+    fetch(`${BASE_URL}/concepts/count`)
       .then((res) => res.json())
       .then((data) => setAllConcepts(data));
   }, []);
@@ -32,7 +31,7 @@ const FrontPage = () => {
                     display: "flex",
                   }}
                   duration={9}
-                  end={allConcepts.data.length}
+                  end={allConcepts.data}
                 />
               </CountText>
               <CountText>Concepts</CountText>
