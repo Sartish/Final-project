@@ -62,7 +62,7 @@ const DarkGray = "#282828";
 
 export const HamburgerButton = styled.button`
   position: absolute;
-  top: 30px;
+  top: 10px;
   background-color: transparent;
   border: none;
   width: 60px;
@@ -73,10 +73,10 @@ export const HamburgerButton = styled.button`
   align-items: center;
   z-index: 2;
   div {
-    width: 50px;
-    height: 7px;
+    width: 40px;
+    height: 3px;
     background-color: ${DarkGray};
-    margin: 5px;
+    margin: 4px;
     border-radius: 30px;
   }
 `;

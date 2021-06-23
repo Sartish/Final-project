@@ -97,17 +97,9 @@ const Hamburger = styled.div`
   display: flex;
   width: 35px;
   height: 5px;
-  padding-bottom: 15px;
   @media (min-width: 1025px) {
     display: none;
   }
-`;
-
-export const Bar = styled.div`
-  width: 35px;
-  height: 5px;
-  background-color: #333;
-  margin: 6px 0;
 `;
 
 export const RightNav = styled.div`
@@ -165,9 +157,8 @@ export const SigninButton = styled.button`
 
 const LottieWrapper = styled.div`
   display: flex;
-  width: 150px;
+  width: 100px;
   justify-content: "flex-end";
-  margin-right: -40px;
 
   @media (min-width: 768px) {
     width: 200px;

@@ -11,7 +11,7 @@ const TopSearches = () => {
 
   // sorting our mapped data in decsending order, then slice to get the first 20 popular searches
 
-  let size = 21;
+  let size = 20;
 
   const sortDesc = () => {
     return allConcepts.data
