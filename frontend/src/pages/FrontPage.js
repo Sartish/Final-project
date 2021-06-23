@@ -93,6 +93,7 @@ const FrontPageContainer = styled.section`
     justify-content: space-around;
     flex-direction: row;
     margin: 0px;
+    height: 500px;
   }
 `;
 

@@ -111,7 +111,6 @@ export const RightNav = styled.div`
 
 export const Logo = styled.div`
   justify-content: flex-end;
-  border: black solid 2px;
   @media (min-width: 768px) {
     justify-content: space-between;
     margin-left: 0px;
@@ -161,7 +160,7 @@ const LottieWrapper = styled.div`
   justify-content: "flex-end";
 
   @media (min-width: 768px) {
-    width: 200px;
+    width: 180px;
     margin-right: 0px;
   }
 `;
