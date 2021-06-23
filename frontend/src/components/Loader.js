@@ -7,9 +7,9 @@ export default function CircularIndeterminate() {
 
   return (
     <Container className={classes.container}>
-    <div className={classes.root}>
-      <CircularProgress color="#FF69B4" />
-    </div>
+      <div className={classes.root}>
+        <CircularProgress color="#FF69B4" />
+      </div>
     </Container>
   );
 }
@@ -20,13 +20,13 @@ const useStyles = makeStyles((theme) => ({
     height: "200px",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   root: {
     display: "flex",
     width: "100px",
     marginTop: "10px",
-    
+
     "& > * + *": {
       marginLeft: theme.spacing(2),
     },

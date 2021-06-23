@@ -8,12 +8,16 @@ import Footer from "../components/Footer";
 import { BASE_URL } from "../reusables/urls";
 
 const FrontPage = () => {
-  const [allConcepts, setAllConcepts] = useState({ data: [] });
+  const [allConcepts, setAllConcepts] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${BASE_URL}/concepts/count`)
       .then((res) => res.json())
-      .then((data) => setAllConcepts(data));
+      .then((data) => {
+        setAllConcepts(data);
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -22,20 +26,23 @@ const FrontPage = () => {
       <BackgroundContainer>
         <FrontPageContainer>
           <TitleContainer>
-            <CountingConceptHeader>
-              <CountText>Currently</CountText>
-              <CountText>
-                <CountUp
-                  style={{
-                    marginBottom: 0,
-                    display: "flex",
-                  }}
-                  duration={9}
-                  end={allConcepts.data}
-                />
-              </CountText>
-              <CountText>Concepts</CountText>
-            </CountingConceptHeader>
+            {isLoading ? null : (
+              <CountingConceptHeader>
+                <CountText>Currently</CountText>
+                <CountText>
+                  <CountUp
+                    style={{
+                      marginBottom: 0,
+                      display: "flex",
+                    }}
+                    duration={9}
+                    end={allConcepts}
+                  />
+                </CountText>
+
+                <CountText>Concepts</CountText>
+              </CountingConceptHeader>
+            )}
             <Title>TECHTIONARY</Title>
             <Border></Border>
             <Paragraph>

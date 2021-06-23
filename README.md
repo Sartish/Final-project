@@ -11,13 +11,12 @@
 * Mongoose
 * Express
 * Postman
-* React
+* React.js
 * React Router
 * Redux
 * React router
 * Styled components
 * Material UI
-* React.js
 * Styled-Components
 * RESTful API
 * Sweetalert

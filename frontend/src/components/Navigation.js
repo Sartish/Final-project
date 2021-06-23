@@ -25,9 +25,10 @@ const Navigation = () => {
               src="https://assets10.lottiefiles.com/private_files/lf30_pcBP5A.json"
               style={{
                 display: "flex",
-                justifyContent: "flex-end",
+                justifyContent: "center",
                 width: 200,
                 height: 100,
+                marginLeft: 0,
               }}
             ></lottie-player>
           </NavLink>
@@ -115,7 +116,7 @@ export const RightNav = styled.div`
 `;
 
 export const Logo = styled.div`
-  margin-left: 170px;
+  margin-left: 120px;
   @media (min-width: 768px) {
     justify-content: space-between;
     margin-left: 0px;
