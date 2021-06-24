@@ -6,6 +6,8 @@ import annsofiimg from "../assets/annsofi.profile.JPG";
 import saraimg from "../assets/profile-picture.jpg";
 import Footer from "../components/Footer";
 
+// about
+
 const About = () => {
   return (
     <>

@@ -52,7 +52,6 @@ export default TopSearches;
 
 const HeaderFont = "'Manrope', sans-serif";
 const LightPink = "#FFCFF1";
-
 const DarkGray = "#282828";
 
 const useStyles = makeStyles(() => ({
