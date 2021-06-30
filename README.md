@@ -4,7 +4,7 @@ An open-source tech-concept dictionary were users can look up concepts, see mult
 
 ## The build 🛠
 
-We started out sketching the main functions in Figma to sketch out the main functions of the application and used Trello to store notes and plan our project. Then we started up building the backend, which is built around three main mongoose modules: the concepts, descriptions and users. We then started to build the endpoints were the users will be able to POST concept and add/update descriptions. This process involved  a lot testing endpoints in postman, to validate that the endpoints will work in frontend. 
+We started out sketching the main functions in Figma to sketch out the main functions of the application and used Trello to store notes and plan our project. Then we started up building the backend with express in Node.js, using mongoose to model our data around three major schemas: the user, concepts and descriptions. To store our collections data we use Mongo database. We then started to build the endpoints were the users will be able to POST concept and add/update descriptions. This process involved  a lot testing endpoints in postman, to validate that the endpoints will function in frontend. 
 
 Then we continued to build the main skeleton in frontend, using React Route to redirect the user in the navigation bar. The frontend is built in React, and we made sure that our data fetched from the endpoint rendered in the frontend. For instance to GET all concepts stored when component renders. Then we went back to the Figma scotch to update it with a more coherent styling, by using some new inputs regarding UX and UI we received along the way. 
 

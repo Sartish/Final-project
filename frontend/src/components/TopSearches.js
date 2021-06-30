@@ -10,7 +10,6 @@ const TopSearches = () => {
   const [allConcepts, setAllConcepts] = useState({ data: [] });
 
   // sorting our mapped data in decsending order, then slice to get the first 20 popular searches
-
   let size = 20;
 
   const sortDesc = () => {
