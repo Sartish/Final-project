@@ -155,7 +155,8 @@ app.post("/signin", async (req, res) => {
   }
 });
 
-//POST CONCEPTS
+//POST concepts
+//Authenticate user, to promot login
 app.post("/concepts", authenticateUser);
 app.post("/concepts", async (req, res) => {
   const { concept, description } = req.body;
@@ -233,7 +234,7 @@ app.patch("/concepts", async (req, res) => {
   }
 });
 
-//POST
+//POST likes for description
 app.post("/concepts/:descriptionId/likes", async (req, res) => {
   const { descriptionId } = req.params;
 
@@ -284,12 +285,10 @@ app.post("/concepts/concept/:conceptId/addlikes", async (req, res) => {
   }
 });
 
-//GET CONCEPTS
+//GET concepts
 app.get("/concepts", async (req, res) => {
   try {
     let { page, size, searchText } = req.query;
-    // pagination items per page
-
     if (!page) {
       page = 1;
     }
@@ -317,8 +316,7 @@ app.get("/concepts", async (req, res) => {
   }
 });
 
-//GET
-// counting nr of concepts
+//GET counting nr of concepts
 app.get("/concepts/count", async (req, res) => {
   try {
     const count = await Concept.countDocuments({});
