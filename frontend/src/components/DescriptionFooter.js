@@ -120,16 +120,6 @@ const Wrapper = styled.div`
   height: 400px;
 `;
 
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: solid 2px #ffcff1;
-  padding: 10px;
-  font-size: 50px;
-`;
-
 const CustomButton = styled.button`
 display: inline-block;
   color: white;

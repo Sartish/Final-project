@@ -24,7 +24,6 @@ const HamburgerMenu = () => {
           >
             <Link>Concepts</Link>
           </NavLink>
-
           <NavLink
             style={{ paddingLeft: 13, textDecoration: "none" }}
             to="/newconcept"

@@ -14,7 +14,6 @@ const ContributeConcept = () => {
   const history = useHistory();
   const [description, setDescription] = useState("");
   const [concept, setConcept] = useState("");
-
   const [conceptList, setConceptList] = useState({});
 
   const accessToken = useSelector((store) => store.user.accessToken);

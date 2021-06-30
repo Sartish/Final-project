@@ -66,7 +66,6 @@ const AddedDescription = () => {
         handleClick();
       })
       .catch((error) => {
-        // post failed, show error message to let user know
         swal({
           title: "Failed to add concept",
           text: error.message,
